@@ -144,6 +144,9 @@
   <data name="Language" xml:space="preserve">
     <value>Тіл</value>
   </data>
+  <data name="LocalAcc" xml:space="preserve">
+    <value>Жүйеге кіру үшін жергілікті есептік жазбаны пайдаланыңыз.</value>
+  </data>
   <data name="LogIn" xml:space="preserve">
     <value>Кіру</value>
   </data>

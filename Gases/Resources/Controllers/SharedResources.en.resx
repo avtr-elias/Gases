@@ -144,6 +144,9 @@
   <data name="Language" xml:space="preserve">
     <value>Language</value>
   </data>
+  <data name="LocalAcc" xml:space="preserve">
+    <value>Use a local account to log in.</value>
+  </data>
   <data name="LogIn" xml:space="preserve">
     <value>Log in</value>
   </data>

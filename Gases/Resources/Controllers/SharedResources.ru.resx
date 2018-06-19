@@ -144,6 +144,9 @@
   <data name="Language" xml:space="preserve">
     <value>Язык</value>
   </data>
+  <data name="LocalAcc" xml:space="preserve">
+    <value>Используйте локальную учетную запись для входа в систему.</value>
+  </data>
   <data name="LogIn" xml:space="preserve">
     <value>Войти</value>
   </data>
