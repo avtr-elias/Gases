@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Gases.Models;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Gases.Controllers
 {
@@ -34,6 +35,12 @@ namespace Gases.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        [Authorize(Roles = "Administrator")]
+        public IActionResult Administrator()
+        {
+            return View();
         }
 
         [HttpPost]

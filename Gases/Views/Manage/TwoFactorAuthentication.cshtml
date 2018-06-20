@@ -1,6 +1,9 @@
+@using Gases.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
 @model TwoFactorAuthenticationViewModel
 @{
-    ViewData["Title"] = "Two-factor authentication";
+    ViewData["Title"] = SharedLocalizer["TwoFactorAuthentication"];
     ViewData.AddActivePage(ManageNavPages.TwoFactorAuthentication);
 }
 
