@@ -1,0 +1,18 @@
+﻿@using Gases.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@model IEnumerable<Gases.Models.UploadModel>
+@{
+    ViewData["Title"] = SharedLocalizer["Add file"];
+}
+<h3>@SharedLocalizer["Select file to upload"]</h3>
+<form asp-action="AddFile" asp-controller="Upload" method="post" enctype="multipart/form-data">
+    <input type="file" name="uploadedFile" /><br>
+    <input type="submit" value=@SharedLocalizer["Dowload"] />
+</form>
+
+<h3>@SharedLocalizer["All files"]</h3>
+@foreach (var f in Model)
+{
+    <p><img src="@Url.Content(f.Path)"></p>
+}
