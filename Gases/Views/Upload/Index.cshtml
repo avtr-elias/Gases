@@ -1,7 +1,7 @@
 ﻿@using Gases.Controllers
 @using Microsoft.Extensions.Localization
 @inject IStringLocalizer<SharedResources> SharedLocalizer
-@*@model IEnumerable<Gases.Models.UploadModel>*@
+@model IEnumerable<Gases.Models.UploadModel>
 @{
     ViewData["Title"] = SharedLocalizer["Add file"];
 }
@@ -12,7 +12,7 @@
 </form>
 
 <h3>@SharedLocalizer["All files"]</h3>
-@*@foreach (var f in Model)
+@foreach (var f in Model)
 {
     <p><img src="@Url.Content(f.Path)"></p>
-}*@
+}
