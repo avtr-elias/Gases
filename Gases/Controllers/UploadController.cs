@@ -22,13 +22,13 @@ namespace Gases.Controllers
             _appEnvironment = appEnvironment;
         }
 
-        [Authorize(Roles = "Administrator, Moderator")]
+        //[Authorize(Roles = "Administrator, Moderator")]
         public IActionResult Index()
         {
             return View();
         }
         [HttpPost]
-        [Authorize(Roles = "Administrator, Moderator")]
+        //[Authorize(Roles = "Administrator, Moderator")]
         public async Task<IActionResult> AddFile(IFormFile uploadedFile)
         {
             if (uploadedFile != null)
