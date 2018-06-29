@@ -120,6 +120,9 @@
   <data name="About" xml:space="preserve">
     <value>Подробнее</value>
   </data>
+  <data name="AddFile" xml:space="preserve">
+    <value>Добавить файл</value>
+  </data>
   <data name="Administration" xml:space="preserve">
     <value>Администрирование</value>
   </data>
@@ -138,11 +141,23 @@
   <data name="Contact" xml:space="preserve">
     <value>Контакты</value>
   </data>
+  <data name="Create" xml:space="preserve">
+    <value>Создать</value>
+  </data>
   <data name="CreateAcc" xml:space="preserve">
     <value>Создание нового аккаунта</value>
   </data>
   <data name="CurrentPassword" xml:space="preserve">
     <value>Текущий пароль</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Дата</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Детали</value>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>Редактировать</value>
@@ -156,6 +171,15 @@
   <data name="Find" xml:space="preserve">
     <value>Найти</value>
   </data>
+  <data name="Formula" xml:space="preserve">
+    <value>Формула</value>
+  </data>
+  <data name="Gase" xml:space="preserve">
+    <value>Газ</value>
+  </data>
+  <data name="Gases" xml:space="preserve">
+    <value>Газы</value>
+  </data>
   <data name="Hello" xml:space="preserve">
     <value>Привет</value>
   </data>
@@ -165,6 +189,9 @@
   <data name="Language" xml:space="preserve">
     <value>Язык</value>
   </data>
+  <data name="Latitude" xml:space="preserve">
+    <value>Широта</value>
+  </data>
   <data name="LocalAcc" xml:space="preserve">
     <value>Используйте локальную учетную запись для входа в систему.</value>
   </data>
@@ -173,6 +200,12 @@
   </data>
   <data name="LogOut" xml:space="preserve">
     <value>Выйти</value>
+  </data>
+  <data name="Longtitude" xml:space="preserve">
+    <value>Долгота</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Наименование</value>
   </data>
   <data name="NewPassword" xml:space="preserve">
     <value>Новый пароль</value>
@@ -198,11 +231,20 @@
   <data name="Save" xml:space="preserve">
     <value>Сохранить</value>
   </data>
+  <data name="SelectFile" xml:space="preserve">
+    <value>Выберите файл для загрузки</value>
+  </data>
   <data name="TwoFactorAuthentication" xml:space="preserve">
     <value>Двухфакторная аутентификация</value>
   </data>
+  <data name="Unit" xml:space="preserve">
+    <value>Единица измерения</value>
+  </data>
   <data name="UpdatePassword" xml:space="preserve">
     <value>Обновить пароль</value>
+  </data>
+  <data name="Upload" xml:space="preserve">
+    <value>Загрузить</value>
   </data>
   <data name="User" xml:space="preserve">
     <value>Пользователь</value>
@@ -212,6 +254,9 @@
   </data>
   <data name="Users" xml:space="preserve">
     <value>Пользователи</value>
+  </data>
+  <data name="Value" xml:space="preserve">
+    <value>Значение концентрации</value>
   </data>
   <data name="VerificationEmail" xml:space="preserve">
     <value>Отправить письмо с подтверждением</value>

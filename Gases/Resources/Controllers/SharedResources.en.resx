@@ -120,6 +120,9 @@
   <data name="About" xml:space="preserve">
     <value>About</value>
   </data>
+  <data name="AddFile" xml:space="preserve">
+    <value>Add file</value>
+  </data>
   <data name="Administration" xml:space="preserve">
     <value>Administration</value>
   </data>
@@ -138,11 +141,23 @@
   <data name="Contact" xml:space="preserve">
     <value>Contact</value>
   </data>
+  <data name="Create" xml:space="preserve">
+    <value>Create</value>
+  </data>
   <data name="CreateAcc" xml:space="preserve">
     <value>Create a new account</value>
   </data>
   <data name="CurrentPassword" xml:space="preserve">
     <value>Current password</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Details</value>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>Edit</value>
@@ -156,6 +171,15 @@
   <data name="Find" xml:space="preserve">
     <value>Find</value>
   </data>
+  <data name="Formula" xml:space="preserve">
+    <value>Formula</value>
+  </data>
+  <data name="Gase" xml:space="preserve">
+    <value>Gase</value>
+  </data>
+  <data name="Gases" xml:space="preserve">
+    <value>Gases</value>
+  </data>
   <data name="Hello" xml:space="preserve">
     <value>Hello</value>
   </data>
@@ -165,6 +189,9 @@
   <data name="Language" xml:space="preserve">
     <value>Language</value>
   </data>
+  <data name="Latitude" xml:space="preserve">
+    <value>Latitude</value>
+  </data>
   <data name="LocalAcc" xml:space="preserve">
     <value>Use a local account to log in.</value>
   </data>
@@ -173,6 +200,12 @@
   </data>
   <data name="LogOut" xml:space="preserve">
     <value>Log out</value>
+  </data>
+  <data name="Longtitude" xml:space="preserve">
+    <value>Longtitude</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
   </data>
   <data name="NewPassword" xml:space="preserve">
     <value>New password</value>
@@ -198,11 +231,20 @@
   <data name="Save" xml:space="preserve">
     <value>Save</value>
   </data>
+  <data name="SelectFile" xml:space="preserve">
+    <value>Select file to upload</value>
+  </data>
   <data name="TwoFactorAuthentication" xml:space="preserve">
     <value>Two-factor authentication</value>
   </data>
+  <data name="Unit" xml:space="preserve">
+    <value>Unit</value>
+  </data>
   <data name="UpdatePassword" xml:space="preserve">
     <value>Update password</value>
+  </data>
+  <data name="Upload" xml:space="preserve">
+    <value>Upload</value>
   </data>
   <data name="User" xml:space="preserve">
     <value>User</value>
@@ -212,6 +254,9 @@
   </data>
   <data name="Users" xml:space="preserve">
     <value>Users</value>
+  </data>
+  <data name="Value" xml:space="preserve">
+    <value>Concentration value</value>
   </data>
   <data name="VerificationEmail" xml:space="preserve">
     <value>Send verification email</value>

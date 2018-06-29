@@ -24,5 +24,9 @@ namespace Gases.Data
         }
 
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
+
+        public DbSet<Gases.Models.Gase> Gase { get; set; }
+
+        public DbSet<Gases.Models.NetCDF> NetCDF { get; set; }
     }
 }

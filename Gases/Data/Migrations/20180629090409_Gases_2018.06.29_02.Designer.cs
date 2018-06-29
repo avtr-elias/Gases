@@ -11,9 +11,10 @@ using System;
 namespace Gases.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180629090409_Gases_2018.06.29_02")]
+    partial class Gases_20180629_02
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -82,32 +83,6 @@ namespace Gases.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Gase");
-                });
-
-            modelBuilder.Entity("Gases.Models.NetCDF", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("Date");
-
-                    b.Property<int>("GaseId");
-
-                    b.Property<decimal>("Latitude");
-
-                    b.Property<decimal>("Longtitude");
-
-                    b.Property<string>("Name");
-
-                    b.Property<string>("Unit");
-
-                    b.Property<decimal>("Value");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("GaseId");
-
-                    b.ToTable("NetCDF");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -215,14 +190,6 @@ namespace Gases.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("Gases.Models.NetCDF", b =>
-                {
-                    b.HasOne("Gases.Models.Gase", "Gase")
-                        .WithMany()
-                        .HasForeignKey("GaseId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -15,20 +15,17 @@ namespace Gases.Controllers
 {
     public class UploadController : Controller
     {
-        //ApplicationContext _context;
         IHostingEnvironment _appEnvironment;
 
-        public UploadController(/*ApplicationContext context, */IHostingEnvironment appEnvironment)
+        public UploadController(IHostingEnvironment appEnvironment)
         {
-            //_context = context;
             _appEnvironment = appEnvironment;
         }
 
         [Authorize(Roles = "Administrator, Moderator")]
         public IActionResult Index()
         {
-            return View(/*_context.Files.ToList()*/);
-            //return View();
+            return View();
         }
         [HttpPost]
         [Authorize(Roles = "Administrator, Moderator")]
@@ -36,18 +33,16 @@ namespace Gases.Controllers
         {
             if (uploadedFile != null)
             {
-                // путь к папке Files
+                // путь к папке Uploaded
                 //string path = "/Uploaded/" + uploadedFile.FileName;
                 string path = Path.Combine(_appEnvironment.WebRootPath, "Uploaded", Path.GetFileName(uploadedFile.FileName));
-                // сохраняем файл в папку Files в каталоге wwwroot
+                // сохраняем файл в папку Uploaded в каталоге wwwroot
                 //using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
                 using (var fileStream = new FileStream(path, FileMode.Create))
                 {
                     await uploadedFile.CopyToAsync(fileStream);
                 }
                 UploadModel file = new UploadModel { Name = uploadedFile.FileName, Path = path };
-                //_context.Files.Add(file);
-                //_context.SaveChanges();
                 if (Path.GetExtension(path) == ".nc")
                 {
                     string folder = Path.Combine(_appEnvironment.WebRootPath, "Uploaded");
