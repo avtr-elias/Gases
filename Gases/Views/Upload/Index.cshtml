@@ -6,13 +6,19 @@
     ViewData["Title"] = SharedLocalizer["AddFile"];
 }
 <h3>@SharedLocalizer["SelectFile"]</h3>
+
+@*@if (!string.IsNullOrEmpty(ViewBag.Message))
+{
+    <h4>@ViewBag.Message</h4>
+}*@
+
 <form asp-action="AddFile" asp-controller="Upload" method="post" enctype="multipart/form-data">
     <input type="file" name="uploadedFile" /><br>
     <input type="submit" value=@SharedLocalizer["Upload"] />
 </form>
 
 @*<h3>@SharedLocalizer["All files"]</h3>
-@foreach (var f in Model)
-{
-    <p><img src="@Url.Content(f.Path)"></p>
-}*@
+    @foreach (var f in Model)
+    {
+        <p><img src="@Url.Content(f.Path)"></p>
+    }*@
