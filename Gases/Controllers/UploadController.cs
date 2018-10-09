@@ -25,7 +25,7 @@ namespace Gases.Controllers
             _context = context;
         }
 
-        public void NetCDF(int Gase,
+        public void NetCDF(int GaseId,
             DateTime DateTime,
             string Name,
             string Unit,
@@ -35,8 +35,8 @@ namespace Gases.Controllers
         {
             NetCDF netCDF = new NetCDF
             {
-                Gase = Gase,
-                DateTime = DateTime,
+                GaseId = GaseId,
+                Date = DateTime,
                 Name = Name,
                 Unit = Unit,
                 Longtitude = Longtitude,
@@ -77,7 +77,7 @@ namespace Gases.Controllers
 
                 // путь к папке Uploaded
                 //string path = "/Uploaded/" + uploadedFile.FileName;
-                string path = Path.Combine(_appEnvironment.WebRootPath, "Uploaded", Path.GetFileName(uploadedFile.FileName));
+                string path = Path.Combine(_appEnvironment.WebRootPath, "Uploaded", Path.GetFileName(uploadedFile.FileName.Replace(',', '.')));
                 // сохраняем файл в папку Uploaded в каталоге wwwroot
                 //using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
                 using (var fileStream = new FileStream(path, FileMode.Create))
@@ -89,6 +89,7 @@ namespace Gases.Controllers
                     string folder = Path.Combine(_appEnvironment.WebRootPath, "Uploaded");
                     string batfile = Path.Combine(folder, "bat.bat");
                     string filename = Path.GetFileNameWithoutExtension(uploadedFile.FileName);
+                    filename = filename.Replace(',', '.');
 
                     using (var sw = new StreamWriter(batfile))
                     {
@@ -218,7 +219,24 @@ namespace Gases.Controllers
                                 x.Add(Convert.ToInt32(subString.Remove(subString.IndexOf(","), subString.Length - subString.IndexOf(","))));
                                 y.Add(Convert.ToInt32(subString.Remove(subString.IndexOf(")"), subString.Length - subString.IndexOf(")")).Remove(0, subString.IndexOf(",") + 1)));
 
-                                value.Add(Decimal.Parse(line.Remove(line.IndexOf(',')), CultureInfo.InvariantCulture));
+                                string val;
+                                if (line.IndexOf(';') != -1)
+                                {
+                                    val = line.Remove(line.IndexOf(';'));
+                                }
+                                else
+                                {
+                                    val = line.Remove(line.IndexOf(','));
+                                }
+
+                                try
+                                {
+                                    value.Add(Decimal.Parse(val, CultureInfo.InvariantCulture));
+                                }
+                                catch
+                                {
+                                    value.Add(Decimal.Parse(val, NumberStyles.Any, CultureInfo.InvariantCulture));
+                                }
                             }
                         }
                         while ((line = sr.ReadLine()) != null)
@@ -238,7 +256,7 @@ namespace Gases.Controllers
                                     }
                                     foreach (char s in line)
                                     {
-                                        if (char.IsDigit(s))
+                                        if (char.IsDigit(s) || (s == '.'))
                                         {
                                             numb = numb + s;
                                         }
@@ -299,9 +317,12 @@ namespace Gases.Controllers
                             }
                         }
 
+                        int idGase = _context.Gase.Where(d => d.Formula == gase).First().Id;
+                        //idGase = idGase == null ? 0 : idGase;
+
                         for (int i = 0; i < value.Count; i++)
                         {
-                            NetCDF("?", dateTime, name, unit, lonValue[i], latValue[i], value[i]);
+                            NetCDF(idGase, dateTime, name, unit, lonValue[i], latValue[i], value[i]);
                         }
                     }
                 }

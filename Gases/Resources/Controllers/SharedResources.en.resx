@@ -156,6 +156,9 @@
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
   </data>
+  <data name="DeleteGeoTIFFFile" xml:space="preserve">
+    <value>Delete GeoTIFF file</value>
+  </data>
   <data name="Details" xml:space="preserve">
     <value>Details</value>
   </data>
@@ -167,6 +170,15 @@
   </data>
   <data name="ExternalLogins" xml:space="preserve">
     <value>External logins</value>
+  </data>
+  <data name="FileNameWithPath" xml:space="preserve">
+    <value>The path to the file</value>
+  </data>
+  <data name="Files" xml:space="preserve">
+    <value>Files</value>
+  </data>
+  <data name="FileUpload" xml:space="preserve">
+    <value>Upload file</value>
   </data>
   <data name="Find" xml:space="preserve">
     <value>Find</value>
@@ -180,6 +192,15 @@
   <data name="Gases" xml:space="preserve">
     <value>Gases</value>
   </data>
+  <data name="GeoServerName" xml:space="preserve">
+    <value>Name in GeoServer</value>
+  </data>
+  <data name="GeoServerStyle" xml:space="preserve">
+    <value>Style in GeoServer</value>
+  </data>
+  <data name="GeoTIFFFile" xml:space="preserve">
+    <value>GeoTIFF file</value>
+  </data>
   <data name="Hello" xml:space="preserve">
     <value>Hello</value>
   </data>
@@ -191,6 +212,12 @@
   </data>
   <data name="Latitude" xml:space="preserve">
     <value>Latitude</value>
+  </data>
+  <data name="Layer" xml:space="preserve">
+    <value>Layer</value>
+  </data>
+  <data name="Layers" xml:space="preserve">
+    <value>Layers</value>
   </data>
   <data name="LocalAcc" xml:space="preserve">
     <value>Use a local account to log in.</value>
@@ -207,6 +234,15 @@
   <data name="Name" xml:space="preserve">
     <value>Name</value>
   </data>
+  <data name="NameEN" xml:space="preserve">
+    <value>Name (english)</value>
+  </data>
+  <data name="NameKK" xml:space="preserve">
+    <value>Name (kazakh)</value>
+  </data>
+  <data name="NameRU" xml:space="preserve">
+    <value>Name (russian)</value>
+  </data>
   <data name="NewPassword" xml:space="preserve">
     <value>New password</value>
   </data>
@@ -218,6 +254,12 @@
   </data>
   <data name="Profile" xml:space="preserve">
     <value>Profile</value>
+  </data>
+  <data name="Publish" xml:space="preserve">
+    <value>Publish</value>
+  </data>
+  <data name="PublishGeoTIFF" xml:space="preserve">
+    <value>Publish GeoTIFF file</value>
   </data>
   <data name="Register" xml:space="preserve">
     <value>Register</value>
@@ -240,11 +282,20 @@
   <data name="Unit" xml:space="preserve">
     <value>Unit</value>
   </data>
+  <data name="Unpublish" xml:space="preserve">
+    <value>Unpublish</value>
+  </data>
+  <data name="UnpublishGeoTIFF" xml:space="preserve">
+    <value>Unpublish GeoTIFF file</value>
+  </data>
   <data name="UpdatePassword" xml:space="preserve">
     <value>Update password</value>
   </data>
   <data name="Upload" xml:space="preserve">
     <value>Upload</value>
+  </data>
+  <data name="UploadGeoTIFFFiles" xml:space="preserve">
+    <value>Upload GeoTIFF files</value>
   </data>
   <data name="User" xml:space="preserve">
     <value>User</value>
@@ -255,10 +306,31 @@
   <data name="Users" xml:space="preserve">
     <value>Users</value>
   </data>
+  <data name="UsersCard" xml:space="preserve">
+    <value>User's card</value>
+  </data>
   <data name="Value" xml:space="preserve">
     <value>Concentration value</value>
   </data>
   <data name="VerificationEmail" xml:space="preserve">
     <value>Send verification email</value>
+  </data>
+  <data name="GaseFormula" xml:space="preserve">
+    <value>Gase formula</value>
+  </data>
+  <data name="Month" xml:space="preserve">
+    <value>Month</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>Year</value>
+  </data>
+  <data name="NetCDF" xml:space="preserve">
+    <value>NetCDF</value>
+  </data>
+  <data name="ForgotYourPassword" xml:space="preserve">
+    <value>Forgot your password?</value>
+  </data>
+  <data name="RegisterNewUser" xml:space="preserve">
+    <value>Register as a new user?</value>
   </data>
 </root>

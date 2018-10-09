@@ -156,6 +156,9 @@
   <data name="Delete" xml:space="preserve">
     <value>Удалить</value>
   </data>
+  <data name="DeleteGeoTIFFFile" xml:space="preserve">
+    <value>Удалить GeoTIFF-файл</value>
+  </data>
   <data name="Details" xml:space="preserve">
     <value>Детали</value>
   </data>
@@ -167,6 +170,15 @@
   </data>
   <data name="ExternalLogins" xml:space="preserve">
     <value>Внешние логины</value>
+  </data>
+  <data name="FileNameWithPath" xml:space="preserve">
+    <value>Путь к файлу</value>
+  </data>
+  <data name="Files" xml:space="preserve">
+    <value>Файлы</value>
+  </data>
+  <data name="FileUpload" xml:space="preserve">
+    <value>Загрузить файл</value>
   </data>
   <data name="Find" xml:space="preserve">
     <value>Найти</value>
@@ -180,6 +192,15 @@
   <data name="Gases" xml:space="preserve">
     <value>Газы</value>
   </data>
+  <data name="GeoServerName" xml:space="preserve">
+    <value>Название в GeoServer</value>
+  </data>
+  <data name="GeoServerStyle" xml:space="preserve">
+    <value>Стиль в GeoServer</value>
+  </data>
+  <data name="GeoTIFFFile" xml:space="preserve">
+    <value>GeoTIFF-файл</value>
+  </data>
   <data name="Hello" xml:space="preserve">
     <value>Привет</value>
   </data>
@@ -191,6 +212,12 @@
   </data>
   <data name="Latitude" xml:space="preserve">
     <value>Широта</value>
+  </data>
+  <data name="Layer" xml:space="preserve">
+    <value>Слой</value>
+  </data>
+  <data name="Layers" xml:space="preserve">
+    <value>Слои</value>
   </data>
   <data name="LocalAcc" xml:space="preserve">
     <value>Используйте локальную учетную запись для входа в систему.</value>
@@ -207,6 +234,15 @@
   <data name="Name" xml:space="preserve">
     <value>Наименование</value>
   </data>
+  <data name="NameEN" xml:space="preserve">
+    <value>Название (английский)</value>
+  </data>
+  <data name="NameKK" xml:space="preserve">
+    <value>Название (казахский)</value>
+  </data>
+  <data name="NameRU" xml:space="preserve">
+    <value>Название (русский)</value>
+  </data>
   <data name="NewPassword" xml:space="preserve">
     <value>Новый пароль</value>
   </data>
@@ -218,6 +254,12 @@
   </data>
   <data name="Profile" xml:space="preserve">
     <value>Профиль</value>
+  </data>
+  <data name="Publish" xml:space="preserve">
+    <value>Опубликовать</value>
+  </data>
+  <data name="PublishGeoTIFF" xml:space="preserve">
+    <value>Опубликовать GeoTIFF-файл</value>
   </data>
   <data name="Register" xml:space="preserve">
     <value>Регистрация</value>
@@ -240,11 +282,20 @@
   <data name="Unit" xml:space="preserve">
     <value>Единица измерения</value>
   </data>
+  <data name="Unpublish" xml:space="preserve">
+    <value>Отменить публикацию</value>
+  </data>
+  <data name="UnpublishGeoTIFF" xml:space="preserve">
+    <value>Отменить публикацию GeoTIFF-файла</value>
+  </data>
   <data name="UpdatePassword" xml:space="preserve">
     <value>Обновить пароль</value>
   </data>
   <data name="Upload" xml:space="preserve">
     <value>Загрузить</value>
+  </data>
+  <data name="UploadGeoTIFFFiles" xml:space="preserve">
+    <value>Загрузить GeoTIFF-файлы</value>
   </data>
   <data name="User" xml:space="preserve">
     <value>Пользователь</value>
@@ -255,10 +306,31 @@
   <data name="Users" xml:space="preserve">
     <value>Пользователи</value>
   </data>
+  <data name="UsersCard" xml:space="preserve">
+    <value>Карта пользователя</value>
+  </data>
   <data name="Value" xml:space="preserve">
     <value>Значение концентрации</value>
   </data>
   <data name="VerificationEmail" xml:space="preserve">
     <value>Отправить письмо с подтверждением</value>
+  </data>
+  <data name="GaseFormula" xml:space="preserve">
+    <value>Формула газа</value>
+  </data>
+  <data name="Month" xml:space="preserve">
+    <value>Месяц</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>Год</value>
+  </data>
+  <data name="NetCDF" xml:space="preserve">
+    <value>NetCDF</value>
+  </data>
+  <data name="ForgotYourPassword" xml:space="preserve">
+    <value>Забыли пароль?</value>
+  </data>
+  <data name="RegisterNewUser" xml:space="preserve">
+    <value>Зарегистрироваться как новый пользователь?</value>
   </data>
 </root>

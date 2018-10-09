@@ -180,6 +180,15 @@ namespace Gases.Resources.Controllers {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
+        public static string DeleteGeoTIFFFile {
+            get {
+                return ResourceManager.GetString("DeleteGeoTIFFFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
         public static string Details {
             get {
                 return ResourceManager.GetString("Details", resourceCulture);
@@ -216,9 +225,45 @@ namespace Gases.Resources.Controllers {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
+        public static string FileNameWithPath {
+            get {
+                return ResourceManager.GetString("FileNameWithPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string Files {
+            get {
+                return ResourceManager.GetString("Files", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string FileUpload {
+            get {
+                return ResourceManager.GetString("FileUpload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
         public static string Find {
             get {
                 return ResourceManager.GetString("Find", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string ForgotYourPassword {
+            get {
+                return ResourceManager.GetString("ForgotYourPassword", resourceCulture);
             }
         }
         
@@ -243,9 +288,45 @@ namespace Gases.Resources.Controllers {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
+        public static string GaseFormula {
+            get {
+                return ResourceManager.GetString("GaseFormula", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
         public static string Gases {
             get {
                 return ResourceManager.GetString("Gases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string GeoServerName {
+            get {
+                return ResourceManager.GetString("GeoServerName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string GeoServerStyle {
+            get {
+                return ResourceManager.GetString("GeoServerStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string GeoTIFFFile {
+            get {
+                return ResourceManager.GetString("GeoTIFFFile", resourceCulture);
             }
         }
         
@@ -288,6 +369,24 @@ namespace Gases.Resources.Controllers {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
+        public static string Layer {
+            get {
+                return ResourceManager.GetString("Layer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string Layers {
+            get {
+                return ResourceManager.GetString("Layers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
         public static string LocalAcc {
             get {
                 return ResourceManager.GetString("LocalAcc", resourceCulture);
@@ -324,9 +423,54 @@ namespace Gases.Resources.Controllers {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
+        public static string Month {
+            get {
+                return ResourceManager.GetString("Month", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
         public static string Name {
             get {
                 return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string NameEN {
+            get {
+                return ResourceManager.GetString("NameEN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string NameKK {
+            get {
+                return ResourceManager.GetString("NameKK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string NameRU {
+            get {
+                return ResourceManager.GetString("NameRU", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string NetCDF {
+            get {
+                return ResourceManager.GetString("NetCDF", resourceCulture);
             }
         }
         
@@ -369,9 +513,36 @@ namespace Gases.Resources.Controllers {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
+        public static string Publish {
+            get {
+                return ResourceManager.GetString("Publish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string PublishGeoTIFF {
+            get {
+                return ResourceManager.GetString("PublishGeoTIFF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
         public static string Register {
             get {
                 return ResourceManager.GetString("Register", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string RegisterNewUser {
+            get {
+                return ResourceManager.GetString("RegisterNewUser", resourceCulture);
             }
         }
         
@@ -423,6 +594,24 @@ namespace Gases.Resources.Controllers {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
+        public static string Unpublish {
+            get {
+                return ResourceManager.GetString("Unpublish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string UnpublishGeoTIFF {
+            get {
+                return ResourceManager.GetString("UnpublishGeoTIFF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
         public static string UpdatePassword {
             get {
                 return ResourceManager.GetString("UpdatePassword", resourceCulture);
@@ -435,6 +624,15 @@ namespace Gases.Resources.Controllers {
         public static string Upload {
             get {
                 return ResourceManager.GetString("Upload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string UploadGeoTIFFFiles {
+            get {
+                return ResourceManager.GetString("UploadGeoTIFFFiles", resourceCulture);
             }
         }
         
@@ -468,6 +666,15 @@ namespace Gases.Resources.Controllers {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
+        public static string UsersCard {
+            get {
+                return ResourceManager.GetString("UsersCard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
         public static string Value {
             get {
                 return ResourceManager.GetString("Value", resourceCulture);
@@ -480,6 +687,15 @@ namespace Gases.Resources.Controllers {
         public static string VerificationEmail {
             get {
                 return ResourceManager.GetString("VerificationEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string Year {
+            get {
+                return ResourceManager.GetString("Year", resourceCulture);
             }
         }
     }

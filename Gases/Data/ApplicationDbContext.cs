@@ -28,5 +28,9 @@ namespace Gases.Data
         public DbSet<Gases.Models.Gase> Gase { get; set; }
 
         public DbSet<Gases.Models.NetCDF> NetCDF { get; set; }
+
+        public DbSet<Gases.Models.Layer> Layer { get; set; }
+
+        public DbSet<Gases.Models.GeoTiffFile> GeoTiffFile { get; set; }
     }
 }

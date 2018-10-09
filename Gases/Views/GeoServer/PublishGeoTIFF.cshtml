@@ -1,0 +1,47 @@
+﻿@using Gases.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["PublishGeoTIFF"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*<h2>@SharedLocalizer["PublishGeoTIFF"]</h2>
+@Html.ActionLink(SharedLocalizer["Instruction"], "Instruction", new { Type = "PublishGeoTIFF" })
+<br />
+<br />*@
+@if (!string.IsNullOrEmpty(ViewBag.Message))
+{
+    <div>
+        @ViewBag.Message
+    </div>
+}
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="PublishGeoTIFF">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">@SharedLocalizer["GeoTIFFFile"]</label>
+                <select name="GeoTIFFFile" class="form-control" asp-items="ViewBag.GeoTIFFFiles"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">@SharedLocalizer["GeoServerStyle"]</label>
+                <select name="Style" class="form-control" asp-items="ViewBag.Styles"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">@SharedLocalizer["NameKK"]</label>
+                <input name="NameKK" class="form-control" type="text" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">@SharedLocalizer["NameRU"]</label>
+                <input name="NameRU" class="form-control" type="text" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">@SharedLocalizer["NameEN"]</label>
+                <input name="NameEN" class="form-control" type="text" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="@SharedLocalizer["Publish"]" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,61 @@
+﻿@model Gases.Models.Layer
+@using Gases.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+
+@{
+    ViewData["Title"] = SharedLocalizer["Delete"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@SharedLocalizer["Delete"]</h2>
+
+<h3>@SharedLocalizer["Delete"]?</h3>
+<div>
+    <h4>@SharedLocalizer["Layer"]</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.GeoServerName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.GeoServerName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FileNameWithPath)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FileNameWithPath)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.GeoServerStyle)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.GeoServerStyle)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NameKK)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NameKK)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NameRU)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NameRU)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NameEN)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NameEN)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value=@SharedLocalizer["Delete"] class="btn btn-default" /> |
+        <a asp-action="Index">@SharedLocalizer["BackToList"]</a>
+    </form>
+</div>

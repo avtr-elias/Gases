@@ -84,6 +84,48 @@ namespace Gases.Data.Migrations
                     b.ToTable("Gase");
                 });
 
+            modelBuilder.Entity("Gases.Models.GeoTiffFile", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("GaseId");
+
+                    b.Property<string>("Month");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("Year");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GaseId");
+
+                    b.ToTable("GeoTiffFile");
+                });
+
+            modelBuilder.Entity("Gases.Models.Layer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("FileNameWithPath");
+
+                    b.Property<string>("GeoServerName");
+
+                    b.Property<string>("GeoServerStyle");
+
+                    b.Property<string>("NameEN");
+
+                    b.Property<string>("NameKK");
+
+                    b.Property<string>("NameRU");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Layer");
+                });
+
             modelBuilder.Entity("Gases.Models.NetCDF", b =>
                 {
                     b.Property<int>("Id")
@@ -215,6 +257,14 @@ namespace Gases.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("Gases.Models.GeoTiffFile", b =>
+                {
+                    b.HasOne("Gases.Models.Gase", "Gase")
+                        .WithMany()
+                        .HasForeignKey("GaseId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Gases.Models.NetCDF", b =>

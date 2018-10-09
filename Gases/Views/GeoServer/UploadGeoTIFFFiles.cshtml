@@ -1,0 +1,56 @@
+﻿@using Gases.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+@{
+    ViewData["Title"] = SharedLocalizer["UploadGeoTIFFFiles"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>@SharedLocalizer["UploadGeoTIFFFiles"]</h2>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery-form/jquery.form.js"></script>
+@*<h3>@SharedLocalizer["PublishDescription"]</h3>
+@Html.ActionLink(SharedLocalizer["Instruction"], "Instruction", new { Type = "UploadGeoTIFFFiles" })
+<br />
+<br />*@
+<div class="row">
+    <div class="col-md-4">
+        @using (Html.BeginForm("UploadGeoTIFFFiles", "GeoServer", FormMethod.Post, new { enctype = "multipart/form-data", id = "uploadform" }))
+        {
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">@SharedLocalizer["Files"]</label>
+                <input type="file" name="Files" multiple />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="@SharedLocalizer["Upload"]" class="btn btn-default" />
+            </div>
+        }
+    </div>
+</div>
+<div class="progress" style="width:50%">
+    <div class="progress-bar"></div>
+    <div class="percent">0%</div>
+</div>
+<div id="status"></div>
+<script>$.noConflict();
+    jQuery(document).ready(function ($) {
+        var bar = $('.progress-bar');
+        var percent = $('.percent');
+        var status = $('#status');
+        $('#uploadform').ajaxForm({
+            beforeSend: function () {
+                status.empty();
+                var percentVal = '0%';
+                bar.width(percentVal);
+                percent.html(percentVal);
+            },
+            uploadProgress: function (event, position, total, percentComplete) {
+                var percentVal = percentComplete + '%';
+                bar.width(percentVal);
+                percent.html(percentVal);
+            },
+            complete: function (xhr) {
+                status.html(xhr.responseText);
+            }
+        });
+    });</script>

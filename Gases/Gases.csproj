@@ -7,6 +7,8 @@
 
 
   <ItemGroup>
+    <PackageReference Include="HtmlAgilityPack" Version="1.8.7" />
+    <PackageReference Include="Ionic.Zip" Version="1.9.1.8" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.3" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.4" PrivateAssets="All" />

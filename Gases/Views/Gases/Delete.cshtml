@@ -12,7 +12,7 @@
 
 <h3>@SharedLocalizer["Delete"]?</h3>
 <div>
-    <h4>Gase</h4>
+    <h4>@SharedLocalizer["Gase"]</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -32,6 +32,6 @@
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
         <input type="submit" value=@SharedLocalizer["Delete"] class="btn btn-default" /> |
-        <a asp-action="Index">@SharedLocalizer["BackToList"]t</a>
+        <a asp-action="Index">@SharedLocalizer["BackToList"]</a>
     </form>
 </div>

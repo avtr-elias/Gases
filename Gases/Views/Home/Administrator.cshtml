@@ -8,10 +8,30 @@
 
 <h2>@SharedLocalizer["Administrator"]</h2>
 
+<a class="btn btn-default" asp-action="Index" asp-controller="Gases">@SharedLocalizer["Gases"]</a>
+<br />
+<br />
 <a class="btn btn-default" asp-controller="Users" asp-action="Index">@SharedLocalizer["Users"]</a>
 <br />
 <br />
-<a class="btn btn-default" asp-controller="Upload" asp-action="Index">@SharedLocalizer["File upload"]</a>
+<a class="btn btn-default" asp-controller="Upload" asp-action="Index">@SharedLocalizer["FileUpload"]</a>
 <br />
 <br />
-<a class="btn btn-default" asp-controller="NetCDFs" asp-action="Index">@SharedLocalizer["netCDF"]</a>
+<a class="btn btn-default" asp-controller="NetCDFs" asp-action="Index">@SharedLocalizer["NetCDF"]</a>
+<br />
+<br />
+<a class="btn btn-default" asp-controller="GeoTiffFiles" asp-action="Index">@SharedLocalizer["GeoTIFFFile"]</a>
+<br />
+<br />
+<a class="btn btn-default" asp-controller="OL" asp-action="ViewGases">@SharedLocalizer["UsersCard"]</a>
+<br />
+<br />
+<a class="btn btn-default" asp-controller="GeoServer" asp-action="UploadGeoTIFFFiles">@SharedLocalizer["UploadGeoTIFFFiles"]</a>
+<a class="btn btn-default" asp-controller="GeoServer" asp-action="DeleteGeoTIFFFile">@SharedLocalizer["DeleteGeoTIFFFile"]</a>
+<br />
+<br />
+<a class="btn btn-default" asp-controller="GeoServer" asp-action="PublishGeoTIFF">@SharedLocalizer["PublishGeoTIFF"]</a>
+<a class="btn btn-default" asp-controller="GeoServer" asp-action="UnpublishGeoTIFF">@SharedLocalizer["UnpublishGeoTIFF"]</a>
+<br />
+<br />
+<a class="btn btn-default" asp-controller="Layers" asp-action="Index">@SharedLocalizer["Layers"]</a>

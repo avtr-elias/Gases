@@ -86,7 +86,7 @@ namespace Gases.Controllers
             {
                 return NotFound();
             }
-            ViewData["GaseId"] = new SelectList(_context.Gase, "Id", "Id", netCDF.GaseId);
+            ViewData["GaseId"] = new SelectList(_context.Gase, "Id", "Formula", netCDF.GaseId);
             return View(netCDF);
         }
 
@@ -123,7 +123,7 @@ namespace Gases.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["GaseId"] = new SelectList(_context.Gase, "Id", "Id", netCDF.GaseId);
+            ViewData["GaseId"] = new SelectList(_context.Gase, "Id", "Formula", netCDF.GaseId);
             return View(netCDF);
         }
 

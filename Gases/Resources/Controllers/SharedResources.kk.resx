@@ -156,6 +156,9 @@
   <data name="Delete" xml:space="preserve">
     <value>Жою</value>
   </data>
+  <data name="DeleteGeoTIFFFile" xml:space="preserve">
+    <value>GeoTIFF файлын жою</value>
+  </data>
   <data name="Details" xml:space="preserve">
     <value>Егжей</value>
   </data>
@@ -167,6 +170,15 @@
   </data>
   <data name="ExternalLogins" xml:space="preserve">
     <value>Сыртқы кірулер</value>
+  </data>
+  <data name="FileNameWithPath" xml:space="preserve">
+    <value>Файл жолы</value>
+  </data>
+  <data name="Files" xml:space="preserve">
+    <value>Файлдар</value>
+  </data>
+  <data name="FileUpload" xml:space="preserve">
+    <value>Файлды кері жүктеңіз</value>
   </data>
   <data name="Find" xml:space="preserve">
     <value>Табу</value>
@@ -180,6 +192,15 @@
   <data name="Gases" xml:space="preserve">
     <value>Газдар</value>
   </data>
+  <data name="GeoServerName" xml:space="preserve">
+    <value>GeoServer бағдарламасындағы атау</value>
+  </data>
+  <data name="GeoServerStyle" xml:space="preserve">
+    <value>GeoServer-дағы стиль</value>
+  </data>
+  <data name="GeoTIFFFile" xml:space="preserve">
+    <value>GeoTIFF файл</value>
+  </data>
   <data name="Hello" xml:space="preserve">
     <value>Сәлем</value>
   </data>
@@ -191,6 +212,12 @@
   </data>
   <data name="Latitude" xml:space="preserve">
     <value>Ендік</value>
+  </data>
+  <data name="Layer" xml:space="preserve">
+    <value>Қабат</value>
+  </data>
+  <data name="Layers" xml:space="preserve">
+    <value>Қабаттар</value>
   </data>
   <data name="LocalAcc" xml:space="preserve">
     <value>Жүйеге кіру үшін жергілікті есептік жазбаны пайдаланыңыз.</value>
@@ -207,6 +234,15 @@
   <data name="Name" xml:space="preserve">
     <value>Атауы</value>
   </data>
+  <data name="NameEN" xml:space="preserve">
+    <value>Атауы (ағылшын)</value>
+  </data>
+  <data name="NameKK" xml:space="preserve">
+    <value>Атауы (қазақ)</value>
+  </data>
+  <data name="NameRU" xml:space="preserve">
+    <value>Атауы (орыс)</value>
+  </data>
   <data name="NewPassword" xml:space="preserve">
     <value>Жаңа Құпия Сөз</value>
   </data>
@@ -218,6 +254,12 @@
   </data>
   <data name="Profile" xml:space="preserve">
     <value>Профиль</value>
+  </data>
+  <data name="Publish" xml:space="preserve">
+    <value>Жариялау</value>
+  </data>
+  <data name="PublishGeoTIFF" xml:space="preserve">
+    <value>GeoTIFF файлын жариялау</value>
   </data>
   <data name="Register" xml:space="preserve">
     <value>Тіркелу</value>
@@ -240,11 +282,20 @@
   <data name="Unit" xml:space="preserve">
     <value>Өлшем бірлігі</value>
   </data>
+  <data name="Unpublish" xml:space="preserve">
+    <value>Жарияламау</value>
+  </data>
+  <data name="UnpublishGeoTIFF" xml:space="preserve">
+    <value>GeoTIFF файлын жарияламаңыз</value>
+  </data>
   <data name="UpdatePassword" xml:space="preserve">
     <value>Құпия сөзді жаңартыңыз</value>
   </data>
   <data name="Upload" xml:space="preserve">
     <value>Жүктеп салу</value>
+  </data>
+  <data name="UploadGeoTIFFFiles" xml:space="preserve">
+    <value>GeoTIFF файлдарды жүктеу</value>
   </data>
   <data name="User" xml:space="preserve">
     <value>Пайдаланушы</value>
@@ -255,10 +306,31 @@
   <data name="Users" xml:space="preserve">
     <value>Пайдаланушылар</value>
   </data>
+  <data name="UsersCard" xml:space="preserve">
+    <value>Пайдаланушының картасы</value>
+  </data>
   <data name="Value" xml:space="preserve">
     <value>Шоғырлану мәні</value>
   </data>
   <data name="VerificationEmail" xml:space="preserve">
     <value>Тексеру электрондық поштасын жіберіңіз</value>
+  </data>
+  <data name="GaseFormula" xml:space="preserve">
+    <value>Газ формуласы</value>
+  </data>
+  <data name="Month" xml:space="preserve">
+    <value>Ай</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>Жыл</value>
+  </data>
+  <data name="NetCDF" xml:space="preserve">
+    <value>NetCDF</value>
+  </data>
+  <data name="ForgotYourPassword" xml:space="preserve">
+    <value>Құпия сөзіңізді ұмыттыңыз ба?</value>
+  </data>
+  <data name="RegisterNewUser" xml:space="preserve">
+    <value>Жаңа пайдаланушы ретінде тіркелу керек пе?</value>
   </data>
 </root>

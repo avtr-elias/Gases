@@ -156,6 +156,9 @@
   <data name="Delete" xml:space="preserve">
     <value />
   </data>
+  <data name="DeleteGeoTIFFFile" xml:space="preserve">
+    <value />
+  </data>
   <data name="Details" xml:space="preserve">
     <value />
   </data>
@@ -166,6 +169,15 @@
     <value />
   </data>
   <data name="ExternalLogins" xml:space="preserve">
+    <value />
+  </data>
+  <data name="FileNameWithPath" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Files" xml:space="preserve">
+    <value />
+  </data>
+  <data name="FileUpload" xml:space="preserve">
     <value />
   </data>
   <data name="Find" xml:space="preserve">
@@ -180,6 +192,15 @@
   <data name="Gases" xml:space="preserve">
     <value />
   </data>
+  <data name="GeoServerName" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GeoServerStyle" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GeoTIFFFile" xml:space="preserve">
+    <value />
+  </data>
   <data name="Hello" xml:space="preserve">
     <value />
   </data>
@@ -190,6 +211,12 @@
     <value />
   </data>
   <data name="Latitude" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Layer" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Layers" xml:space="preserve">
     <value />
   </data>
   <data name="LocalAcc" xml:space="preserve">
@@ -204,7 +231,19 @@
   <data name="Longtitude" xml:space="preserve">
     <value />
   </data>
+  <data name="Month" xml:space="preserve">
+    <value />
+  </data>
   <data name="Name" xml:space="preserve">
+    <value />
+  </data>
+  <data name="NameEN" xml:space="preserve">
+    <value />
+  </data>
+  <data name="NameKK" xml:space="preserve">
+    <value />
+  </data>
+  <data name="NameRU" xml:space="preserve">
     <value />
   </data>
   <data name="NewPassword" xml:space="preserve">
@@ -217,6 +256,12 @@
     <value />
   </data>
   <data name="Profile" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Publish" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PublishGeoTIFF" xml:space="preserve">
     <value />
   </data>
   <data name="Register" xml:space="preserve">
@@ -237,10 +282,19 @@
   <data name="Unit" xml:space="preserve">
     <value />
   </data>
+  <data name="Unpublish" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UnpublishGeoTIFF" xml:space="preserve">
+    <value />
+  </data>
   <data name="UpdatePassword" xml:space="preserve">
     <value />
   </data>
   <data name="Upload" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UploadGeoTIFFFiles" xml:space="preserve">
     <value />
   </data>
   <data name="User" xml:space="preserve">
@@ -252,10 +306,28 @@
   <data name="Users" xml:space="preserve">
     <value />
   </data>
+  <data name="UsersCard" xml:space="preserve">
+    <value />
+  </data>
   <data name="Value" xml:space="preserve">
     <value />
   </data>
   <data name="VerificationEmail" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GaseFormula" xml:space="preserve">
+    <value />
+  </data>
+  <data name="NetCDF" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ForgotYourPassword" xml:space="preserve">
+    <value />
+  </data>
+  <data name="RegisterNewUser" xml:space="preserve">
     <value />
   </data>
 </root>
