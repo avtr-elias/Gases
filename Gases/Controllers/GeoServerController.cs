@@ -71,6 +71,25 @@ namespace Gases.Controllers
             return process;
         }
 
+        private Process CurlExecuteFalse(string Arguments)
+        {
+            Process process = new Process();
+            try
+            {
+                process.StartInfo.UseShellExecute = false;
+                process.StartInfo.RedirectStandardOutput = false;
+                process.StartInfo.RedirectStandardError = false;
+                process.StartInfo.FileName = Startup.Configuration["GeoServer:CurlFullPath"];
+                process.StartInfo.Arguments = Arguments;
+                process.Start();
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(exception.ToString(), exception.InnerException);
+            }
+            return process;
+        }
+
         /// <summary>
         /// Возвращает список всех рабочих областей GeoServer
         /// </summary>
@@ -84,7 +103,7 @@ namespace Gases.Controllers
                     $"{Startup.Configuration["GeoServer:Password"]}" +
                     $" -XGET" +
                     $" http://{Startup.Configuration["GeoServer:Address"]}:" +
-                    $"{Startup.Configuration["GeoServer:Port"]}/geoserver/rest/workspaces");
+                    $"{Startup.Configuration["GeoServer:Port"]}/geoserver/rest/workspaces.html");
                 string html = process.StandardOutput.ReadToEnd();
                 process.WaitForExit();
 
@@ -322,7 +341,7 @@ namespace Gases.Controllers
                     $"{Startup.Configuration["GeoServer:Password"]}" +
                     $" -XGET" +
                     $" http://{Startup.Configuration["GeoServer:Address"]}:" +
-                    $"{Startup.Configuration["GeoServer:Port"]}/geoserver/rest/workspaces/{WorkspaceName}/styles");
+                    $"{Startup.Configuration["GeoServer:Port"]}/geoserver/rest/workspaces/{WorkspaceName}/styles.html");
                 string html = process.StandardOutput.ReadToEnd();
                 process.WaitForExit();
 
@@ -395,7 +414,43 @@ namespace Gases.Controllers
                     throw new Exception("File extension must be \"tif\" or \"tiff\"!");
                 }
 
-                Process process1 = CurlExecute($" -u " +
+                string s1 = $" -u " +
+                    $"{Startup.Configuration["GeoServer:User"]}:" +
+                    $"{Startup.Configuration["GeoServer:Password"]}" +
+                    $" -v -XPOST" +
+                    $" -H \"Content-type: text/xml\"" +
+                    $" \\ -d \"<coverageStore><name>{fileNameWithoutExtension}</name>" +
+                    $"<workspace>{WorkspaceName}</workspace>" +
+                    $"<enabled>true</enabled>" +
+                    $"<type>GeoTIFF</type>" +
+                    $"<url>/data/{WorkspaceName}/{FileName}</url></coverageStore>\"" +
+                    $" \\ http://{Startup.Configuration["GeoServer:Address"]}:" +
+                    $"{Startup.Configuration["GeoServer:Port"]}/geoserver/rest/workspaces/{WorkspaceName}/coveragestores?configure=all",
+                    s2 = $" -u " +
+                    $"{Startup.Configuration["GeoServer:User"]}:" +
+                    $"{Startup.Configuration["GeoServer:Password"]}" +
+                    $" -v -XPOST" +
+                    $" -H \"Content-type: text/xml\"" +
+                    $" -d \"<coverage><name>{fileNameWithoutExtension}</name>" +
+                    $"<title>{fileNameWithoutExtension}</title>" +
+                    //$"<nativeCRS>EPSG:3857</nativeCRS>" +
+                    //$"<srs>EPSG:3857</srs>" +
+                    $"<nativeCRS>EPSG:4326</nativeCRS>" +
+                    $"<srs>EPSG:4326</srs>" +
+                    $"<projectionPolicy>FORCE_DECLARED</projectionPolicy>" +
+                    $"<defaultInterpolationMethod><name>nearest neighbor</name></defaultInterpolationMethod></coverage>\"" +
+                    $" \\ \"http://{Startup.Configuration["GeoServer:Address"]}" +
+                    $":{Startup.Configuration["GeoServer:Port"]}/geoserver/rest/workspaces/{WorkspaceName}/coveragestores/{fileNameWithoutExtension}/coverages?recalculate=nativebbox\"",
+                    s3 = $" -u " +
+                     $"{Startup.Configuration["GeoServer:User"]}:" +
+                     $"{Startup.Configuration["GeoServer:Password"]}" +
+                     $" -XPUT" +
+                     $" -H \"Content-type: text/xml\"" +
+                     $" -d \"<layer><defaultStyle><name>{WorkspaceName}:{Style}</name></defaultStyle></layer>\"" +
+                     $" http://{Startup.Configuration["GeoServer:Address"]}" +
+                     $":{Startup.Configuration["GeoServer:Port"]}/geoserver/rest/layers/{WorkspaceName}:{fileNameWithoutExtension}";
+
+                Process process1 = CurlExecuteFalse($" -u " +
                     $"{Startup.Configuration["GeoServer:User"]}:" +
                     $"{Startup.Configuration["GeoServer:Password"]}" +
                     $" -v -XPOST" +
@@ -408,7 +463,7 @@ namespace Gases.Controllers
                     $" \\ http://{Startup.Configuration["GeoServer:Address"]}:" +
                     $"{Startup.Configuration["GeoServer:Port"]}/geoserver/rest/workspaces/{WorkspaceName}/coveragestores?configure=all");
                 process1.WaitForExit();
-                Process process2 = CurlExecute($" -u " +
+                Process process2 = CurlExecuteFalse($" -u " +
                     $"{Startup.Configuration["GeoServer:User"]}:" +
                     $"{Startup.Configuration["GeoServer:Password"]}" +
                     $" -v -XPOST" +
@@ -424,7 +479,7 @@ namespace Gases.Controllers
                     $" \\ \"http://{Startup.Configuration["GeoServer:Address"]}" +
                     $":{Startup.Configuration["GeoServer:Port"]}/geoserver/rest/workspaces/{WorkspaceName}/coveragestores/{fileNameWithoutExtension}/coverages?recalculate=nativebbox\"");
                 process2.WaitForExit();
-                Process process3 = CurlExecute($" -u " +
+                Process process3 = CurlExecuteFalse($" -u " +
                      $"{Startup.Configuration["GeoServer:User"]}:" +
                      $"{Startup.Configuration["GeoServer:Password"]}" +
                      $" -XPUT" +
