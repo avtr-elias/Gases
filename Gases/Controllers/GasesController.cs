@@ -57,7 +57,7 @@ namespace Gases.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Administrator")]
-        public async Task<IActionResult> Create([Bind("Id,Name,Formula")] Gase gase)
+        public async Task<IActionResult> Create([Bind("Id,Name,Formula,Description")] Gase gase)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +91,7 @@ namespace Gases.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Administrator")]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Formula")] Gase gase)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Formula,Description")] Gase gase)
         {
             if (id != gase.Id)
             {

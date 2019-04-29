@@ -333,4 +333,7 @@
   <data name="RegisterNewUser" xml:space="preserve">
     <value>Жаңа пайдаланушы ретінде тіркелу керек пе?</value>
   </data>
+  <data name="Description" xml:space="preserve">
+    <value>Сипаттама</value>
+  </data>
 </root>

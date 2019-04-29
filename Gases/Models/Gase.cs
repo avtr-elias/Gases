@@ -15,5 +15,8 @@ namespace Gases.Models
 
         [Display(ResourceType = typeof(Resources.Controllers.SharedResources), Name = "Formula")]
         public string Formula { get; set; }
+
+        [Display(ResourceType = typeof(Resources.Controllers.SharedResources), Name = "Description")]
+        public string Description { get; set; }
     }
 }

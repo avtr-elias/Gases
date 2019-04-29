@@ -333,4 +333,7 @@
   <data name="RegisterNewUser" xml:space="preserve">
     <value>Зарегистрироваться как новый пользователь?</value>
   </data>
+  <data name="Description" xml:space="preserve">
+    <value>Описание</value>
+  </data>
 </root>

@@ -330,4 +330,7 @@
   <data name="RegisterNewUser" xml:space="preserve">
     <value />
   </data>
+  <data name="Description" xml:space="preserve">
+    <value />
+  </data>
 </root>
