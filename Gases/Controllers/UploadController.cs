@@ -99,9 +99,26 @@ namespace Gases.Controllers
                     Process process = new Process();
                     try
                     {
+                        process.StartInfo.UseShellExecute = false;
+                        process.StartInfo.RedirectStandardOutput = true;
+                        process.StartInfo.RedirectStandardError = true;
+                        
+
                         process.StartInfo.WorkingDirectory = folder;
                         process.StartInfo.FileName = batfile;
                         process.Start();
+
+                        string output = "",
+                            error = "";
+                        while (!process.StandardOutput.EndOfStream)
+                        {
+                            output += process.StandardOutput.ReadLine();
+                        }
+                        while (!process.StandardError.EndOfStream)
+                        {
+                            error += process.StandardError.ReadLine();
+                        }
+
                         process.WaitForExit();
                         System.IO.File.Delete(batfile);
                     }
