@@ -659,7 +659,7 @@ namespace Gases.Controllers
                             //DateTime dateTime = new DateTime();
                             //int[] dataArray = new int[2];
 
-                            str = file;
+                            str = Path.GetFileName(file);
                             indexPointOneStr = str.IndexOf('.');
                             indexPointTwoStr = str.IndexOf('.', indexPointOneStr + 1);
                             date = str.Remove(indexPointTwoStr, str.Length - indexPointTwoStr);
@@ -676,7 +676,7 @@ namespace Gases.Controllers
                             int idGase = _context.Gase.Where(d => d.Formula == gase).First().Id;
                             //idGase = idGase == null ? 0 : idGase;
 
-                            GeoTiffFile(idGase, year, month, file);
+                            GeoTiffFile(idGase, year, month, str);
                         }
                     }
                     else if (Path.GetExtension(file)[1] != 'z')
