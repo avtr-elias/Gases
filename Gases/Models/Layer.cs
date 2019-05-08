@@ -45,5 +45,15 @@ namespace Gases.Models
                 return name;
             }
         }
+
+        public GDataType GDataType { get; set; }
+        public int GDataTypeId { get; set; }
+
+        public Gase Gase { get; set; }
+        public int GaseId { get; set; }
+
+        public decimal VerticalSlice { get; set; }
+
+        public int Year { get; set; }
     }
 }
