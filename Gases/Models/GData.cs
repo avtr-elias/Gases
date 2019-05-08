@@ -27,7 +27,7 @@ namespace Gases.Models
 
         public int? Month { get; set; }
 
-        public Season Season { get; set; }
+        public Season? Season { get; set; }
     }
 
     public enum Season
