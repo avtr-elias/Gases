@@ -46,14 +46,20 @@ namespace Gases.Models
             }
         }
 
+        [Display(ResourceType = typeof(Resources.Controllers.SharedResources), Name = "GDataType")]
         public GDataType GDataType { get; set; }
+        [Display(ResourceType = typeof(Resources.Controllers.SharedResources), Name = "GDataType")]
         public int GDataTypeId { get; set; }
 
+        [Display(ResourceType = typeof(Resources.Controllers.SharedResources), Name = "Gase")]
         public Gase Gase { get; set; }
+        [Display(ResourceType = typeof(Resources.Controllers.SharedResources), Name = "Gase")]
         public int GaseId { get; set; }
 
+        [Display(ResourceType = typeof(Resources.Controllers.SharedResources), Name = "VerticalSlice")]
         public decimal VerticalSlice { get; set; }
 
+        [Display(ResourceType = typeof(Resources.Controllers.SharedResources), Name = "Year")]
         public int Year { get; set; }
     }
 }

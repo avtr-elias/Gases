@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Gases.Models.Region>
+@using Gases.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+
+@{
+    ViewData["Title"] = SharedLocalizer["Region"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@SharedLocalizer["Region"]</h2>
+
+@{
+    var user = Context.User;
+    bool administrator = false;
+    if (user.Identity.IsAuthenticated)
+    {
+        if (user.IsInRole("Administrator"))
+        {
+            administrator = true;
+        }
+    }
+}
+@if (administrator)
+{
+    <p>
+        <a asp-action="Create">@SharedLocalizer["Create"]</a>
+    </p>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            @if (administrator)
+            {
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">@SharedLocalizer["Edit"]</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">@SharedLocalizer["Details"]</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">@SharedLocalizer["Delete"]</a>
+                </td>
+
+            }
+            else
+            {
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id">@SharedLocalizer["Details"]</a>
+                </td>
+
+            }
+        </tr>
+        }
+    </tbody>
+</table>

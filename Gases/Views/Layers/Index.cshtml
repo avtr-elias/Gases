@@ -21,13 +21,12 @@
         }
     }
 }
-@if (administrator)
+@*@if (administrator)
 {
     <p>
         <a asp-action="Create">@SharedLocalizer["Create"]</a>
     </p>
-}
-
+}*@
 <table class="table">
     <thead>
         <tr>
@@ -49,37 +48,72 @@
             <th>
                 @Html.DisplayNameFor(model => model.NameEN)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VerticalSlice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Year)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GDataType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gase)
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.GeoServerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FileNameWithPath)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GeoServerStyle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NameKK)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NameRU)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NameEN)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VerticalSlice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Year)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GDataType.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gase.Name)
+            </td>
+            @if (administrator)
+            {
                 <td>
-                    @Html.DisplayFor(modelItem => item.GeoServerName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FileNameWithPath)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.GeoServerStyle)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NameKK)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NameRU)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NameEN)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">@SharedLocalizer["Edit"]</a> |
+                    @*<a asp-action="Edit" asp-route-id="@item.Id">@SharedLocalizer["Edit"]</a> |*@
                     <a asp-action="Details" asp-route-id="@item.Id">@SharedLocalizer["Details"]</a> |
                     <a asp-action="Delete" asp-route-id="@item.Id">@SharedLocalizer["Delete"]</a>
                 </td>
-            </tr>
+
+            }
+            else
+            {
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id">@SharedLocalizer["Details"]</a>
+                </td>
+
+            }
+        </tr>
         }
     </tbody>
 </table>

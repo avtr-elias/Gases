@@ -921,6 +921,8 @@ namespace Gases.Controllers
             ViewBag.GeoTIFFFiles = new SelectList(GetGeoTIFFFiles(Startup.Configuration["GeoServer:Workspace"])
                 .Where(l => !publicshedLayers.Contains(Path.GetFileNameWithoutExtension(l))));
             ViewBag.Styles = new SelectList(GetWorkspaceStyles(Startup.Configuration["GeoServer:Workspace"]));
+            ViewBag.Gases = new SelectList(_context.Gase.OrderBy(m => m.Id), "Id", "Name");
+            ViewBag.GDataTypes = new SelectList(_context.GDataType.OrderBy(m => m.Id), "Id", "Name");
             return View();
         }
 
@@ -934,7 +936,7 @@ namespace Gases.Controllers
         /// <returns></returns>
         [HttpPost]
         [Authorize(Roles = "Administrator, Moderator")]
-        public async Task<IActionResult> PublishGeoTIFF(string GeoTIFFFile, string Style, string NameKK, string NameRU, string NameEN)
+        public async Task<IActionResult> PublishGeoTIFF(string GeoTIFFFile, string Style, string NameKK, string NameRU, string NameEN, int GDataTypeId, int GaseId, decimal VerticalSlice, int Year)
         {
             string message = "";
             try
@@ -947,7 +949,11 @@ namespace Gases.Controllers
                     NameEN = NameEN,
                     GeoServerStyle = Style,
                     GeoServerName = Path.GetFileNameWithoutExtension(GeoTIFFFile),
-                    FileNameWithPath = Path.Combine(GetWorkspaceDirectoryPath(Startup.Configuration["GeoServer:Workspace"]), GeoTIFFFile)
+                    FileNameWithPath = Path.Combine(GetWorkspaceDirectoryPath(Startup.Configuration["GeoServer:Workspace"]), GeoTIFFFile),
+                    GDataTypeId = GDataTypeId,
+                    GaseId = GaseId,
+                    VerticalSlice = VerticalSlice,
+                    Year = Year
                 };
                 _context.Add(layer);
                 await _context.SaveChangesAsync();

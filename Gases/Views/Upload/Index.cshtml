@@ -14,7 +14,7 @@
 
 <form asp-action="AddFile" asp-controller="Upload" method="post" enctype="multipart/form-data">
     <input type="file" name="uploadedFile" /><br>
-    <input type="submit" value=@SharedLocalizer["Upload"] />
+    <input type="submit" value=@SharedLocalizer["Upload"]  class="btn btn-default" />
 </form>
 
 @*<h3>@SharedLocalizer["All files"]</h3>

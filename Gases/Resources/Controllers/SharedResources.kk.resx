@@ -336,4 +336,25 @@
   <data name="Description" xml:space="preserve">
     <value>Сипаттама</value>
   </data>
+  <data name="GDataTypes" xml:space="preserve">
+    <value>Деректер түрі</value>
+  </data>
+  <data name="Region" xml:space="preserve">
+    <value>Аймақ</value>
+  </data>
+  <data name="GDataType" xml:space="preserve">
+    <value>Деректер түрі</value>
+  </data>
+  <data name="VerticalSlice" xml:space="preserve">
+    <value>Тік сызық</value>
+  </data>
+  <data name="Season" xml:space="preserve">
+    <value>Маусым</value>
+  </data>
+  <data name="GData" xml:space="preserve">
+    <value>Деректер</value>
+  </data>
+  <data name="GDatas" xml:space="preserve">
+    <value>Деректер</value>
+  </data>
 </root>

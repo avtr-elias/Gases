@@ -5,6 +5,11 @@
     <UserSecretsId>aspnet-Gases-EDF248F6-65D9-46C7-A745-4A0770F7FA32</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Data\Migrations\20190509125514_GDataType_20190905_00.cs" />
+    <Compile Remove="Data\Migrations\20190509125514_GDataType_20190905_00.Designer.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="HtmlAgilityPack" Version="1.8.7" />

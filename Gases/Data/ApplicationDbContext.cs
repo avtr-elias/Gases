@@ -32,5 +32,11 @@ namespace Gases.Data
         public DbSet<Gases.Models.Layer> Layer { get; set; }
 
         public DbSet<Gases.Models.GeoTiffFile> GeoTiffFile { get; set; }
+
+        public DbSet<Gases.Models.GDataType> GDataType { get; set; }
+
+        public DbSet<Gases.Models.Region> Region { get; set; }
+
+        public DbSet<Gases.Models.GData> GData { get; set; }
     }
 }

@@ -22,7 +22,8 @@ namespace Gases.Controllers
         // GET: Layers
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Layer.ToListAsync());
+            var applicationDbContext = _context.Layer.Include(l => l.GDataType).Include(l => l.Gase);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: Layers/Details/5
@@ -34,6 +35,8 @@ namespace Gases.Controllers
             }
 
             var layer = await _context.Layer
+                .Include(l => l.GDataType)
+                .Include(l => l.Gase)
                 .SingleOrDefaultAsync(m => m.Id == id);
             if (layer == null)
             {
@@ -44,77 +47,85 @@ namespace Gases.Controllers
         }
 
         // GET: Layers/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
+        //public IActionResult Create()
+        //{
+        //    ViewData["GDataTypeId"] = new SelectList(_context.GDataType, "Id", "Name");
+        //    ViewData["GaseId"] = new SelectList(_context.Gase, "Id", "Name");
+        //    return View();
+        //}
 
         // POST: Layers/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,GeoServerName,FileNameWithPath,GeoServerStyle,NameKK,NameRU,NameEN")] Layer layer)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(layer);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(layer);
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Create([Bind("Id,GeoServerName,FileNameWithPath,GeoServerStyle,NameKK,NameRU,NameEN,GDataTypeId,GaseId,VerticalSlice,Year")] Layer layer)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _context.Add(layer);
+        //        await _context.SaveChangesAsync();
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    ViewData["GDataTypeId"] = new SelectList(_context.GDataType, "Id", "Name", layer.GDataTypeId);
+        //    ViewData["GaseId"] = new SelectList(_context.Gase, "Id", "Name", layer.GaseId);
+        //    return View(layer);
+        //}
 
         // GET: Layers/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        //public async Task<IActionResult> Edit(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            var layer = await _context.Layer.SingleOrDefaultAsync(m => m.Id == id);
-            if (layer == null)
-            {
-                return NotFound();
-            }
-            return View(layer);
-        }
+        //    var layer = await _context.Layer.SingleOrDefaultAsync(m => m.Id == id);
+        //    if (layer == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    ViewData["GDataTypeId"] = new SelectList(_context.GDataType, "Id", "Name", layer.GDataTypeId);
+        //    ViewData["GaseId"] = new SelectList(_context.Gase, "Id", "Name", layer.GaseId);
+        //    return View(layer);
+        //}
 
         // POST: Layers/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,GeoServerName,FileNameWithPath,GeoServerStyle,NameKK,NameRU,NameEN")] Layer layer)
-        {
-            if (id != layer.Id)
-            {
-                return NotFound();
-            }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Edit(int id, [Bind("Id,GeoServerName,FileNameWithPath,GeoServerStyle,NameKK,NameRU,NameEN,GDataTypeId,GaseId,VerticalSlice,Year")] Layer layer)
+        //{
+        //    if (id != layer.Id)
+        //    {
+        //        return NotFound();
+        //    }
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(layer);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!LayerExists(layer.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(layer);
-        }
+        //    if (ModelState.IsValid)
+        //    {
+        //        try
+        //        {
+        //            _context.Update(layer);
+        //            await _context.SaveChangesAsync();
+        //        }
+        //        catch (DbUpdateConcurrencyException)
+        //        {
+        //            if (!LayerExists(layer.Id))
+        //            {
+        //                return NotFound();
+        //            }
+        //            else
+        //            {
+        //                throw;
+        //            }
+        //        }
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    ViewData["GDataTypeId"] = new SelectList(_context.GDataType, "Id", "Name", layer.GDataTypeId);
+        //    ViewData["GaseId"] = new SelectList(_context.Gase, "Id", "Name", layer.GaseId);
+        //    return View(layer);
+        //}
 
         // GET: Layers/Delete/5
         public async Task<IActionResult> Delete(int? id)
@@ -125,6 +136,8 @@ namespace Gases.Controllers
             }
 
             var layer = await _context.Layer
+                .Include(l => l.GDataType)
+                .Include(l => l.Gase)
                 .SingleOrDefaultAsync(m => m.Id == id);
             if (layer == null)
             {

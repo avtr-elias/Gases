@@ -333,4 +333,25 @@
   <data name="Description" xml:space="preserve">
     <value />
   </data>
+  <data name="GDataTypes" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Region" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GDataType" xml:space="preserve">
+    <value />
+  </data>
+  <data name="VerticalSlice" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Season" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GData" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GDatas" xml:space="preserve">
+    <value />
+  </data>
 </root>

@@ -1,0 +1,65 @@
+﻿@model Gases.Models.GData
+@using Gases.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+
+@{
+    ViewData["Title"] = SharedLocalizer["Upload"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@SharedLocalizer["Upload"]</h2>
+
+<h4>@SharedLocalizer["GData"]</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Upload" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="GDataTypeId" class="control-label"></label>
+                <select asp-for="GDataTypeId" class="form-control" asp-items="ViewBag.GDataTypeId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="GaseId" class="control-label"></label>
+                <select asp-for="GaseId" class="form-control" asp-items="ViewBag.GaseId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="VerticalSlice" class="control-label"></label>
+                <input asp-for="VerticalSlice" class="form-control" />
+                <span asp-validation-for="VerticalSlice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RegionId" class="control-label"></label>
+                <select asp-for="RegionId" class="form-control" asp-items="ViewBag.RegionId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Year" class="control-label"></label>
+                <input asp-for="Year" class="form-control" />
+                <span asp-validation-for="Year" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Season" class="control-label"></label>
+                @*<input asp-for="Season" class="form-control" />*@
+                <select asp-for="Season" class="form-control" asp-items='Html.GetEnumSelectList<Season>().Select(c => {c.Text = SharedLocalizer[c.Text]; return c;}).ToList()'>
+                    <option selected></option>
+                </select>
+                <span asp-validation-for="Season" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="file" name="uploadedFile" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value=@SharedLocalizer["Upload"] class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">@SharedLocalizer["BackToList"]</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

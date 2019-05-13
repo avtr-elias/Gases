@@ -40,6 +40,22 @@
                 <input name="NameEN" class="form-control" type="text" />
             </div>
             <div class="form-group">
+                <label class="control-label">@SharedLocalizer["GDataType"]</label>
+                <select name="GDataTypeId" class="form-control" asp-items="ViewBag.GDataTypes"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">@SharedLocalizer["Gase"]</label>
+                <select name="GaseId" class="form-control" asp-items="ViewBag.Gases"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">@SharedLocalizer["VerticalSlice"]</label>
+                <input name="VerticalSlice" class="form-control" type="text" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">@SharedLocalizer["Year"]</label>
+                <input name="Year" class="form-control" type="text" />
+            </div>
+            <div class="form-group">
                 <input type="submit" value="@SharedLocalizer["Publish"]" class="btn btn-default" />
             </div>
         </form>

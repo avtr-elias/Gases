@@ -336,4 +336,25 @@
   <data name="Description" xml:space="preserve">
     <value>Описание</value>
   </data>
+  <data name="GDataTypes" xml:space="preserve">
+    <value>Тип данных</value>
+  </data>
+  <data name="Region" xml:space="preserve">
+    <value>Регион</value>
+  </data>
+  <data name="GDataType" xml:space="preserve">
+    <value>Тип данных</value>
+  </data>
+  <data name="VerticalSlice" xml:space="preserve">
+    <value>Вертикальный срез</value>
+  </data>
+  <data name="Season" xml:space="preserve">
+    <value>Сезон</value>
+  </data>
+  <data name="GData" xml:space="preserve">
+    <value>Данные</value>
+  </data>
+  <data name="GDatas" xml:space="preserve">
+    <value>Данные</value>
+  </data>
 </root>
