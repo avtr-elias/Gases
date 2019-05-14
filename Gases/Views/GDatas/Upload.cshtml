@@ -18,20 +18,22 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="GDataTypeId" class="control-label"></label>
-                <select asp-for="GDataTypeId" class="form-control" asp-items="ViewBag.GDataTypeId"></select>
+                <select id="selectDT" asp-for="GDataTypeId" class="form-control" asp-items="ViewBag.GDataTypeId" onchange="ChangeDataType();"></select>
             </div>
             <div class="form-group">
                 <label asp-for="GaseId" class="control-label"></label>
                 <select asp-for="GaseId" class="form-control" asp-items="ViewBag.GaseId"></select>
             </div>
-            <div class="form-group">
+            <div id="VS" class="form-group">
                 <label asp-for="VerticalSlice" class="control-label"></label>
                 <input asp-for="VerticalSlice" class="form-control" />
                 <span asp-validation-for="VerticalSlice" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="RegionId" class="control-label"></label>
-                <select asp-for="RegionId" class="form-control" asp-items="ViewBag.RegionId"></select>
+                @*<select asp-for="RegionId" class="form-control" asp-items="ViewBag.RegionId"></select>*@
+                @*<select asp-for="RegionId" class="form-control" asp-items='Html.DropDownList("Brands", null, string.Empty, new { class = "form-control"})'></select>*@
+                @Html.DropDownList("RegionId", (IEnumerable<SelectListItem>) ViewBag.RegionId, string.Empty, htmlAttributes: new { @class = "form-control", @id = "RegionId" })
             </div>
             <div class="form-group">
                 <label asp-for="Year" class="control-label"></label>
@@ -63,3 +65,18 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
+<script type="text/javascript">
+    ChangeDataType();
+
+    function ChangeDataType() {
+        var sel = document.getElementById('selectDT');
+        var val = sel.options[sel.selectedIndex].value;
+        if (val == 3) {
+            document.getElementById('VS').style.display = "none";
+        }
+        else {
+            document.getElementById('VS').style.display = "block";
+        }
+    }
+</script>

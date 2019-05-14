@@ -210,7 +210,7 @@ namespace Gases.Controllers
         {
             ViewData["GDataTypeId"] = new SelectList(_context.GDataType, "Id", "Name");
             ViewData["GaseId"] = new SelectList(_context.Gase, "Id", "Name");
-            ViewData["RegionId"] = new SelectList(_context.Region, "Id", "Name");
+            ViewData["RegionId"] = new SelectList(_context.Region, "Id", "Name", null);
             return View();
         }
 
@@ -404,18 +404,133 @@ namespace Gases.Controllers
                                 }
                             }
 
-                            for (int i = 0; i < value.Count; i++)
+                            //for (int i = 0; i < value.Count; i++)
+                            //{
+                            //    GData(GDataTypeId, GaseId, VerticalSlice, null, lonValue[i], latValue[i], value[i], Year, null, null);
+                            //}
+                        }
+
+                        if (GDataTypeId == 3)
+                        {
+                            List<decimal> value = new List<decimal>();
+                            List<decimal> vSlice = new List<decimal>();
+                            while ((line = sr.ReadLine()) != "data:")
                             {
-                                GData(GDataTypeId, GaseId, VerticalSlice, RegionId, lonValue[i], latValue[i], value[i], Year, null, null);
                             }
+                            line = sr.ReadLine() + Environment.NewLine;
+                            //line = sr.ReadLine();
+                            List<int> y = new List<int>();
+                            while ((line = sr.ReadLine().Trim(' ')) != "")
+                            {
+                                subString = "_";
+                                indexOfSubstring = line.IndexOf(subString);
+                                if (indexOfSubstring > 10)
+                                {
+                                    line = line.Replace(" ", "").Replace("\t", "");
+                                    indexOfSubstring = line.IndexOf("(");
+                                    subString = line.Remove(0, line.IndexOf("(") + 1);
+
+                                    y.Add(Convert.ToInt32(subString.Remove(subString.IndexOf(")"), subString.Length - subString.IndexOf(")"))));
+
+                                    string val;
+                                    if (line.IndexOf(';') != -1)
+                                    {
+                                        val = line.Remove(line.IndexOf(';'));
+                                    }
+                                    else
+                                    {
+                                        val = line.Remove(line.IndexOf(','));
+                                    }
+
+                                    try
+                                    {
+                                        value.Add(Decimal.Parse(val, CultureInfo.InvariantCulture));
+                                    }
+                                    catch
+                                    {
+                                        value.Add(Decimal.Parse(val, NumberStyles.Any, CultureInfo.InvariantCulture));
+                                    }
+                                }
+                                if (indexOfSubstring == 8)
+                                {
+                                    line = line.Replace(" ", "").Replace("\t", "");
+                                    indexOfSubstring = line.IndexOf("(");
+                                    subString = line.Remove(0, line.IndexOf("(") + 1);
+
+                                    y.Add(Convert.ToInt32(subString.Remove(subString.IndexOf(")"), subString.Length - subString.IndexOf(")"))));
+
+                                    string val;
+                                    val = line.Remove(line.IndexOf(','));
+                                    val = val.Remove(0, line.IndexOf("=") + 1);
+
+                                    try
+                                    {
+                                        value.Add(Decimal.Parse(val, CultureInfo.InvariantCulture));
+                                    }
+                                    catch
+                                    {
+                                        value.Add(Decimal.Parse(val, NumberStyles.Any, CultureInfo.InvariantCulture));
+                                    }
+                                }
+                            }
+
+                            while ((line = sr.ReadLine()) != null)
+                            {
+                                if (line.IndexOf("TempPrsLvls_A =") != -1)
+                                {
+                                    do
+                                    {
+                                        if (String.Compare(line, "}") == 0)
+                                        {
+                                            break;
+                                        }
+                                        string numb = null;
+                                        if (line.IndexOf(",") != -1)
+                                        {
+                                            line = line.Remove(line.IndexOf(","), line.Length - line.IndexOf(","));
+                                        }
+                                        else
+                                        {
+                                            line = line.Remove(line.IndexOf(";"), line.Length - line.IndexOf(";"));
+                                        }
+                                        foreach (char s in line)
+                                        {
+                                            if (char.IsDigit(s) || (s == '.'))
+                                            {
+                                                numb = numb + s;
+                                            }
+                                        }
+                                        vSlice.Add(Decimal.Parse(numb, CultureInfo.InvariantCulture));
+                                    } while ((line = sr.ReadLine().Trim(' ')) != "");
+                                    break;
+                                }
+                            }
+
+                            List<decimal> vSliceValue = new List<decimal>();
+                            for (int i = 0; i < y.Count; i++)
+                            {
+                                for (int j = 0; j < vSlice.Count; j++)
+                                {
+                                    if (y[i] == j)
+                                    {
+                                        vSliceValue.Add(vSlice[j]);
+                                    }
+                                }
+                            }
+
+                            //for (int i = 0; i < value.Count; i++)
+                            //{
+                            //    GData(GDataTypeId, GaseId, vSliceValue[i], RegionId, null, null, value[i], Year, null, null);
+                            //}
                         }
                     }
                 }
             }
-            ViewData["GDataTypeId"] = new SelectList(_context.GDataType, "Id", "Name");
-            ViewData["GaseId"] = new SelectList(_context.Gase, "Id", "Name");
-            ViewData["RegionId"] = new SelectList(_context.Region, "Id", "Name");
+            ViewData["GDataTypeId"] = new SelectList(_context.GDataType, "Id", "Name", GDataTypeId);
+            ViewData["GaseId"] = new SelectList(_context.Gase, "Id", "Name", GaseId);
+            ViewData["RegionId"] = new SelectList(_context.Region, "Id", "Name", RegionId);
             return View();
+            //return RedirectToAction(nameof(Index));
         }
     }
 }
