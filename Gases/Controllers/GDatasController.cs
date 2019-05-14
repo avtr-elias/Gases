@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Hosting;
 using System.IO;
 using System.Diagnostics;
 using System.Globalization;
+using System.Text;
 
 namespace Gases.Controllers
 {
@@ -524,6 +525,28 @@ namespace Gases.Controllers
                             //}
                         }
                     }
+                }
+
+                if (Path.GetExtension(path) == ".csv")
+                {
+                    string filename = Path.GetFileNameWithoutExtension(uploadedFile.FileName);
+                    filename = filename.Replace(',', '.');
+                    var lines = System.IO.File.ReadAllLines(path, Encoding.Default);
+
+                    List<int> month = new List<int>();
+                    List<decimal> value = new List<decimal>();
+                    string subString;
+                    for (int i = 9; i < lines.Length; i++)
+                    {
+                        subString = lines[i].Remove(0, lines[i].IndexOf("-") + 1);
+                        month.Add(Convert.ToInt32(subString.Remove(subString.IndexOf("-"), subString.Length - subString.IndexOf("-"))));
+                        value.Add(Decimal.Parse(lines[i].Remove(0, lines[i].IndexOf(",") + 1), CultureInfo.InvariantCulture));
+                    }
+
+                    //for (int i = 0; i < value.Count; i++)
+                    //{
+                    //    GData(GDataTypeId, GaseId, VerticalSlice, RegionId, null, null, value[i], Year, month[i], null);
+                    //}
                 }
             }
             ViewData["GDataTypeId"] = new SelectList(_context.GDataType, "Id", "Name", GDataTypeId);
