@@ -405,10 +405,10 @@ namespace Gases.Controllers
                                 }
                             }
 
-                            //for (int i = 0; i < value.Count; i++)
-                            //{
-                            //    GData(GDataTypeId, GaseId, VerticalSlice, null, lonValue[i], latValue[i], value[i], Year, null, null);
-                            //}
+                            for (int i = 0; i < value.Count; i++)
+                            {
+                                GData(GDataTypeId, GaseId, VerticalSlice, null, lonValue[i], latValue[i], value[i], Year, null, null);
+                            }
                         }
 
                         if (GDataTypeId == 3)
@@ -519,18 +519,151 @@ namespace Gases.Controllers
                                 }
                             }
 
-                            //for (int i = 0; i < value.Count; i++)
-                            //{
-                            //    GData(GDataTypeId, GaseId, vSliceValue[i], RegionId, null, null, value[i], Year, null, null);
-                            //}
+                            for (int i = 0; i < value.Count; i++)
+                            {
+                                GData(GDataTypeId, GaseId, vSliceValue[i], RegionId, null, null, value[i], Year, null, null);
+                            }
+                        }
+
+                        if (GDataTypeId == 5)
+                        {
+                            var lines = System.IO.File.ReadAllLines(path, Encoding.Default);
+                            List<int> year = new List<int>();
+                            List<decimal> value = new List<decimal>();
+                            subString = "";
+                            for (int i = 70; i < lines.Length; i++)
+                            {
+                                if (String.Compare(lines[i].Replace(" ", "").Replace("\t", ""), "") == 0)
+                                {
+                                    break;
+                                }
+
+                                if (lines[i].IndexOf("datayear =") != -1)
+                                {
+                                    subString = lines[i].Remove(0, lines[i].IndexOf("=") + 2);
+                                }
+                                else
+                                {
+                                    subString = lines[i].Replace(" ", "").Replace("\t", "");
+                                }
+
+                                if (lines[i].IndexOf(';') != -1)
+                                {
+                                    year.Add(Convert.ToInt32(subString.Remove(subString.IndexOf(';'))));
+                                }
+                                else
+                                {
+                                    year.Add(Convert.ToInt32(subString.Remove(subString.IndexOf(','))));
+                                }
+                            }
+                            int equally = 0;
+                            for (int i = 70; i < lines.Length; i++)
+                            {
+                                if (lines[i].IndexOf("=") != -1)
+                                {
+                                    equally++;
+                                    if (equally == 3)
+                                    {
+                                        for (int j = i+1; j < lines.Length; j++)
+                                        {
+                                            if (String.Compare(lines[j].Replace(" ", "").Replace("\t", ""), "") == 0)
+                                            {
+                                                break;
+                                            }
+                                            subString = lines[j].Replace(" ", "").Replace("\t", "");
+                                            if (lines[j].IndexOf(';') != -1)
+                                            {
+                                                value.Add(Decimal.Parse(subString.Remove(subString.IndexOf(';')), CultureInfo.InvariantCulture));
+                                            }
+                                            else
+                                            {
+                                                value.Add(Decimal.Parse(subString.Remove(subString.IndexOf(',')), CultureInfo.InvariantCulture));
+                                            }
+                                        }
+                                        break;
+                                    }
+                                }
+                            }
+                            for (int i = 0; i < value.Count; i++)
+                            {
+                                GData(GDataTypeId, GaseId, VerticalSlice, null, null, null, value[i], year[i], null, Season);
+                            }
+                        }
+
+                        if (GDataTypeId == 4)
+                        {
+                            var lines = System.IO.File.ReadAllLines(path, Encoding.Default);
+                            int month = 0;
+                            List<int> year = new List<int>();
+                            List<decimal> value = new List<decimal>();
+                            subString = "";
+
+                            subString = lines[0].Remove(0, lines[0].IndexOf("MONTH_") + 6);
+                            month = Convert.ToInt32(subString.Remove(subString.IndexOf('.')));
+
+                            for (int i = 68; i < lines.Length; i++)
+                            {
+                                if (String.Compare(lines[i].Replace(" ", "").Replace("\t", ""), "") == 0)
+                                {
+                                    break;
+                                }
+
+                                if (lines[i].IndexOf("datayear =") != -1)
+                                {
+                                    subString = lines[i].Remove(0, lines[i].IndexOf("=") + 2);
+                                }
+                                else
+                                {
+                                    subString = lines[i].Replace(" ", "").Replace("\t", "");
+                                }
+
+                                if (lines[i].IndexOf(';') != -1)
+                                {
+                                    year.Add(Convert.ToInt32(subString.Remove(subString.IndexOf(';'))));
+                                }
+                                else
+                                {
+                                    year.Add(Convert.ToInt32(subString.Remove(subString.IndexOf(','))));
+                                }
+                            }
+                            int equally = 0;
+                            for (int i = 68; i < lines.Length; i++)
+                            {
+                                if (lines[i].IndexOf("=") != -1)
+                                {
+                                    equally++;
+                                    if (equally == 2)
+                                    {
+                                        for (int j = i + 1; j < lines.Length; j++)
+                                        {
+                                            if (String.Compare(lines[j].Replace(" ", "").Replace("\t", ""), "") == 0)
+                                            {
+                                                break;
+                                            }
+                                            subString = lines[j].Replace(" ", "").Replace("\t", "");
+                                            if (lines[j].IndexOf(';') != -1)
+                                            {
+                                                value.Add(Decimal.Parse(subString.Remove(subString.IndexOf(';')), CultureInfo.InvariantCulture));
+                                            }
+                                            else
+                                            {
+                                                value.Add(Decimal.Parse(subString.Remove(subString.IndexOf(',')), CultureInfo.InvariantCulture));
+                                            }
+                                        }
+                                        break;
+                                    }
+                                }
+                            }
+                            for (int i = 0; i < value.Count; i++)
+                            {
+                                GData(GDataTypeId, GaseId, VerticalSlice, null, null, null, value[i], year[i], month, null);
+                            }
                         }
                     }
                 }
 
                 if (Path.GetExtension(path) == ".csv")
                 {
-                    string filename = Path.GetFileNameWithoutExtension(uploadedFile.FileName);
-                    filename = filename.Replace(',', '.');
                     var lines = System.IO.File.ReadAllLines(path, Encoding.Default);
 
                     List<int> month = new List<int>();
@@ -543,17 +676,17 @@ namespace Gases.Controllers
                         value.Add(Decimal.Parse(lines[i].Remove(0, lines[i].IndexOf(",") + 1), CultureInfo.InvariantCulture));
                     }
 
-                    //for (int i = 0; i < value.Count; i++)
-                    //{
-                    //    GData(GDataTypeId, GaseId, VerticalSlice, RegionId, null, null, value[i], Year, month[i], null);
-                    //}
+                    for (int i = 0; i < value.Count; i++)
+                    {
+                        GData(GDataTypeId, GaseId, VerticalSlice, RegionId, null, null, value[i], Year, month[i], null);
+                    }
                 }
             }
             ViewData["GDataTypeId"] = new SelectList(_context.GDataType, "Id", "Name", GDataTypeId);
             ViewData["GaseId"] = new SelectList(_context.Gase, "Id", "Name", GaseId);
             ViewData["RegionId"] = new SelectList(_context.Region, "Id", "Name", RegionId);
-            return View();
-            //return RedirectToAction(nameof(Index));
+            //return View();
+            return RedirectToAction(nameof(Index));
         }
     }
 }

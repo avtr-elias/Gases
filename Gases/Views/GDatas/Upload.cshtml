@@ -35,7 +35,7 @@
                 @*<select asp-for="RegionId" class="form-control" asp-items='Html.DropDownList("Brands", null, string.Empty, new { class = "form-control"})'></select>*@
                 @Html.DropDownList("RegionId", (IEnumerable<SelectListItem>) ViewBag.RegionId, string.Empty, htmlAttributes: new { @class = "form-control", @id = "RegionId" })
             </div>
-            <div class="form-group">
+            <div id="Year" class="form-group">
                 <label asp-for="Year" class="control-label"></label>
                 <input asp-for="Year" class="form-control" />
                 <span asp-validation-for="Year" class="text-danger"></span>
@@ -77,6 +77,13 @@
         }
         else {
             document.getElementById('VS').style.display = "block";
+        }
+
+        if (val == 4 || val == 5) {
+            document.getElementById('Year').style.display = "none";
+        }
+        else {
+            document.getElementById('Year').style.display = "block";
         }
     }
 </script>
