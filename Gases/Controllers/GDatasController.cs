@@ -202,8 +202,8 @@ namespace Gases.Controllers
                 Season = Season
             };
 
-            //_context.GData.Add(gData);
-            //_context.SaveChanges();
+            _context.GData.Add(gData);
+            _context.SaveChanges();
         }
 
         // GET: GDatas/Upload
@@ -211,7 +211,7 @@ namespace Gases.Controllers
         {
             ViewData["GDataTypeId"] = new SelectList(_context.GDataType, "Id", "Name");
             ViewData["GaseId"] = new SelectList(_context.Gase, "Id", "Name");
-            ViewData["RegionId"] = new SelectList(_context.Region, "Id", "Name", null);
+            ViewData["RegionId"] = new SelectList(_context.Region, "Id", "Name");
             return View();
         }
 
@@ -220,7 +220,7 @@ namespace Gases.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Upload(int GDataTypeId, int GaseId, decimal VerticalSlice, int RegionId, int Year, Season Season, IFormFile uploadedFile)
+        public async Task<IActionResult> Upload(int GDataTypeId, int GaseId, decimal VerticalSlice, int RegionId, int Year, IFormFile uploadedFile)
         {
             if (uploadedFile != null)
             {
@@ -528,9 +528,31 @@ namespace Gases.Controllers
                         if (GDataTypeId == 5)
                         {
                             var lines = System.IO.File.ReadAllLines(path, Encoding.Default);
+                            string months = "";
+                            Season season = new Season();
                             List<int> year = new List<int>();
                             List<decimal> value = new List<decimal>();
                             subString = "";
+
+                            subString = lines[0].Remove(0, lines[0].IndexOf("SEASON_") + 7);
+                            months = subString.Remove(subString.IndexOf('.'));
+                            if (String.Compare(months, "DJF") == 0)
+                            {
+                                season = Season.Winter;
+                            }
+                            if (String.Compare(months, "MAM") == 0)
+                            {
+                                season = Season.Spring;
+                            }
+                            if (String.Compare(months, "JJA") == 0)
+                            {
+                                season = Season.Summer;
+                            }
+                            if (String.Compare(months, "SON") == 0)
+                            {
+                                season = Season.Autumn;
+                            }
+
                             for (int i = 70; i < lines.Length; i++)
                             {
                                 if (String.Compare(lines[i].Replace(" ", "").Replace("\t", ""), "") == 0)
@@ -586,7 +608,7 @@ namespace Gases.Controllers
                             }
                             for (int i = 0; i < value.Count; i++)
                             {
-                                GData(GDataTypeId, GaseId, VerticalSlice, null, null, null, value[i], year[i], null, Season);
+                                GData(GDataTypeId, GaseId, VerticalSlice, null, null, null, value[i], year[i], null, season);
                             }
                         }
 
