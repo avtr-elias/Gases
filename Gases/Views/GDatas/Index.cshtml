@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Gases.Models.GData>
+﻿@model Gases.Models.GDataIndexPageViewModel
+@using System.Net
+@*@model IEnumerable<Gases.Models.GData>*@
 @using Gases.Controllers
 @using Microsoft.Extensions.Localization
 @inject IStringLocalizer<SharedResources> SharedLocalizer
@@ -27,7 +29,185 @@
         <a asp-action="Upload">@SharedLocalizer["Upload"]</a>
     </p>
 }
-<table class="table">
+
+@using (Html.BeginForm("Index", "GDatas", new { SortOrder = ViewBag.SortOrdert, GDataTypeIdFilter = ViewBag.GDataTypeIdFilter, GaseIdFilter = ViewBag.GaseIdFilter, RegionIdFilter = ViewBag.RegionIdFilter, VerticalSliceFilter = ViewBag.VerticalSliceFilter, YearFilter = ViewBag.YearFilter }, FormMethod.Get))
+{
+    @Html.Editor("SortOrder", null, new { htmlAttributes = new { @hidden = "hidden" }, value = ViewBag.SortOrder })
+    @if (Model.Pager.EndPage > 1)
+    {
+        <ul class="pagination">
+            @if (Model.Pager.CurrentPage > 1)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;&laquo;"), "Index",
+                        new { SortOrder = ViewBag.SortOrdert, GDataTypeIdFilter = ViewBag.GDataTypeIdFilter, GaseIdFilter = ViewBag.GaseIdFilter, RegionIdFilter = ViewBag.RegionIdFilter, VerticalSliceFilter = ViewBag.VerticalSliceFilter, YearFilter = ViewBag.YearFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;"), "Index",
+                        new { Page = Model.Pager.CurrentPage - 1, SortOrder = ViewBag.SortOrdert, GDataTypeIdFilter = ViewBag.GDataTypeIdFilter, GaseIdFilter = ViewBag.GaseIdFilter, RegionIdFilter = ViewBag.RegionIdFilter, VerticalSliceFilter = ViewBag.VerticalSliceFilter, YearFilter = ViewBag.YearFilter })
+                </li>
+            }
+
+            @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+            {
+                <li class="@(page == Model.Pager.CurrentPage ? "active" : "")">
+                    @Html.ActionLink(page.ToString(), "Index",
+                        new { Page = page, SortOrder = ViewBag.SortOrdert, GDataTypeIdFilter = ViewBag.GDataTypeIdFilter, GaseIdFilter = ViewBag.GaseIdFilter, RegionIdFilter = ViewBag.RegionIdFilter, VerticalSliceFilter = ViewBag.VerticalSliceFilter, YearFilter = ViewBag.YearFilter })
+                </li>
+            }
+
+            @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;"), "Index",
+                        new { Page = Model.Pager.CurrentPage + 1, SortOrder = ViewBag.SortOrdert, GDataTypeIdFilter = ViewBag.GDataTypeIdFilter, GaseIdFilter = ViewBag.GaseIdFilter, RegionIdFilter = ViewBag.RegionIdFilter, VerticalSliceFilter = ViewBag.VerticalSliceFilter, YearFilter = ViewBag.YearFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;&raquo;"), "Index",
+                        new { Page = Model.Pager.TotalPages, SortOrder = ViewBag.SortOrdert, GDataTypeIdFilter = ViewBag.GDataTypeIdFilter, GaseIdFilter = ViewBag.GaseIdFilter, RegionIdFilter = ViewBag.RegionIdFilter, VerticalSliceFilter = ViewBag.VerticalSliceFilter, YearFilter = ViewBag.YearFilter })
+                </li>
+            }
+        </ul>
+    }
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(t => t.Items.FirstOrDefault().GDataType)
+                    @Html.DropDownList("GDataTypeIdFilter", (IEnumerable<SelectListItem>)ViewBag.GDataType, "", htmlAttributes: new { @class = "form-control" })
+                </th>
+                <th>
+                    @Html.DisplayNameFor(t => t.Items.FirstOrDefault().Gase)
+                    @Html.DropDownList("GaseIdFilter", (IEnumerable<SelectListItem>)ViewBag.Gase, "", htmlAttributes: new { @class = "form-control" })
+                </th>
+                <th>
+                    @Html.DisplayNameFor(t => t.Items.FirstOrDefault().Region)
+                    @Html.DropDownList("RegionIdFilter", (IEnumerable<SelectListItem>)ViewBag.Region, "", htmlAttributes: new { @class = "form-control" })
+                </th>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(t => t.Items.FirstOrDefault().VerticalSlice).ToString(), "Index",
+                        new { SortOrder = ViewBag.VerticalSliceSort, GDataTypeIdFilter = ViewBag.GDataTypeIdFilter, GaseIdFilter = ViewBag.GaseIdFilter, RegionIdFilter = ViewBag.RegionIdFilter, VerticalSliceFilter = ViewBag.VerticalSliceFilter, YearFilter = ViewBag.YearFilter })
+                    <br />
+                    @Html.Editor("VerticalSliceFilter", null, new { htmlAttributes = new { @class = "form-control" }, value = "" })
+                </th>
+                <th>
+                    @Html.ActionLink(Html.DisplayNameFor(t => t.Items.FirstOrDefault().Year).ToString(), "Index",
+                        new { SortOrder = ViewBag.YearSort, GDataTypeIdFilter = ViewBag.GDataTypeIdFilter, GaseIdFilter = ViewBag.GaseIdFilter, RegionIdFilter = ViewBag.RegionIdFilter, VerticalSliceFilter = ViewBag.VerticalSliceFilter, YearFilter = ViewBag.YearFilter })
+                    <br />
+                    @Html.Editor("YearFilter", null, new { htmlAttributes = new { @class = "form-control" }, value = "" })
+                </th>
+                <th>
+                    @Html.DisplayNameFor(t => t.Items.FirstOrDefault().Longtitude)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(t => t.Items.FirstOrDefault().Latitude)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(t => t.Items.FirstOrDefault().Value)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(t => t.Items.FirstOrDefault().Month)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(t => t.Items.FirstOrDefault().Season)
+                </th>
+                <th>
+                    <br />
+                    <input type="submit" value="Find" class="btn btn-default">
+                </th>
+            </tr>
+        </thead>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GDataType.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gase.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Region.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VerticalSlice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Longtitude)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Latitude)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Value)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Month)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Season)
+                </td>
+                @if (administrator)
+                {
+                    <td>
+                        @*<a asp-action="Edit" asp-route-id="@item.Id">@SharedLocalizer["Edit"]</a> |*@
+                        <a asp-action="Details" asp-route-id="@item.Id">@SharedLocalizer["Details"]</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">@SharedLocalizer["Delete"]</a>
+                    </td>
+
+                }
+                else
+                {
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.Id">@SharedLocalizer["Details"]</a>
+                    </td>
+
+                }
+            </tr>
+        }
+    </table>
+    @if (Model.Pager.EndPage > 1)
+    {
+        <ul class="pagination">
+            @if (Model.Pager.CurrentPage > 1)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;&laquo;"), "Index",
+                        new { SortOrder = ViewBag.SortOrdert, GDataTypeIdFilter = ViewBag.GDataTypeIdFilter, GaseIdFilter = ViewBag.GaseIdFilter, RegionIdFilter = ViewBag.RegionIdFilter, VerticalSliceFilter = ViewBag.VerticalSliceFilter, YearFilter = ViewBag.YearFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&laquo;"), "Index",
+                        new { Page = Model.Pager.CurrentPage - 1, SortOrder = ViewBag.SortOrdert, GDataTypeIdFilter = ViewBag.GDataTypeIdFilter, GaseIdFilter = ViewBag.GaseIdFilter, RegionIdFilter = ViewBag.RegionIdFilter, VerticalSliceFilter = ViewBag.VerticalSliceFilter, YearFilter = ViewBag.YearFilter })
+                </li>
+            }
+
+            @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+            {
+                <li class="@(page == Model.Pager.CurrentPage ? "active" : "")">
+                    @Html.ActionLink(page.ToString(), "Index",
+                        new { Page = page, SortOrder = ViewBag.SortOrdert, GDataTypeIdFilter = ViewBag.GDataTypeIdFilter, GaseIdFilter = ViewBag.GaseIdFilter, RegionIdFilter = ViewBag.RegionIdFilter, VerticalSliceFilter = ViewBag.VerticalSliceFilter, YearFilter = ViewBag.YearFilter })
+                </li>
+            }
+
+            @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+            {
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;"), "Index",
+                        new { Page = Model.Pager.CurrentPage + 1, SortOrder = ViewBag.SortOrdert, GDataTypeIdFilter = ViewBag.GDataTypeIdFilter, GaseIdFilter = ViewBag.GaseIdFilter, RegionIdFilter = ViewBag.RegionIdFilter, VerticalSliceFilter = ViewBag.VerticalSliceFilter, YearFilter = ViewBag.YearFilter })
+                </li>
+                <li>
+                    @Html.ActionLink(WebUtility.HtmlDecode("&raquo;&raquo;"), "Index",
+                        new { Page = Model.Pager.TotalPages, SortOrder = ViewBag.SortOrdert, GDataTypeIdFilter = ViewBag.GDataTypeIdFilter, GaseIdFilter = ViewBag.GaseIdFilter, RegionIdFilter = ViewBag.RegionIdFilter, VerticalSliceFilter = ViewBag.VerticalSliceFilter, YearFilter = ViewBag.YearFilter })
+                </li>
+            }
+        </ul>
+    }
+}
+
+@*<table class="table">
     <thead>
         <tr>
             <th>
@@ -101,7 +281,7 @@
                 {
                     <td>
                         @*<a asp-action="Edit" asp-route-id="@item.Id">@SharedLocalizer["Edit"]</a> |*@
-                        <a asp-action="Details" asp-route-id="@item.Id">@SharedLocalizer["Details"]</a> |
+                        @*<a asp-action="Details" asp-route-id="@item.Id">@SharedLocalizer["Details"]</a> |
                         <a asp-action="Delete" asp-route-id="@item.Id">@SharedLocalizer["Delete"]</a>
                     </td>
 
@@ -116,4 +296,4 @@
             </tr>
         }
     </tbody>
-</table>
+</table>*@

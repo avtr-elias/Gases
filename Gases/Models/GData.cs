@@ -53,4 +53,10 @@ namespace Gases.Models
         Summer = 3,
         Autumn = 4
     }
+
+    public class GDataIndexPageViewModel
+    {
+        public IEnumerable<GData> Items { get; set; }
+        public Pager Pager { get; set; }
+    }
 }

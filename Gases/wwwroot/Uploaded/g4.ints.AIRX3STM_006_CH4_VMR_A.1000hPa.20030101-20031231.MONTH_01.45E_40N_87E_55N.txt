@@ -1,0 +1,87 @@
+netcdf g4.ints.AIRX3STM_006_CH4_VMR_A.1000hPa.20030101-20031231.MONTH_01.45E_40N_87E_55N {
+dimensions:
+	time = UNLIMITED ; // (1 currently)
+	TempPrsLvls_A = 1 ;
+	latv = 2 ;
+	lonv = 2 ;
+	nv = 2 ;
+variables:
+	int datayear(time) ;
+		datayear:long_name = "Data year" ;
+	double AIRX3STM_006_CH4_VMR_A(time, TempPrsLvls_A) ;
+		AIRX3STM_006_CH4_VMR_A:_FillValue = -9999. ;
+		AIRX3STM_006_CH4_VMR_A:standard_name = "mole_fraction_of_methane_in_air" ;
+		AIRX3STM_006_CH4_VMR_A:quantity_type = "CH4" ;
+		AIRX3STM_006_CH4_VMR_A:product_short_name = "AIRX3STM" ;
+		AIRX3STM_006_CH4_VMR_A:product_version = "006" ;
+		AIRX3STM_006_CH4_VMR_A:long_name = "Methane, Mole Fraction in Air (Daytime/Ascending)" ;
+		AIRX3STM_006_CH4_VMR_A:units = "ppbv" ;
+		AIRX3STM_006_CH4_VMR_A:cell_methods = "lat, lon: mean" ;
+		AIRX3STM_006_CH4_VMR_A:group_type = "MONTH" ;
+		AIRX3STM_006_CH4_VMR_A:group_value = "January" ;
+		AIRX3STM_006_CH4_VMR_A:coordinates = "time TempPrsLvls_A" ;
+		AIRX3STM_006_CH4_VMR_A:plot_hint_legend_label = "January" ;
+		AIRX3STM_006_CH4_VMR_A:z_slice = "1000hPa" ;
+		AIRX3STM_006_CH4_VMR_A:z_slice_type = "pressure" ;
+	float TempPrsLvls_A(TempPrsLvls_A) ;
+		TempPrsLvls_A:standard_name = "Pressure" ;
+		TempPrsLvls_A:long_name = "Pressure Levels Temperature Profile, daytime (ascending) node" ;
+		TempPrsLvls_A:positive = "down" ;
+		TempPrsLvls_A:_CoordinateAxisType = "GeoZ" ;
+		TempPrsLvls_A:units = "hPa" ;
+	double lat_bnds(latv) ;
+		lat_bnds:units = "degrees_north" ;
+		lat_bnds:cell_methods = "lat: mean" ;
+	double lon_bnds(lonv) ;
+		lon_bnds:units = "degrees_east" ;
+		lon_bnds:cell_methods = "lon: mean" ;
+	int time(time) ;
+		time:long_name = "time" ;
+		time:standard_name = "time" ;
+		time:units = "seconds since 1970-01-01 00:00:00" ;
+		time:bounds = "time_bnds" ;
+	int time_bnds(time, nv) ;
+		time_bnds:units = "seconds since 1970-01-01 00:00:00" ;
+
+// global attributes:
+		:Conventions = "CF-1.4" ;
+		:temporal_resolution = "monthly" ;
+		:NCO = "\"4.5.3\"" ;
+		:nco_openmp_thread_number = 1 ;
+		:geospatial_lat_min = "40.5" ;
+		:geospatial_lon_min = "46.5" ;
+		:geospatial_lat_max = "55.5" ;
+		:geospatial_lon_max = "86.5" ;
+		:start_time = "2003-01-01T00:00:00Z" ;
+		:end_time = "2003-01-31T23:59:59Z" ;
+		:userstartdate = "2003-01-01T00:00:00Z" ;
+		:userenddate = "2003-12-31T23:59:59Z" ;
+		:title = " Average Methane, Mole Fraction in Air (Daytime/Ascending) monthly 1 deg. @1000hPa [AIRS AIRX3STM v006] ppbv for 2003-Jan, Region 45.9668E, 40.0195N, 87.4512E, 55.8398N" ;
+		:plot_hint_title = " Average Methane, Mole Fraction in Air (Daytime/Ascending) monthly 1 deg. @1000hPa" ;
+		:plot_hint_subtitle = " [AIRS AIRX3STM v006] ppbv for 2003-Jan, Region 45.9668E, 40.0195N, 87.4512E,  55.8398N" ;
+		:plot_hint_time_axis_values = "1041379200,1046476800,1051747200,1057017600,1062374400,1067644800,1072915200" ;
+		:plot_hint_time_axis_labels = "Jan,Mar,May,Jul,Sep,Nov,Jan~C~2004" ;
+		:plot_hint_time_axis_minor = "1044057600,1049155200,1054425600,1059696000,1064966400,1070236800" ;
+		:history = "Wed May 15 10:53:47 2019: /usr/bin/ncatted -a plot_hint_time_axis_values,global,c,c,1041379200,1046476800,1051747200,1057017600,1062374400,1067644800,1072915200 -a plot_hint_time_axis_labels,global,c,c,Jan,Mar,May,Jul,Sep,Nov,Jan~C~2004 -a plot_hint_time_axis_minor,global,c,c,1044057600,1049155200,1054425600,1059696000,1064966400,1070236800 /var/giovanni/session/98286E72-76F2-11E9-9E43-6575A933D28E/AF1234E4-76FF-11E9-8424-1426A933D28E/AF142BC8-76FF-11E9-8424-1426A933D28E/g4.ints.AIRX3STM_006_CH4_VMR_A.1000hPa.20030101-20031231.MONTH_01.45E_40N_87E_55N.nc" ;
+		:plot_hint_caption = "- The user-selected region was defined by 45.9668E, 40.0195N, 87.4512E, 55.8398N. The data grid also limits the analyzable region to the following bounding points: 46.5E, 40.5N, 86.5E, 55.5N. This analyzable region indicates the spatial limits of the subsetted granules that went into making this visualization result." ;
+data:
+
+ datayear = 2003;  // datayear(0)
+    
+ AIRX3STM_006_CH4_VMR_A =
+  1890.91289276963;  // AIRX3STM_006_CH4_VMR_A(0,0)
+    
+ TempPrsLvls_A = 1000;  // TempPrsLvls_A(0)
+    
+ lat_bnds = 47.0875548450354,   // lat_bnds(0)
+    48.0875548450354;  // lat_bnds(1)
+    
+ lon_bnds = 66,   // lon_bnds(0)
+    67;  // lon_bnds(1)
+    
+ time = 1041379200;  // time(0)
+    
+ time_bnds =
+  1041379200,   // time_bnds(0,0)
+    1044057599;  // time_bnds(0,1)
+    }

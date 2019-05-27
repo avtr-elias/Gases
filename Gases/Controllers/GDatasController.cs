@@ -28,10 +28,87 @@ namespace Gases.Controllers
         }
 
         // GET: GDatas
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string SortOrder,
+            int? GDataTypeIdFilter,
+            int? GaseIdFilter,
+            int? RegionIdFilter,
+            decimal? VerticalSliceFilter,
+            int? YearFilter,
+            int? Page)
         {
-            var applicationDbContext = _context.GData.Include(g => g.GDataType).Include(g => g.Gase).Include(g => g.Region);
-            return View(await applicationDbContext.ToListAsync());
+            //var applicationDbContext = _context.GData.Include(g => g.GDataType).Include(g => g.Gase).Include(g => g.Region);
+            //return View(await applicationDbContext.ToListAsync());
+
+            var gData = _context.GData
+                .Include(g => g.GDataType)
+                .Include(g => g.Gase)
+                .Include(g => g.Region)
+                .Where(g => true);
+
+            ViewBag.GDataTypeIdFilter = GDataTypeIdFilter;
+            ViewBag.GaseIdFilter = GaseIdFilter;
+            ViewBag.RegionIdFilter = RegionIdFilter;
+            ViewBag.VerticalSliceFilter = VerticalSliceFilter;
+            ViewBag.YearFilter = YearFilter;
+
+            ViewBag.VerticalSliceSort = SortOrder == "VerticalSlice" ? "VerticalSliceDesc" : "VerticalSlice";
+            ViewBag.YearSort = SortOrder == "Year" ? "YearDesc" : "Year";
+
+            if (GDataTypeIdFilter != null)
+            {
+                gData = gData.Where(c => c.GDataTypeId == GDataTypeIdFilter);
+            }
+            if (GaseIdFilter != null)
+            {
+                gData = gData.Where(c => c.GaseId == GaseIdFilter);
+            }
+            if (RegionIdFilter != null)
+            {
+                gData = gData.Where(c => c.RegionId == RegionIdFilter);
+            }
+            if (VerticalSliceFilter != null)
+            {
+                gData = gData.Where(c => c.VerticalSlice == VerticalSliceFilter);
+            }
+            if (YearFilter != null)
+            {
+                gData = gData.Where(c => c.Year == YearFilter);
+            }
+
+            switch (SortOrder)
+            {
+                case "VerticalSlice":
+                    gData = gData.OrderBy(c => c.VerticalSlice);
+                    break;
+                case "VerticalSliceDesc":
+                    gData = gData.OrderByDescending(c => c.VerticalSlice);
+                    break;
+                case "Year":
+                    gData = gData.OrderBy(c => c.Year);
+                    break;
+                case "YearDesc":
+                    gData = gData.OrderByDescending(c => c.Year);
+                    break;
+                default:
+                    gData = gData.OrderBy(c => c.Id);
+                    break;
+            }
+
+            ViewBag.SortOrder = SortOrder;
+
+            var pager = new Pager(gData.Count(), Page);
+
+            var viewModel = new GDataIndexPageViewModel
+            {
+                Items = gData.Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize),
+                Pager = pager
+            };
+
+            ViewBag.GDataType = new SelectList(_context.GDataType.OrderBy(c => c.Name), "Id", "Name");
+            ViewBag.Gase = new SelectList(_context.Gase.OrderBy(c => c.Name), "Id", "Name");
+            ViewBag.Region = new SelectList(_context.Region.OrderBy(c => c.Name), "Id", "Name");
+
+            return View(viewModel);
         }
 
         // GET: GDatas/Details/5

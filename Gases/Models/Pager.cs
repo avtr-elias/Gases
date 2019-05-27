@@ -9,7 +9,7 @@ namespace Gases.Models
     {
         public Pager(int totalItems, int? page, int? pageSize = null)
         {
-            pageSize = pageSize == null ? 20 : pageSize;
+            pageSize = pageSize == null ? 50 : pageSize;
             // calculate total, start and end pages
             var totalPages = (int)Math.Ceiling((decimal)totalItems / (decimal)pageSize);
             var currentPage = page != null ? (int)page : 1;
