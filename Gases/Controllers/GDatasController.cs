@@ -787,5 +787,10 @@ namespace Gases.Controllers
             //return View();
             return RedirectToAction(nameof(Index));
         }
+
+        public async Task<IActionResult> View(int? GDataTypeId, int? GaseId, decimal? VerticalSlice, int? RegionId, int? Year)
+        {
+            return View();
+        }
     }
 }
