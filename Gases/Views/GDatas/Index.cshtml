@@ -20,13 +20,13 @@
             administrator = true;
         }
     }
-}
-@if (administrator)
-{
-    <p>
+}<p>
+    @if (administrator)
+    {
         <a asp-action="Upload">@SharedLocalizer["Upload"]</a>
-    </p>
-}
+    }
+    <a asp-action="View">@SharedLocalizer["View"]</a>
+</p>
 <table class="table">
     <thead>
         <tr>
