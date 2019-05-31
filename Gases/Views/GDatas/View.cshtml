@@ -74,24 +74,24 @@
     }));
     layers[0].set('name', 'OSM');
 
-    var geoserverPort = '8080',
-        geoserverAddress = window.location.hostname;
+    //var geoserverPort = '8080',
+    //    geoserverAddress = window.location.hostname;
 
-    var Source_New = new ol.source.TileWMS({
-        url: 'http://' + geoserverAddress + ':' + geoserverPort + '/geoserver/Gases/wms?',
-        params: {
-            'LAYERS': 'Gases:2010.01.ch4.GIOVANNI-g4.timeAvgMap.AIRS3STM_006_CH4_VMR_A.10hPa.20100101-20100131.45E_40N_87E_55N',
-            'VERSION': '1.1.0',
-            'FORMAT': 'image/png',
-            'TILED': true
-        },
-        serverType: 'geoserver'
-    });
-    var Layer_New = new ol.layer.Tile({
-        source: Source_New
-    });
-    Layer_New.setOpacity(0.80);
-    layers.push(Layer_New);
+    //var Source_New = new ol.source.TileWMS({
+    //    url: 'http://' + geoserverAddress + ':' + geoserverPort + '/geoserver/Gases/wms?',
+    //    params: {
+    //        'LAYERS': 'Gases:2010.01.ch4.GIOVANNI-g4.timeAvgMap.AIRS3STM_006_CH4_VMR_A.10hPa.20100101-20100131.45E_40N_87E_55N',
+    //        'VERSION': '1.1.0',
+    //        'FORMAT': 'image/png',
+    //        'TILED': true
+    //    },
+    //    serverType: 'geoserver'
+    //});
+    //var Layer_New = new ol.layer.Tile({
+    //    source: Source_New
+    //});
+    //Layer_New.setOpacity(0.80);
+    //layers.push(Layer_New);
 
     var source = new ol.source.Vector();
     var layer = new ol.layer.Vector({
@@ -185,7 +185,7 @@
         var ctx1 = document.getElementById("chartDatas").getContext('2d');
         var data1 = [];
         if (gDataTypeIdValue == 1) {
-            for (var i = 0; i < data.length; i--) {
+            for (var i = 0; i < data.length; i++) {
                 if (data[i].month < 10) {
                     var date = data[i].year + '-0' + data[i].month + '-' + "01T00:00:00";
                 }
