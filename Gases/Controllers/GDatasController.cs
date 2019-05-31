@@ -790,7 +790,47 @@ namespace Gases.Controllers
 
         public async Task<IActionResult> View(int? GDataTypeId, int? GaseId, decimal? VerticalSlice, int? RegionId, int? Year)
         {
+            ViewData["GDataTypeId"] = new SelectList(_context.GDataType, "Id", "Name");
+            ViewData["GaseId"] = new SelectList(_context.Gase, "Id", "Name");
+            ViewData["RegionId"] = new SelectList(_context.Region, "Id", "Name");
             return View();
+        }
+
+        [HttpPost]
+        public JsonResult GetDatas(int GDataTypeId,
+            int GaseId,
+            int? VerticalSlice,
+            int? RegionId,
+            int? Year,
+            int? Month,
+            Season? Season)
+        {
+            JsonResult result = new JsonResult("");
+            if (GDataTypeId == 1)
+            {
+                var gdatas = _context.GData.Where(g => g.GDataTypeId == GDataTypeId && g.GaseId == GaseId && 
+                g.VerticalSlice == VerticalSlice && g.RegionId == RegionId && g.Year == Year);
+                result = new JsonResult(gdatas);
+            }
+            if (GDataTypeId == 3)
+            {
+                var gdatas = _context.GData.Where(g => g.GDataTypeId == GDataTypeId && g.GaseId == GaseId &&
+                g.RegionId == RegionId && g.Year == Year);
+                result = new JsonResult(gdatas);
+            }
+            if (GDataTypeId == 4)
+            {
+                var gdatas = _context.GData.Where(g => g.GDataTypeId == GDataTypeId && g.GaseId == GaseId &&
+                g.VerticalSlice == VerticalSlice && g.Month == Month);
+                result = new JsonResult(gdatas);
+            }
+            if (GDataTypeId == 5)
+            {
+                var gdatas = _context.GData.Where(g => g.GDataTypeId == GDataTypeId && g.GaseId == GaseId &&
+                g.VerticalSlice == VerticalSlice && g.Season == Season);
+                result = new JsonResult(gdatas);
+            }
+            return result;
         }
     }
 }

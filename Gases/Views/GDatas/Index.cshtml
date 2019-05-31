@@ -22,13 +22,13 @@
             administrator = true;
         }
     }
-}
-@if (administrator)
-{
-    <p>
+}<p>
+    @if (administrator)
+    {
         <a asp-action="Upload">@SharedLocalizer["Upload"]</a>
-    </p>
-}
+    }
+    <a asp-action="View">@SharedLocalizer["View"]</a>
+</p>
 
 @using (Html.BeginForm("Index", "GDatas", new { SortOrder = ViewBag.SortOrdert, GDataTypeIdFilter = ViewBag.GDataTypeIdFilter, GaseIdFilter = ViewBag.GaseIdFilter, RegionIdFilter = ViewBag.RegionIdFilter, VerticalSliceFilter = ViewBag.VerticalSliceFilter, YearFilter = ViewBag.YearFilter }, FormMethod.Get))
 {

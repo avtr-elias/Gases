@@ -1,8 +1,353 @@
-﻿
+﻿@model Gases.Models.GData
+@using Gases.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
 @{
     ViewData["Title"] = "View";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/moment.js/moment.js"></script>
+<script src="~/lib/chart.js/Chart.js"></script>
+<link href="~/lib/ol/ol.css" rel="stylesheet" />
+<script src="~/lib/ol/ol.js"></script>
+
 <h2>View</h2>
 
+<div class="row">
+    <div>
+        <form asp-action="Upload" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="GDataTypeId" class="control-label"></label>
+                <select id="selectDT" asp-for="GDataTypeId" class="form-control" asp-items="ViewBag.GDataTypeId" onchange="ChangeDataType(); GetDatas();"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="GaseId" class="control-label"></label>
+                <select asp-for="GaseId" class="form-control" asp-items="ViewBag.GaseId" onchange="GetDatas();"></select>
+            </div>
+            <div id="VS" class="form-group">
+                <label asp-for="VerticalSlice" class="control-label"></label>
+                <input asp-for="VerticalSlice" class="form-control" onchange="GetDatas();" />
+                <span asp-validation-for="VerticalSlice" class="text-danger"></span>
+            </div>
+            <div id="Region" class="form-group">
+                <label asp-for="RegionId" class="control-label"></label>
+                <select asp-for="RegionId" class="form-control" asp-items="ViewBag.RegionId" onchange="GetDatas();"></select>
+            </div>
+            <div id="YearDiv" class="form-group">
+                <label asp-for="Year" class="control-label"></label>
+                <input asp-for="Year" class="form-control" onchange="GetDatas();" />
+                <span asp-validation-for="Year" class="text-danger"></span>
+            </div>
+            <div id="MonthDiv" class="form-group">
+                <label asp-for="Month" class="control-label"></label>
+                <input asp-for="Month" class="form-control" onchange="GetDatas();" />
+                <span asp-validation-for="Month" class="text-danger"></span>
+            </div>
+            <div id="SeasonDiv" class="form-group">
+                <label asp-for="Season" class="control-label"></label>
+                @*<input asp-for="Season" class="form-control" />*@
+                <select asp-for="Season" class="form-control" onchange="GetDatas();" asp-items='Html.GetEnumSelectList<Season>().Select(c => {c.Text = SharedLocalizer[c.Text]; return c;}).ToList()'>
+                    <option selected></option>
+                </select>
+            </div>
+            <div id="chart" class="col-sm-12">
+                <canvas id="chartDatas"></canvas>
+            </div>
+            <div id="map"></div>
+        </form>
+    </div>
+</div>
+
+<div hidden="hidden">
+    <input id="Years" value="@SharedLocalizer["Year"]" />
+    <input id="Months" value="@SharedLocalizer["Month"]" />
+    <input id="Value" value="@SharedLocalizer["Value"]" />
+</div>
+
+<script type="text/javascript">
+    var layers = [];
+    layers.push(new ol.layer.Tile({
+        source: new ol.source.OSM()
+    }));
+    layers[0].set('name', 'OSM');
+
+    var geoserverPort = '8080',
+        geoserverAddress = window.location.hostname;
+
+    var Source_New = new ol.source.TileWMS({
+        url: 'http://' + geoserverAddress + ':' + geoserverPort + '/geoserver/Gases/wms?',
+        params: {
+            'LAYERS': 'Gases:2010.01.ch4.GIOVANNI-g4.timeAvgMap.AIRS3STM_006_CH4_VMR_A.10hPa.20100101-20100131.45E_40N_87E_55N',
+            'VERSION': '1.1.0',
+            'FORMAT': 'image/png',
+            'TILED': true
+        },
+        serverType: 'geoserver'
+    });
+    var Layer_New = new ol.layer.Tile({
+        source: Source_New
+    });
+    Layer_New.setOpacity(0.80);
+    layers.push(Layer_New);
+
+    var source = new ol.source.Vector();
+    var layer = new ol.layer.Vector({
+        source: source
+    });
+
+    var map = new ol.Map({
+        target: 'map',
+        layers: layers,
+        view: new ol.View({
+            center: ol.proj.fromLonLat([69, 48]),
+            zoom: 4
+        })
+    });
+</script>
+
+<script type="text/javascript">
+
+    function ChangeDataType() {
+        var sel = document.getElementById('selectDT');
+        var val = sel.options[sel.selectedIndex].value;
+        if (val == 3) {
+            document.getElementById('VS').style.display = "none";
+        }
+        else {
+            document.getElementById('VS').style.display = "block";
+        }
+
+        if (val == 4) {
+            document.getElementById('YearDiv').style.display = "none";
+            document.getElementById('MonthDiv').style.display = "block";
+            document.getElementById('SeasonDiv').style.display = "none";
+        }
+        else if (val == 5) {
+            document.getElementById('YearDiv').style.display = "none";
+            document.getElementById('MonthDiv').style.display = "none";
+            document.getElementById('SeasonDiv').style.display = "block";
+        }
+        else {
+            document.getElementById('YearDiv').style.display = "block";
+            document.getElementById('MonthDiv').style.display = "none";
+            document.getElementById('SeasonDiv').style.display = "none";
+        }
+
+        if (val == 2 || val == 4 || val == 5) {
+            document.getElementById('Region').style.display = "none";
+        }
+        else {
+            document.getElementById('Region').style.display = "block";
+        }
+
+        if (val == 2) {
+            document.getElementById('map').style.display = "block";
+            document.getElementById('chart').style.display = "none";
+        }
+        else {
+            document.getElementById('map').style.display = "none";
+            document.getElementById('chart').style.display = "block";
+        }
+    }
+
+    function GetDatas() {
+        var sel = document.getElementById('selectDT');
+        var gDataTypeIdValue = sel.options[sel.selectedIndex].value;
+        $.ajax({
+            url: '@Url.Action("GetDatas")',
+            data: {
+                GDataTypeId: gDataTypeIdValue,
+                GaseId: $('#GaseId').val(),
+                VerticalSlice: $('#VerticalSlice').val(),
+                RegionId: $('#RegionId').val(),
+                Year: $('#Year').val(),
+                Month: $('#Month').val(),
+                Season: $('#Season').val()
+            },
+            type: 'POST',
+            success: function (data) {
+                ChangeChart(data, gDataTypeIdValue);
+            },
+            error: function () {
+                //alert('Error');
+            }
+        })
+    }
+
+    var ChartDatas = null;
+    function ChangeChart(data, gDataTypeIdValue) {
+        if (ChartDatas != null) {
+            ChartDatas.destroy();
+        }
+        var ctx1 = document.getElementById("chartDatas").getContext('2d');
+        var data1 = [];
+        if (gDataTypeIdValue == 1) {
+            for (var i = 0; i < data.length; i--) {
+                if (data[i].month < 10) {
+                    var date = data[i].year + '-0' + data[i].month + '-' + "01T00:00:00";
+                }
+                else {
+                    var date = data[i].year + '-' + data[i].month + '-' + "01T00:00:00";
+                }
+                data1.push({
+                    'x': moment(date),
+                    'y': data[i].value
+                });
+            }
+            ChartDatas = new Chart(ctx1, {
+                type: 'scatter',
+                data: {
+                    datasets: [{
+                        label: $("#GaseId option:selected").text(),
+                        data: data1,
+                        backgroundColor: 'rgba(85,255,0,1)',
+                        borderColor: 'rgba(85,255,0,1)',
+                        borderWidth: 3,
+                        fill: false,
+                        showLine: true,
+                        lineTension: 0
+                    }]
+                },
+                options: {
+                    spanGaps: true,
+                    title: {
+                        display: true,
+                        text: $("#selectDT  option:selected").text()
+                    },
+                    scales: {
+                        xAxes: [{
+                            type: "time",
+                            time: {
+                                unit: 'month'
+                            },
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: $("#Months").val()
+                            }
+                        }],
+                        yAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: $("#Value").val()
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+        if (gDataTypeIdValue == 3) {
+            var values = [];
+            var verticalSlices = [];
+            for (var i = data.length - 1; i > -1; i--) {
+                values.push(data[i].value);
+                verticalSlices.push(data[i].verticalSlice);
+            }
+            ChartDatas = new Chart(ctx1, {
+                type: 'line',
+                data: {
+                    labels: values,
+                    datasets: [{
+                        label: $("#GaseId option:selected").text(),
+                        data: verticalSlices,
+                        backgroundColor: 'rgba(85,255,0,1)',
+                        borderColor: 'rgba(85,255,0,1)',
+                        borderWidth: 3,
+                        fill: false,
+                        showLine: true,
+                        lineTension: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    title: {
+                        display: true,
+                        text: $("#selectDT  option:selected").text()
+                    },
+                    scales: {
+                        xAxes: [{
+                            display: true,
+                        }],
+                        yAxes: [{
+                            display: true,
+                            type: 'logarithmic',
+                            ticks: {
+                                reverse: true,
+                                autoSkip: true,
+                                precision: 4,
+                                callback: function (verticalSlices, index, values) {
+                                    if (verticalSlices == 1 || verticalSlices == 10 || verticalSlices == 100 || verticalSlices == 1000) {
+                                        return Number(verticalSlices.toString());
+                                    }
+                                    else {
+                                        return '';
+                                    }
+                                }
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+        if (gDataTypeIdValue == 4 || gDataTypeIdValue == 5) {
+            for (var i = 0; i < data.length; i++) {
+                var date = data[i].year + '-01-01T00:00:00';
+                data1.push({
+                    'x': moment(date),
+                    'y': data[i].value
+                });
+            }
+            ChartDatas = new Chart(ctx1, {
+                type: 'scatter',
+                data: {
+                    datasets: [{
+                        label: $("#GaseId option:selected").text(),
+                        data: data1,
+                        backgroundColor: 'rgba(85,255,0,1)',
+                        borderColor: 'rgba(85,255,0,1)',
+                        borderWidth: 3,
+                        fill: false,
+                        showLine: true,
+                        lineTension: 0
+                    }]
+                },
+                options: {
+                    spanGaps: true,
+                    title: {
+                        display: true,
+                        text: $("#selectDT  option:selected").text()
+                    },
+                    scales: {
+                        xAxes: [{
+                            type: "time",
+                            time: {
+                                unit: 'year'
+                            },
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: $("#Years").val()
+                            }
+                        }],
+                        yAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: $("#Value").val()
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+    }
+
+    $(document).ready(function () {
+        ChangeDataType();
+        GetDatas();
+    });
+</script>
