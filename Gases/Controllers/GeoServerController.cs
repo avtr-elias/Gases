@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Localization;
 
@@ -939,6 +940,8 @@ namespace Gases.Controllers
         [Authorize(Roles = "Administrator, Moderator")]
         public async Task<IActionResult> PublishGeoTIFF(string GeoTIFFFile, string Style, string NameKK, string NameRU, string NameEN, int GDataTypeId, int GaseId, decimal VerticalSlice, int Year)
         {
+            var geoTiffFile = _context.GeoTiffFile.Where(g => g.Name == GeoTIFFFile).FirstOrDefault();
+
             string message = "";
             try
             {
@@ -956,6 +959,11 @@ namespace Gases.Controllers
                     VerticalSlice = VerticalSlice,
                     Year = Year
                 };
+
+                geoTiffFile.GaseId = GaseId;
+                geoTiffFile.Year = Convert.ToString(Year);
+                geoTiffFile.VerticalSlice = VerticalSlice;
+
                 _context.Add(layer);
                 await _context.SaveChangesAsync();
             }

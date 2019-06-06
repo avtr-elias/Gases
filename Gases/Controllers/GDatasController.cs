@@ -812,12 +812,19 @@ namespace Gases.Controllers
                 g.VerticalSlice == VerticalSlice && g.RegionId == RegionId && g.Year == Year);
                 result = new JsonResult(gdatas);
             }
-            //if (GDataTypeId == 2)
-            //{
-            //    string name = _context.GeoTiffFile.Where(m => m.Year == Year).Where(m => m.Month == Month).Where(m => m.GaseId == GaseId).First().Name;
-            //    name = name.Remove(name.Length - 4, 4);
-            //    result = new JsonResult(name);
-            //}
+            if (GDataTypeId == 2)
+            {
+                try
+                {
+                    string name = _context.GeoTiffFile.Where(m => m.Year == Convert.ToString(Year)).Where(m => m.VerticalSlice == VerticalSlice).Where(m => m.GaseId == GaseId).First().Name;
+                    name = name.Remove(name.Length - 4, 4);
+                    result = new JsonResult(name);
+                }
+                catch
+                {
+                    //Error
+                }
+            }
             if (GDataTypeId == 3)
             {
                 var gdatas = _context.GData.Where(g => g.GDataTypeId == GDataTypeId && g.GaseId == GaseId &&

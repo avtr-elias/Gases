@@ -74,24 +74,24 @@
     }));
     layers[0].set('name', 'OSM');
 
-    //var geoserverPort = '8080',
-    //    geoserverAddress = window.location.hostname;
+    var geoserverPort = '8080',
+        geoserverAddress = window.location.hostname;
 
-    //var Source_New = new ol.source.TileWMS({
-    //    url: 'http://' + geoserverAddress + ':' + geoserverPort + '/geoserver/Gases/wms?',
-    //    params: {
-    //        'LAYERS': 'Gases:2010.01.ch4.GIOVANNI-g4.timeAvgMap.AIRS3STM_006_CH4_VMR_A.10hPa.20100101-20100131.45E_40N_87E_55N',
-    //        'VERSION': '1.1.0',
-    //        'FORMAT': 'image/png',
-    //        'TILED': true
-    //    },
-    //    serverType: 'geoserver'
-    //});
-    //var Layer_New = new ol.layer.Tile({
-    //    source: Source_New
-    //});
-    //Layer_New.setOpacity(0.80);
-    //layers.push(Layer_New);
+    var Source_New = new ol.source.TileWMS({
+        url: 'http://' + geoserverAddress + ':' + geoserverPort + '/geoserver/Gases/wms?',
+        //params: {
+        //    'LAYERS': 'Gases:No',
+        //    'VERSION': '1.1.0',
+        //    'FORMAT': 'image/png',
+        //    'TILED': true
+        //},
+        serverType: 'geoserver'
+    });
+    var Layer_New = new ol.layer.Tile({
+        source: Source_New
+    });
+    Layer_New.setOpacity(0.80);
+    layers.push(Layer_New);
 
     var source = new ol.source.Vector();
     var layer = new ol.layer.Vector({
@@ -169,7 +169,12 @@
             },
             type: 'POST',
             success: function (data) {
-                ChangeChart(data, gDataTypeIdValue);
+                if (gDataTypeIdValue == 2) {
+                    ChangeLayer(data);
+                }
+                else {
+                    ChangeChart(data, gDataTypeIdValue);
+                }
             },
             error: function () {
                 //alert('Error');
@@ -344,6 +349,28 @@
                 }
             });
         }
+    }
+
+    function ChangeLayer(data) {
+        alert('0');
+        var nameFile = '';
+        var name = [];
+        name = data;
+        for (i = 0; i < name.length; i++) {
+            nameFile += data[i][0];
+        }
+        var Source_New = new ol.source.TileWMS({
+            url: 'http://' + geoserverAddress + ':' + geoserverPort + '/geoserver/Gases/wms?',
+            params: {
+                'LAYERS': 'Gases:' + nameFile,
+                'VERSION': '1.1.0',
+                'FORMAT': 'image/png',
+                'TILED': true
+            },
+            serverType: 'geoserver'
+        });
+        var l = map.getLayers().getArray()[1];
+        l.setSource(Source_New);
     }
 
     $(document).ready(function () {
