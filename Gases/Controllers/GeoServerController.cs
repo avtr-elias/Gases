@@ -30,16 +30,16 @@ namespace Gases.Controllers
             _sharedLocalizer = sharedLocalizer;
         }
 
-        public void GeoTiffFile(int GaseId,
+        public void GeoTiffFile(int? GaseId,
             string Year,
-            string Month,
+            decimal? VerticalSlice,
             string Name)
         {
             GeoTiffFile geoTiffFile = new GeoTiffFile
             {
                 GaseId = GaseId,
                 Year = Year,
-                Month = Month,
+                VerticalSlice = VerticalSlice,
                 Name = Name
             };
 
@@ -654,29 +654,30 @@ namespace Gases.Controllers
                             report.Add($"{fileName}: {_sharedLocalizer["uploaded"]}!");
                             filesCounter = filesCounter + 1;
 
-                            string str, date, year, month, gase;
-                            int indexPointOneStr, indexPointTwoStr, indexPointOneName;
+                            string str = Path.GetFileName(file);
+                            //string str, date, year, month, gase;
+                            //int indexPointOneStr, indexPointTwoStr, indexPointOneName;
                             //DateTime dateTime = new DateTime();
                             //int[] dataArray = new int[2];
 
-                            str = Path.GetFileName(file);
-                            indexPointOneStr = str.IndexOf('.');
-                            indexPointTwoStr = str.IndexOf('.', indexPointOneStr + 1);
-                            date = str.Remove(indexPointTwoStr, str.Length - indexPointTwoStr);
-                            gase = str.Remove(0, indexPointTwoStr + 1);
-                            indexPointOneName = gase.IndexOf('.');
-                            gase = gase.Remove(indexPointOneName, gase.Length - indexPointOneName);
-                            string[] words = date.Split(new char[] { '.' });
-                            year = words[0];
-                            month = words[1];
+                            //str = Path.GetFileName(file);
+                            //indexPointOneStr = str.IndexOf('.');
+                            //indexPointTwoStr = str.IndexOf('.', indexPointOneStr + 1);
+                            //date = str.Remove(indexPointTwoStr, str.Length - indexPointTwoStr);
+                            //gase = str.Remove(0, indexPointTwoStr + 1);
+                            //indexPointOneName = gase.IndexOf('.');
+                            //gase = gase.Remove(indexPointOneName, gase.Length - indexPointOneName);
+                            //string[] words = date.Split(new char[] { '.' });
+                            //year = words[0];
+                            //month = words[1];
 
                             //dateTime = new DateTime(dataArray[0], dataArray[1], 01);
 
-                            gase = gase.ToUpper();
-                            int idGase = _context.Gase.Where(d => d.Formula == gase).First().Id;
+                            //gase = gase.ToUpper();
+                            //int idGase = _context.Gase.Where(d => d.Formula == gase).First().Id;
                             //idGase = idGase == null ? 0 : idGase;
 
-                            GeoTiffFile(idGase, year, month, str);
+                            GeoTiffFile(null, null, null, str);
                         }
                     }
                     else if (Path.GetExtension(file)[1] != 'z')

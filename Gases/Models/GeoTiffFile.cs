@@ -10,15 +10,15 @@ namespace Gases.Models
     {
         public int Id { get; set; }
 
-        public int GaseId { get; set; }
+        public int? GaseId { get; set; }
         [Display(ResourceType = typeof(Resources.Controllers.SharedResources), Name = "Gase")]
         public Gase Gase { get; set; }
 
         [Display(ResourceType = typeof(Resources.Controllers.SharedResources), Name = "Year")]
         public string Year { get; set; }
 
-        [Display(ResourceType = typeof(Resources.Controllers.SharedResources), Name = "Month")]
-        public string Month { get; set; }
+        [Display(ResourceType = typeof(Resources.Controllers.SharedResources), Name = "VerticalSlice")]
+        public decimal? VerticalSlice { get; set; }
 
         [Display(ResourceType = typeof(Resources.Controllers.SharedResources), Name = "Name")]
         public string Name { get; set; }
