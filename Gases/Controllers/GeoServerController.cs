@@ -449,7 +449,8 @@ namespace Gases.Controllers
                      $" -H \"Content-type: text/xml\"" +
                      $" -d \"<layer><defaultStyle><name>{WorkspaceName}:{Style}</name></defaultStyle></layer>\"" +
                      $" http://{Startup.Configuration["GeoServer:Address"]}" +
-                     $":{Startup.Configuration["GeoServer:Port"]}/geoserver/rest/layers/{WorkspaceName}:{fileNameWithoutExtension}";
+                     //$":{Startup.Configuration["GeoServer:Port"]}/geoserver/rest/layers/{WorkspaceName}:{fileNameWithoutExtension}";
+                     $":{Startup.Configuration["GeoServer:Port"]}/geoserver/rest/layers/{fileNameWithoutExtension}.html";
 
                 Process process1 = CurlExecuteFalse($" -u " +
                     $"{Startup.Configuration["GeoServer:User"]}:" +
@@ -487,7 +488,8 @@ namespace Gases.Controllers
                      $" -H \"Content-type: text/xml\"" +
                      $" -d \"<layer><defaultStyle><name>{WorkspaceName}:{Style}</name></defaultStyle></layer>\"" +
                      $" http://{Startup.Configuration["GeoServer:Address"]}" +
-                     $":{Startup.Configuration["GeoServer:Port"]}/geoserver/rest/layers/{WorkspaceName}:{fileNameWithoutExtension}");
+                     //$":{Startup.Configuration["GeoServer:Port"]}/geoserver/rest/layers/{WorkspaceName}:{fileNameWithoutExtension}");
+                     $":{Startup.Configuration["GeoServer:Port"]}/geoserver/rest/layers/{fileNameWithoutExtension}.html");
                 process3.WaitForExit();
             }
             catch (Exception exception)

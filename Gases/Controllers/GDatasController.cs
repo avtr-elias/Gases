@@ -845,5 +845,16 @@ namespace Gases.Controllers
             }
             return result;
         }
+
+        [HttpPost]
+        //[Authorize(Roles = "Administrator")]
+        public JsonResult GetValue(int GaseId,
+            int Year,
+            decimal VerticalSlice)
+        {
+            var coordinats = _context.GData.Where(m => m.GaseId == GaseId && m.Year == Year && m.VerticalSlice == VerticalSlice);
+            JsonResult result = new JsonResult(coordinats);
+            return result;
+        }
     }
 }

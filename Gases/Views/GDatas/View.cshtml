@@ -352,7 +352,6 @@
     }
 
     function ChangeLayer(data) {
-        alert('0');
         var nameFile = '';
         var name = [];
         name = data;
@@ -378,3 +377,160 @@
         GetDatas();
     });
 </script>
+
+@*<script>
+    ns4 = (document.layers) ? true : false
+    ie4 = (document.all) ? true : false
+
+    var mouse_x = 0;
+    var mouse_y = 0;
+
+    function init() {
+        if (ns4) { document.captureEvents(Event.MOUSEMOVE); }
+        document.onmousemove = mousemove;
+    }
+    function mousemove(event) {
+        if (!event) {
+            var event = window.event;
+        }
+
+        if (event.pageX || event.pageY) {
+            mouse_x = event.pageX;
+            mouse_y = event.pageY;
+        } else if (event.clientX || event.clientY) {
+            mouse_x = event.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+            mouse_y = event.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+        }
+    }
+
+    map.on('singleclick', function (evt) {
+        var viewResolution = (map.getView().getResolution());
+        var url = layers[1].getSource().getGetFeatureInfoUrl(
+            evt.coordinate, viewResolution, 'EPSG:3857',
+            {
+                'INFO_FORMAT': 'text/javascript'
+                //'FEATURE_COUNT': '10000'
+            });
+        if (url) {
+            var parser = new ol.format.GeoJSON();
+            $.ajax({
+                jsonp: false,
+                jsonpCallback: 'getJson',
+                type: 'GET',
+                url: url + "&format_options=callback:getJson",
+                async: false,
+                dataType: 'jsonp',
+                //jsonpCallback: 'parseResponse',
+                error: function (xhr, status, error) {
+                }
+            }).then(function (response) {
+                var result = parser.readFeatures(response);
+                if (result.length > 0) {
+                    var value;
+                    value = result[0].get('GRAY_INDEX');
+                    var div = document.createElement('div');
+                    div.style.position = 'absolute';
+                    div.style.left = mouse_x + 'px';   // Координаты дива X и Y не забываем указать еденицы измерения,
+                    div.style.top = (mouse_y - 20) + 'px';    // например 40px или 20%
+                    div.style.background = 'white';   //  Див с белой заливкой
+                    div.appendChild(document.createTextNode(value));  //  Добавим текст в див
+                    document.body.appendChild(div);   //  Добавим наш див на страницу
+                    $("body").append(div);
+                    setTimeout(function () {
+                        div.remove();
+                    }, 3000)
+                }
+            })
+        }
+    })
+
+    init()
+</script>*@
+
+<script type="text/javascript">
+        ns4 = (document.layers) ? true : false
+        ie4 = (document.all) ? true : false
+
+        var mouse_x = 0;
+        var mouse_y = 0;
+
+        function init() {
+            if (ns4) { document.captureEvents(Event.MOUSEMOVE); }
+            document.onmousemove = mousemove;
+        }
+        function mousemove(event) {
+            if (!event) {
+                var event = window.event;
+            }
+
+            if (event.pageX || event.pageY) {
+                mouse_x = event.pageX;
+                mouse_y = event.pageY;
+            } else if (event.clientX || event.clientY) {
+                mouse_x = event.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+                mouse_y = event.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+            }
+        }
+
+        map.on('click', function (evt) {
+
+            var coordinates = ol.proj.toLonLat(evt.coordinate);
+
+            $.ajax({
+                url: '@Url.Action("GetValue")',
+                data: {
+                    GaseId: $('#GaseId').val(),
+                    Year: $('#Year').val(),
+                    VerticalSlice: $('#VerticalSlice').val()
+                },
+                type: 'POST',
+                success: function (data) {
+                    var longitude;
+                    var latitude;
+                    var differenceLongitude;
+                    var differenceLatitude;
+                    var minLongitude = 1000000;
+                    var minLatitude = 1000000;
+                    var selectLongitude;
+                    var selectLatitude;
+                    var value;
+                    $.each(data, function (i) {
+                        longitude = data[i]['longtitude'];
+                        latitude = data[i]['latitude'];
+                        differenceLongitude = Math.abs(coordinates[0] - longitude);
+                        differenceLatitude = Math.abs(coordinates[1] - latitude);
+                        if (differenceLongitude < minLongitude) {
+                            minLongitude = differenceLongitude;
+                            selectLongitude = longitude;
+                        }
+                        if (differenceLatitude < minLatitude) {
+                            minLatitude = differenceLatitude;
+                            selectLatitude = latitude;
+                        }
+                    });
+                    $.each(data, function (i) {
+                        longitude = data[i]['longtitude'];
+                        latitude = data[i]['latitude'];
+                        if ((longitude == selectLongitude) && (latitude == selectLatitude)) {
+                            value = data[i]['value'];
+                        }
+                    });
+                    var div = document.createElement('div');
+                    div.style.position = 'absolute';
+                    div.style.left = mouse_x + 'px';   // Координаты дива X и Y не забываем указать еденицы измерения,
+                    div.style.top = (mouse_y - 20) + 'px';    // например 40px или 20%
+                    div.style.background = 'white';   //  Див с белой заливкой
+                    div.appendChild(document.createTextNode(value));  //  Добавим текст в див
+                    document.body.appendChild(div);   //  Добавим наш див на страницу
+                    $("body").append(div);
+                    setTimeout(function () {
+                        div.remove();
+                    }, 3000)
+                },
+                error: function () {
+                }
+            });
+        });
+
+        init()
+    </script>
