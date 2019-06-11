@@ -48,9 +48,13 @@ namespace Gases.Models
 
     public enum Season
     {
+        [Display(ResourceType = typeof(Resources.Controllers.SharedResources), Name = "Winter")]
         Winter = 1,
+        [Display(ResourceType = typeof(Resources.Controllers.SharedResources), Name = "Spring")]
         Spring = 2,
+        [Display(ResourceType = typeof(Resources.Controllers.SharedResources), Name = "Summer")]
         Summer = 3,
+        [Display(ResourceType = typeof(Resources.Controllers.SharedResources), Name = "Autumn")]
         Autumn = 4
     }
 

@@ -29,8 +29,9 @@
             </div>
             <div id="VS" class="form-group">
                 <label asp-for="VerticalSlice" class="control-label"></label>
-                <input asp-for="VerticalSlice" class="form-control" onchange="GetDatas();" />
-                <span asp-validation-for="VerticalSlice" class="text-danger"></span>
+                @*<input asp-for="VerticalSlice" class="form-control" onchange="GetDatas();" />*@
+                <select asp-for="VerticalSlice" class="form-control" asp-items="ViewBag.VerticalSlice" onchange="GetDatas();"></select>
+                @*<span asp-validation-for="VerticalSlice" class="text-danger"></span>*@
             </div>
             <div id="Region" class="form-group">
                 <label asp-for="RegionId" class="control-label"></label>
@@ -38,13 +39,15 @@
             </div>
             <div id="YearDiv" class="form-group">
                 <label asp-for="Year" class="control-label"></label>
-                <input asp-for="Year" class="form-control" onchange="GetDatas();" />
-                <span asp-validation-for="Year" class="text-danger"></span>
+                @*<input asp-for="Year" class="form-control" onchange="GetDatas();" />*@
+                <select asp-for="Year" class="form-control" asp-items="ViewBag.Year" onchange="GetDatas();"></select>
+                @*<span asp-validation-for="Year" class="text-danger"></span>*@
             </div>
             <div id="MonthDiv" class="form-group">
                 <label asp-for="Month" class="control-label"></label>
-                <input asp-for="Month" class="form-control" onchange="GetDatas();" />
-                <span asp-validation-for="Month" class="text-danger"></span>
+                @*<input asp-for="Month" class="form-control" onchange="GetDatas();" />*@
+                <select asp-for="Month" class="form-control" asp-items="ViewBag.Month" onchange="GetDatas();"></select>
+                @*<span asp-validation-for="Month" class="text-danger"></span>*@
             </div>
             <div id="SeasonDiv" class="form-group">
                 <label asp-for="Season" class="control-label"></label>
