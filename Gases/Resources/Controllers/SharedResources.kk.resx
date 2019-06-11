@@ -357,4 +357,16 @@
   <data name="GDatas" xml:space="preserve">
     <value>Деректер</value>
   </data>
+  <data name="Autumn" xml:space="preserve">
+    <value>Күз</value>
+  </data>
+  <data name="Spring" xml:space="preserve">
+    <value>Көктем</value>
+  </data>
+  <data name="Summer" xml:space="preserve">
+    <value>Жаз</value>
+  </data>
+  <data name="Winter" xml:space="preserve">
+    <value>Қыс</value>
+  </data>
 </root>

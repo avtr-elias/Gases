@@ -357,4 +357,16 @@
   <data name="GDatas" xml:space="preserve">
     <value>Данные</value>
   </data>
+  <data name="Autumn" xml:space="preserve">
+    <value>Осень</value>
+  </data>
+  <data name="Spring" xml:space="preserve">
+    <value>Весна</value>
+  </data>
+  <data name="Summer" xml:space="preserve">
+    <value>Лето</value>
+  </data>
+  <data name="Winter" xml:space="preserve">
+    <value>Зима</value>
+  </data>
 </root>

@@ -99,6 +99,15 @@ namespace Gases.Resources.Controllers {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
+        public static string Autumn {
+            get {
+                return ResourceManager.GetString("Autumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
         public static string BackToList {
             get {
                 return ResourceManager.GetString("BackToList", resourceCulture);
@@ -639,6 +648,24 @@ namespace Gases.Resources.Controllers {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
+        public static string Spring {
+            get {
+                return ResourceManager.GetString("Spring", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string Summer {
+            get {
+                return ResourceManager.GetString("Summer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
         public static string TwoFactorAuthentication {
             get {
                 return ResourceManager.GetString("TwoFactorAuthentication", resourceCulture);
@@ -759,6 +786,15 @@ namespace Gases.Resources.Controllers {
         public static string VerticalSlice {
             get {
                 return ResourceManager.GetString("VerticalSlice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string Winter {
+            get {
+                return ResourceManager.GetString("Winter", resourceCulture);
             }
         }
         
