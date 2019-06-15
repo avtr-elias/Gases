@@ -34,6 +34,22 @@
         </dd>
     </dl>
 </div>
+
+@{
+    int a2 = Model.Id;
+}
+<div>
+    <form asp-action="DataSelection">
+        <div class="form-group">
+            <label for="GDataTypeId" style="display:block;" class="control-label">@SharedLocalizer["GDataType"]</label>
+            <select id="GDataTypeId" name="GDataTypeId" class="form-control" style="width:auto; display:inline-block;" asp-items="ViewBag.GDataTypeId"></select>
+            <div hidden="hidden">
+                <input id="GaseId" name="GaseId" value="@Model.Id" />
+            </div>
+            <input class="btn btn-default" type="submit" value="@SharedLocalizer["Next"]"/>
+        </div>
+    </form>
+</div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Id">@SharedLocalizer["Edit"]</a> |
     <a asp-action="Index">@SharedLocalizer["BackToList"]</a>

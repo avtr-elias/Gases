@@ -369,4 +369,10 @@
   <data name="Winter" xml:space="preserve">
     <value>Зима</value>
   </data>
+  <data name="View" xml:space="preserve">
+    <value>Просмотр</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Далее</value>
+  </data>
 </root>

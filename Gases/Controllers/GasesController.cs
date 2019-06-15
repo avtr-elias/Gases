@@ -40,7 +40,7 @@ namespace Gases.Controllers
             {
                 return NotFound();
             }
-
+            ViewData["GDataTypeId"] = new SelectList(_context.GDataType, "Id", "Name");
             return View(gase);
         }
 
@@ -155,6 +155,20 @@ namespace Gases.Controllers
         private bool GaseExists(int id)
         {
             return _context.Gase.Any(e => e.Id == id);
+        }
+
+        public async Task<IActionResult> DataSelection(int GDataTypeId, int GaseId)
+        {
+            ViewBag.GDataTypeId = GDataTypeId;
+            ViewBag.GaseId = GaseId;
+            ViewData["RegionId"] = new SelectList(_context.Region, "Id", "Name");
+            var verticalSlice = _context.GData.GroupBy(m => m.VerticalSlice).Select(m => new { VerticalSlice = m.Key }).OrderBy(m => m.VerticalSlice);
+            ViewBag.VerticalSlice = new SelectList(verticalSlice, "VerticalSlice", "VerticalSlice");
+            var year = _context.GData.GroupBy(m => m.Year).Select(m => new { Year = m.Key }).OrderBy(m => m.Year);
+            ViewBag.Year = new SelectList(year, "Year", "Year");
+            var month = _context.GData.Where(m => m.Month != null).GroupBy(m => m.Month).Select(m => new { Month = m.Key }).OrderBy(m => m.Month);
+            ViewBag.Month = new SelectList(month, "Month", "Month");
+            return View();
         }
     }
 }

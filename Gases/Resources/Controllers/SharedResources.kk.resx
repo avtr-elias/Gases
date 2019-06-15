@@ -369,4 +369,10 @@
   <data name="Winter" xml:space="preserve">
     <value>Қыс</value>
   </data>
+  <data name="View" xml:space="preserve">
+    <value>Көрініс</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Келесі</value>
+  </data>
 </root>

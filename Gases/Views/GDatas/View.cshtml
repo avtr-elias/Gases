@@ -52,9 +52,7 @@
             <div id="SeasonDiv" class="form-group">
                 <label asp-for="Season" class="control-label"></label>
                 @*<input asp-for="Season" class="form-control" />*@
-                <select asp-for="Season" class="form-control" onchange="GetDatas();" asp-items='Html.GetEnumSelectList<Season>().Select(c => {c.Text = SharedLocalizer[c.Text]; return c;}).ToList()'>
-                    <option selected></option>
-                </select>
+                <select asp-for="Season" class="form-control" onchange="GetDatas();" asp-items='Html.GetEnumSelectList<Season>().Select(c => {c.Text = SharedLocalizer[c.Text]; return c;}).ToList()'></select>
             </div>
             <div id="chart" class="col-sm-12">
                 <canvas id="chartDatas"></canvas>
@@ -68,6 +66,7 @@
     <input id="Years" value="@SharedLocalizer["Year"]" />
     <input id="Months" value="@SharedLocalizer["Month"]" />
     <input id="Value" value="@SharedLocalizer["Value"]" />
+    <input id="VerticalSlices" value="@SharedLocalizer["VerticalSlice"]" />
 </div>
 
 <script type="text/javascript">
@@ -241,7 +240,7 @@
                             display: true,
                             scaleLabel: {
                                 display: true,
-                                labelString: $("#Value").val()
+                                labelString: $("#Value").val() + ', ppbv'
                             }
                         }]
                     }
@@ -279,9 +278,17 @@
                     scales: {
                         xAxes: [{
                             display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: $("#Value").val() + ', ppbv'
+                            }
                         }],
                         yAxes: [{
                             display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: $("#VerticalSlices").val() + ', hPa'
+                            },
                             type: 'logarithmic',
                             ticks: {
                                 reverse: true,
@@ -345,7 +352,7 @@
                             display: true,
                             scaleLabel: {
                                 display: true,
-                                labelString: $("#Value").val()
+                                labelString: $("#Value").val() + ', ppbv'
                             }
                         }]
                     }
@@ -371,8 +378,15 @@
             },
             serverType: 'geoserver'
         });
+        //console.log(Source_New);
         var l = map.getLayers().getArray()[1];
-        l.setSource(Source_New);
+        if (Source_New.params_.LAYERS.length > 6) {
+            l.setOpacity(1);
+            l.setSource(Source_New);
+        }
+        else {
+            l.setOpacity(0);
+        }
     }
 
     $(document).ready(function () {
@@ -436,7 +450,7 @@
                     div.style.left = mouse_x + 'px';   // Координаты дива X и Y не забываем указать еденицы измерения,
                     div.style.top = (mouse_y - 20) + 'px';    // например 40px или 20%
                     div.style.background = 'white';   //  Див с белой заливкой
-                    div.appendChild(document.createTextNode(value));  //  Добавим текст в див
+                    div.appendChild(document.createTextNode(value + ' ppm'));  //  Добавим текст в див
                     document.body.appendChild(div);   //  Добавим наш див на страницу
                     $("body").append(div);
                     setTimeout(function () {
@@ -515,7 +529,7 @@
                         longitude = data[i]['longtitude'];
                         latitude = data[i]['latitude'];
                         if ((longitude == selectLongitude) && (latitude == selectLatitude)) {
-                            value = data[i]['value'];
+                            value = data[i]['value'].toFixed(2);
                         }
                     });
                     var div = document.createElement('div');
@@ -523,7 +537,7 @@
                     div.style.left = mouse_x + 'px';   // Координаты дива X и Y не забываем указать еденицы измерения,
                     div.style.top = (mouse_y - 20) + 'px';    // например 40px или 20%
                     div.style.background = 'white';   //  Див с белой заливкой
-                    div.appendChild(document.createTextNode(value));  //  Добавим текст в див
+                    div.appendChild(document.createTextNode(value + ' ppm'));  //  Добавим текст в див
                     document.body.appendChild(div);   //  Добавим наш див на страницу
                     $("body").append(div);
                     setTimeout(function () {

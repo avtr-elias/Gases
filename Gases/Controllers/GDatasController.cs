@@ -788,17 +788,59 @@ namespace Gases.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public async Task<IActionResult> View(int? GDataTypeId, int? GaseId, decimal? VerticalSlice, int? RegionId, int? Year)
+        public async Task<IActionResult> View(int? GDataTypeId, int? GaseId, decimal? VerticalSlice, int? RegionId, int? Year, int? Month, Season? Season)
         {
-            ViewData["GDataTypeId"] = new SelectList(_context.GDataType, "Id", "Name");
-            ViewData["GaseId"] = new SelectList(_context.Gase, "Id", "Name");
-            ViewData["RegionId"] = new SelectList(_context.Region, "Id", "Name");
+            if (GDataTypeId != null)
+            {
+                ViewData["GDataTypeId"] = new SelectList(_context.GDataType, "Id", "Name", GDataTypeId);
+            }
+            else
+            {
+                ViewData["GDataTypeId"] = new SelectList(_context.GDataType, "Id", "Name");
+            }
+            if (GaseId != null)
+            {
+                ViewData["GaseId"] = new SelectList(_context.Gase, "Id", "Name", GaseId);
+            }
+            else
+            {
+                ViewData["GaseId"] = new SelectList(_context.Gase, "Id", "Name");
+            }
+            if (RegionId != null)
+            {
+                ViewData["RegionId"] = new SelectList(_context.Region, "Id", "Name", RegionId);
+            }
+            else
+            {
+                ViewData["RegionId"] = new SelectList(_context.Region, "Id", "Name");
+            }
             var verticalSlice = _context.GData.GroupBy(m => m.VerticalSlice).Select(m => new { VerticalSlice = m.Key }).OrderBy(m => m.VerticalSlice);
-            ViewBag.VerticalSlice = new SelectList(verticalSlice, "VerticalSlice", "VerticalSlice");
+            if (VerticalSlice != null)
+            {
+                ViewBag.VerticalSlice = new SelectList(verticalSlice, "VerticalSlice", "VerticalSlice", VerticalSlice);
+            }
+            else
+            {
+                ViewBag.VerticalSlice = new SelectList(verticalSlice, "VerticalSlice", "VerticalSlice");
+            }
             var year = _context.GData.GroupBy(m => m.Year).Select(m => new { Year = m.Key }).OrderBy(m => m.Year);
-            ViewBag.Year = new SelectList(year, "Year", "Year");
-            var month = _context.GData.GroupBy(m => m.Month).Select(m => new { Month = m.Key }).OrderBy(m => m.Month);
-            ViewBag.Month = new SelectList(month, "Month", "Month");
+            if (Year != null)
+            {
+                ViewBag.Year = new SelectList(year, "Year", "Year", Year);
+            }
+            else
+            {
+                ViewBag.Year = new SelectList(year, "Year", "Year");
+            }
+            var month = _context.GData.Where(m => m.Month != null).GroupBy(m => m.Month).Select(m => new { Month = m.Key }).OrderBy(m => m.Month);
+            if (Month != null)
+            {
+                ViewBag.Month = new SelectList(month, "Month", "Month", Month);
+            }
+            else
+            {
+                ViewBag.Month = new SelectList(month, "Month", "Month");
+            }
             return View();
         }
 

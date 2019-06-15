@@ -1,0 +1,81 @@
+﻿@using Gases.Controllers
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+
+@{
+    ViewData["Title"] = SharedLocalizer["DataSelection"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@SharedLocalizer["DataSelection"]</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="GDatas" asp-action="View">
+            <div hidden="hidden">
+                <input id="GDataTypeId" name="GDataTypeId" value="@ViewBag.GDataTypeId" />
+                <input id="GaseId" name="GaseId" value="@ViewBag.GaseId" />
+            </div>
+            <div id="VS" class="form-group">
+                <label for="VerticalSlice" class="control-label">@SharedLocalizer["VerticalSlice"]</label>
+                <select id="VerticalSlice" name="VerticalSlice" class="form-control" asp-items="ViewBag.VerticalSlice"></select>
+            </div>
+            <div id="Region" class="form-group">
+                <label for="RegionId" class="control-label">@SharedLocalizer["Region"]</label>
+                <select id="RegionId" name="RegionId" class="form-control" asp-items="ViewBag.RegionId"></select>
+            </div>
+            <div id="YearDiv" class="form-group">
+                <label for="Year" class="control-label">@SharedLocalizer["Year"]</label>
+                <select id="Year" name="Year" class="form-control" asp-items="ViewBag.Year"></select>
+            </div>
+            <div id="MonthDiv" class="form-group">
+                <label for="Month" class="control-label">@SharedLocalizer["Month"]</label>
+                <select id="Month" name="Month" class="form-control" asp-items="ViewBag.Month"></select>
+            </div>
+            <div id="SeasonDiv" class="form-group">
+                <label for="Season" class="control-label">@SharedLocalizer["Season"]</label>
+                <select id="Season" name="Season" class="form-control" asp-items='Html.GetEnumSelectList<Season>().Select(c => {c.Text = SharedLocalizer[c.Text]; return c;}).ToList()'></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value=@SharedLocalizer["Next"] class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    ChangeDataType();
+    function ChangeDataType() {
+        var val = document.getElementById('GDataTypeId').value;
+        if (val == 3) {
+            document.getElementById('VS').style.display = "none";
+        }
+        else {
+            document.getElementById('VS').style.display = "block";
+        }
+
+        if (val == 4) {
+            document.getElementById('YearDiv').style.display = "none";
+            document.getElementById('MonthDiv').style.display = "block";
+            document.getElementById('SeasonDiv').style.display = "none";
+        }
+        else if (val == 5) {
+            document.getElementById('YearDiv').style.display = "none";
+            document.getElementById('MonthDiv').style.display = "none";
+            document.getElementById('SeasonDiv').style.display = "block";
+        }
+        else {
+            document.getElementById('YearDiv').style.display = "block";
+            document.getElementById('MonthDiv').style.display = "none";
+            document.getElementById('SeasonDiv').style.display = "none";
+        }
+
+        if (val == 2 || val == 4 || val == 5) {
+            document.getElementById('Region').style.display = "none";
+        }
+        else {
+            document.getElementById('Region').style.display = "block";
+        }
+    }
+</script>
