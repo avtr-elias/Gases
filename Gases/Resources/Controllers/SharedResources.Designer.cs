@@ -171,6 +171,15 @@ namespace Gases.Resources.Controllers {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
+        public static string DataSelection {
+            get {
+                return ResourceManager.GetString("DataSelection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
         public static string Date {
             get {
                 return ResourceManager.GetString("Date", resourceCulture);

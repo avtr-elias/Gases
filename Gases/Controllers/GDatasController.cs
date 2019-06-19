@@ -865,8 +865,16 @@ namespace Gases.Controllers
                 try
                 {
                     string name = _context.GeoTiffFile.Where(m => m.Year == Convert.ToString(Year)).Where(m => m.VerticalSlice == VerticalSlice).Where(m => m.GaseId == GaseId).First().Name;
+                    decimal? minVal = _context.GData.Where(m => m.GaseId == GaseId && m.Year == Year && m.VerticalSlice == VerticalSlice).Min(m => m.Value);
+                    decimal? maxVal = _context.GData.Where(m => m.GaseId == GaseId && m.Year == Year && m.VerticalSlice == VerticalSlice).Max(m => m.Value);
                     name = name.Remove(name.Length - 4, 4);
-                    result = new JsonResult(name);
+                    //result = new JsonResult(name);
+                    result = Json(new
+                    {
+                        name,
+                        minVal,
+                        maxVal
+                    });
                 }
                 catch
                 {

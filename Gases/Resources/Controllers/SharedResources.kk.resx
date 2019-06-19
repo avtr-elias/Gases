@@ -375,4 +375,7 @@
   <data name="Next" xml:space="preserve">
     <value>Келесі</value>
   </data>
+  <data name="DataSelection" xml:space="preserve">
+    <value>Параметрді таңдау</value>
+  </data>
 </root>

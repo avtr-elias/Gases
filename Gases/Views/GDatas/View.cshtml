@@ -3,7 +3,7 @@
 @using Microsoft.Extensions.Localization
 @inject IStringLocalizer<SharedResources> SharedLocalizer
 @{
-    ViewData["Title"] = "View";
+    ViewData["Title"] = SharedLocalizer["View"];
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -13,7 +13,50 @@
 <link href="~/lib/ol/ol.css" rel="stylesheet" />
 <script src="~/lib/ol/ol.js"></script>
 
-<h2>View</h2>
+<style>
+    #map {
+        position: relative;
+    }
+    .legendMain {
+        background-color: rgba(255, 255, 255, .8);
+        width: 100px;
+        height: 300px;
+        position: absolute;
+        z-index: 1;
+        right: 10px;
+        top: 10px;
+    }
+    .legendGradient {
+        display: inline-block;
+        background: linear-gradient(to top, #FFFFB2, #BD0026);
+        width: 30px;
+        height: 280px;
+        margin: 10px 5px 10px 10px;
+    }
+    .legendLabels {
+        display: inline-block;
+        width: 35px;
+        height: 280px;
+        margin: 10px 10px 10px 0;
+        position: relative;
+    }
+    #topValue {
+        display: inline;
+        position: absolute;
+    }
+    #midValue {
+        display: inline;
+        position: absolute;
+        top: 47%;
+    }
+    #bottomValue {
+        display: inline;
+        position: absolute;
+        bottom: 0;
+    }
+</style>
+
+<h2>@SharedLocalizer["View"]</h2>
 
 <div class="row">
     <div>
@@ -57,7 +100,16 @@
             <div id="chart" class="col-sm-12">
                 <canvas id="chartDatas"></canvas>
             </div>
-            <div id="map"></div>
+            <div id="map">
+                <div class="legendMain" id="legend">
+                    <div class="legendGradient"></div>
+                    <div class="legendLabels">
+                        <div id="topValue"></div>
+                        <div id="midValue"></div>
+                        <div id="bottomValue"></div>
+                    </div>
+                </div>
+            </div>
         </form>
     </div>
 </div>
@@ -363,16 +415,23 @@
 
     function ChangeLayer(data) {
         var nameFile = '';
-        var name = [];
-        name = data;
-        for (i = 0; i < name.length; i++) {
-            nameFile += data[i][0];
-        }
+        //var name = [];
+        //name = data;
+        //for (i = 0; i < name.length; i++) {
+        //    nameFile += data[i][0];
+        //}
+        nameFile = data.name;
+        var min = data.minVal;
+        var max = data.maxVal;
+        $('#topValue').text(max.toFixed(2));
+        $('#midValue').text(((max + min) / 2).toFixed(2));
+        $('#bottomValue').text(min.toFixed(2));
         var Source_New = new ol.source.TileWMS({
             url: 'http://' + geoserverAddress + ':' + geoserverPort + '/geoserver/Gases/wms?',
             params: {
                 'LAYERS': 'Gases:' + nameFile,
                 'VERSION': '1.1.0',
+                'ENV': 'low:' + min + ';high:' + max,
                 'FORMAT': 'image/png',
                 'TILED': true
             },
