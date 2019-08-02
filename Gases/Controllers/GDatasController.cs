@@ -663,7 +663,7 @@ namespace Gases.Controllers
                                     equally++;
                                     if (equally == 3)
                                     {
-                                        for (int j = i+1; j < lines.Length; j++)
+                                        for (int j = i + 1; j < lines.Length; j++)
                                         {
                                             if (String.Compare(lines[j].Replace(" ", "").Replace("\t", ""), "") == 0)
                                             {
@@ -787,6 +787,583 @@ namespace Gases.Controllers
             //return View();
             return RedirectToAction(nameof(Index));
         }
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Upload(int GDataTypeId, int GaseId, decimal VerticalSlice, int RegionId, List<IFormFile> uploadedFiles)
+        //{
+        //    if (VerticalSlice == 0)
+        //    {
+        //        VerticalSlice = 1.5m;
+        //    }
+        //    //List<int> years = new List<int> { 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016 };
+        //    //List<int> years = new List<int> { 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012 };
+        //    List<int> years = new List<int> { 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019 };
+
+
+        //    //List<decimal> vs = new List<decimal> { 1.5m, 1, 2, 3, 5, 7, 10, 15, 20, 30, 50, 70, 100, 150, 200, 250, 300, 400, 500, 600, 700, 850, 925, 1000 };
+        //    //List<decimal> vs = new List<decimal> { 100, 150, 200, 250, 300, 400, 500, 600, 700, 850, 925, 1000 };
+        //    int indYear = 0;
+        //    //int indVS = 0;
+        //    foreach (var uploadedFile in uploadedFiles)
+        //    {
+        //        //decimal VerticalSlice = vs[indVS];
+        //        //decimal VerticalSlice = 1000;
+        //        int Year = years[indYear];
+        //        if (uploadedFile != null)
+        //        {
+        //            // путь к папке Uploaded
+        //            string path = Path.Combine(_appEnvironment.WebRootPath, "Uploaded", Path.GetFileName(uploadedFile.FileName.Replace(',', '.')));
+        //            // сохраняем файл в папку Uploaded в каталоге wwwroot
+        //            using (var fileStream = new FileStream(path, FileMode.Create))
+        //            {
+        //                await uploadedFile.CopyToAsync(fileStream);
+        //            }
+        //            if (Path.GetExtension(path) == ".nc")
+        //            {
+        //                string folder = Path.Combine(_appEnvironment.WebRootPath, "Uploaded");
+        //                string batfile = Path.Combine(folder, "bat.bat");
+        //                string filename = Path.GetFileNameWithoutExtension(uploadedFile.FileName);
+        //                filename = filename.Replace(',', '.');
+
+        //                using (var sw = new StreamWriter(batfile))
+        //                {
+        //                    sw.WriteLine("ncdump -f c " + filename + ".nc > " + filename + ".txt");
+        //                }
+
+        //                Process process = new Process();
+        //                try
+        //                {
+        //                    process.StartInfo.UseShellExecute = false;
+        //                    process.StartInfo.RedirectStandardOutput = true;
+        //                    process.StartInfo.RedirectStandardError = true;
+
+
+        //                    process.StartInfo.WorkingDirectory = folder;
+        //                    process.StartInfo.FileName = batfile;
+        //                    process.Start();
+
+        //                    string output = "",
+        //                        error = "";
+        //                    while (!process.StandardOutput.EndOfStream)
+        //                    {
+        //                        output += process.StandardOutput.ReadLine();
+        //                    }
+        //                    while (!process.StandardError.EndOfStream)
+        //                    {
+        //                        error += process.StandardError.ReadLine();
+        //                    }
+
+        //                    process.WaitForExit();
+        //                    System.IO.File.Delete(batfile);
+        //                }
+        //                catch (Exception exception)
+        //                {
+        //                    throw new Exception(exception.ToString(), exception.InnerException);
+        //                }
+
+        //                //Получение необходимой информации из созданного файла *.txt
+        //                path = Path.Combine(_appEnvironment.WebRootPath, "Uploaded", filename + ".txt");
+        //                using (StreamReader sr = new StreamReader(path, System.Text.Encoding.Default))
+        //                {
+        //                    int indexOfSubstring;
+        //                    string subString;
+        //                    string line;
+        //                    if (GDataTypeId == 2)
+        //                    {
+        //                        List<decimal> value = new List<decimal>();
+        //                        List<decimal> lon = new List<decimal>();
+        //                        List<decimal> lat = new List<decimal>();
+        //                        while ((line = sr.ReadLine()) != "data:")
+        //                        {
+        //                        }
+        //                        line = sr.ReadLine() + Environment.NewLine;
+        //                        line = sr.ReadLine();
+        //                        List<int> x = new List<int>();
+        //                        List<int> y = new List<int>();
+        //                        while ((line = sr.ReadLine().Trim(' ')) != "")
+        //                        {
+        //                            subString = "_";
+        //                            indexOfSubstring = line.IndexOf(subString);
+        //                            if (indexOfSubstring > 10)
+        //                            {
+        //                                line = line.Replace(" ", "").Replace("\t", "");
+        //                                indexOfSubstring = line.IndexOf("(");
+        //                                subString = line.Remove(0, line.IndexOf("(") + 1);
+
+        //                                x.Add(Convert.ToInt32(subString.Remove(subString.IndexOf(","), subString.Length - subString.IndexOf(","))));
+        //                                y.Add(Convert.ToInt32(subString.Remove(subString.IndexOf(")"), subString.Length - subString.IndexOf(")")).Remove(0, subString.IndexOf(",") + 1)));
+
+        //                                string val;
+        //                                if (line.IndexOf(';') != -1)
+        //                                {
+        //                                    val = line.Remove(line.IndexOf(';'));
+        //                                }
+        //                                else
+        //                                {
+        //                                    val = line.Remove(line.IndexOf(','));
+        //                                }
+
+        //                                try
+        //                                {
+        //                                    value.Add(Decimal.Parse(val, CultureInfo.InvariantCulture));
+        //                                }
+        //                                catch
+        //                                {
+        //                                    value.Add(Decimal.Parse(val, NumberStyles.Any, CultureInfo.InvariantCulture));
+        //                                }
+        //                            }
+        //                        }
+
+        //                        while ((line = sr.ReadLine()) != null)
+        //                        {
+        //                            if (line.IndexOf("lat =") != -1 || line.IndexOf("lon =") != -1)
+        //                            {
+        //                                do
+        //                                {
+        //                                    string numb = null;
+        //                                    if (line.IndexOf(",") != -1)
+        //                                    {
+        //                                        line = line.Remove(line.IndexOf(","), line.Length - line.IndexOf(","));
+        //                                    }
+        //                                    else
+        //                                    {
+        //                                        line = line.Remove(line.IndexOf(";"), line.Length - line.IndexOf(";"));
+        //                                    }
+        //                                    foreach (char s in line)
+        //                                    {
+        //                                        if (char.IsDigit(s) || (s == '.'))
+        //                                        {
+        //                                            numb = numb + s;
+        //                                        }
+        //                                    }
+        //                                    lat.Add(Decimal.Parse(numb, CultureInfo.InvariantCulture));
+        //                                } while ((line = sr.ReadLine().Trim(' ')) != "");
+        //                                break;
+        //                            }
+        //                        }
+
+        //                        while ((line = sr.ReadLine()) != null)
+        //                        {
+        //                            if (line.IndexOf("lon =") != -1 || line.IndexOf("lat =") != -1)
+        //                            {
+        //                                do
+        //                                {
+        //                                    string numb = null;
+        //                                    if (line.IndexOf(",") != -1)
+        //                                    {
+        //                                        line = line.Remove(line.IndexOf(","), line.Length - line.IndexOf(","));
+        //                                    }
+        //                                    else
+        //                                    {
+        //                                        line = line.Remove(line.IndexOf(";"), line.Length - line.IndexOf(";"));
+        //                                    }
+        //                                    foreach (char s in line)
+        //                                    {
+        //                                        if (char.IsDigit(s) || char.IsPunctuation(s))
+        //                                        {
+        //                                            numb = numb + s;
+        //                                        }
+        //                                    }
+        //                                    lon.Add(Decimal.Parse(numb, CultureInfo.InvariantCulture));
+        //                                } while ((line = sr.ReadLine().Trim(' ')) != "");
+        //                                break;
+        //                            }
+        //                        }
+        //                        List<decimal> latValue = new List<decimal>();
+        //                        List<decimal> lonValue = new List<decimal>();
+        //                        for (int i = 0; i < x.Count; i++)
+        //                        {
+        //                            for (int j = 0; j < lat.Count; j++)
+        //                            {
+        //                                if (x[i] == j)
+        //                                {
+        //                                    latValue.Add(lat[j]);
+        //                                }
+        //                            }
+        //                        }
+        //                        for (int i = 0; i < y.Count; i++)
+        //                        {
+        //                            for (int j = 0; j < lon.Count; j++)
+        //                            {
+        //                                if (y[i] == j)
+        //                                {
+        //                                    lonValue.Add(lon[j]);
+        //                                }
+        //                            }
+        //                        }
+
+        //                        for (int i = 0; i < value.Count; i++)
+        //                        {
+        //                            GData(GDataTypeId, GaseId, VerticalSlice, null, lonValue[i], latValue[i], value[i], Year, null, null);
+        //                        }
+        //                    }
+
+        //                    if (GDataTypeId == 3)
+        //                    {
+        //                        List<decimal> value = new List<decimal>();
+        //                        List<decimal> vSlice = new List<decimal>();
+        //                        while ((line = sr.ReadLine()) != "data:")
+        //                        {
+        //                        }
+        //                        line = sr.ReadLine() + Environment.NewLine;
+        //                        //line = sr.ReadLine();
+        //                        List<int> y = new List<int>();
+        //                        while ((line = sr.ReadLine().Trim(' ')) != "")
+        //                        {
+        //                            subString = "_";
+        //                            indexOfSubstring = line.IndexOf(subString);
+        //                            if (indexOfSubstring > 10)
+        //                            {
+        //                                line = line.Replace(" ", "").Replace("\t", "");
+        //                                indexOfSubstring = line.IndexOf("(");
+        //                                subString = line.Remove(0, line.IndexOf("(") + 1);
+
+        //                                y.Add(Convert.ToInt32(subString.Remove(subString.IndexOf(")"), subString.Length - subString.IndexOf(")"))));
+
+        //                                string val;
+        //                                if (line.IndexOf(';') != -1)
+        //                                {
+        //                                    val = line.Remove(line.IndexOf(';'));
+        //                                }
+        //                                else
+        //                                {
+        //                                    val = line.Remove(line.IndexOf(','));
+        //                                }
+
+        //                                try
+        //                                {
+        //                                    value.Add(Decimal.Parse(val, CultureInfo.InvariantCulture));
+        //                                }
+        //                                catch
+        //                                {
+        //                                    value.Add(Decimal.Parse(val, NumberStyles.Any, CultureInfo.InvariantCulture));
+        //                                }
+        //                            }
+        //                            if (indexOfSubstring == 8)
+        //                            {
+        //                                line = line.Replace(" ", "").Replace("\t", "");
+        //                                indexOfSubstring = line.IndexOf("(");
+        //                                subString = line.Remove(0, line.IndexOf("(") + 1);
+
+        //                                y.Add(Convert.ToInt32(subString.Remove(subString.IndexOf(")"), subString.Length - subString.IndexOf(")"))));
+
+        //                                string val;
+        //                                val = line.Remove(line.IndexOf(','));
+        //                                val = val.Remove(0, line.IndexOf("=") + 1);
+
+        //                                try
+        //                                {
+        //                                    value.Add(Decimal.Parse(val, CultureInfo.InvariantCulture));
+        //                                }
+        //                                catch
+        //                                {
+        //                                    value.Add(Decimal.Parse(val, NumberStyles.Any, CultureInfo.InvariantCulture));
+        //                                }
+        //                            }
+        //                        }
+
+        //                        while ((line = sr.ReadLine()) != null)
+        //                        {
+        //                            if (line.IndexOf("TempPrsLvls_A =") != -1 || line.IndexOf("H2OPrsLvls_A =") != -1)
+        //                            {
+        //                                do
+        //                                {
+        //                                    if (String.Compare(line, "}") == 0)
+        //                                    {
+        //                                        break;
+        //                                    }
+        //                                    string numb = null;
+        //                                    if (line.IndexOf(",") != -1)
+        //                                    {
+        //                                        line = line.Remove(line.IndexOf(","), line.Length - line.IndexOf(","));
+        //                                    }
+        //                                    else
+        //                                    {
+        //                                        line = line.Remove(line.IndexOf(";"), line.Length - line.IndexOf(";"));
+        //                                    }
+        //                                    foreach (char s in line)
+        //                                    {
+        //                                        if (char.IsDigit(s) || (s == '.'))
+        //                                        {
+        //                                            numb = numb + s;
+        //                                        }
+        //                                    }
+        //                                    vSlice.Add(Decimal.Parse(numb, CultureInfo.InvariantCulture));
+        //                                } while ((line = sr.ReadLine().Trim(' ')) != "");
+        //                                break;
+        //                            }
+        //                        }
+
+        //                        List<decimal> vSliceValue = new List<decimal>();
+        //                        for (int i = 0; i < y.Count; i++)
+        //                        {
+        //                            for (int j = 0; j < vSlice.Count; j++)
+        //                            {
+        //                                if (y[i] == j)
+        //                                {
+        //                                    vSliceValue.Add(vSlice[j]);
+        //                                }
+        //                            }
+        //                        }
+
+        //                        for (int i = 0; i < value.Count; i++)
+        //                        {
+        //                            GData(GDataTypeId, GaseId, vSliceValue[i], RegionId, null, null, value[i], Year, null, null);
+        //                        }
+        //                    }
+
+        //                    if (GDataTypeId == 5)
+        //                    {
+        //                        var lines = System.IO.File.ReadAllLines(path, Encoding.Default);
+        //                        string months = "";
+        //                        Season season = new Season();
+        //                        List<int> year = new List<int>();
+        //                        List<decimal> value = new List<decimal>();
+        //                        subString = "";
+
+        //                        subString = lines[0].Remove(0, lines[0].IndexOf("SEASON_") + 7);
+        //                        months = subString.Remove(subString.IndexOf('.'));
+        //                        if (String.Compare(months, "DJF") == 0)
+        //                        {
+        //                            season = Season.Winter;
+        //                        }
+        //                        if (String.Compare(months, "MAM") == 0)
+        //                        {
+        //                            season = Season.Spring;
+        //                        }
+        //                        if (String.Compare(months, "JJA") == 0)
+        //                        {
+        //                            season = Season.Summer;
+        //                        }
+        //                        if (String.Compare(months, "SON") == 0)
+        //                        {
+        //                            season = Season.Autumn;
+        //                        }
+
+        //                        for (int i = 61; i < lines.Length; i++)
+        //                        {
+        //                            if (String.Compare(lines[i].Replace(" ", "").Replace("\t", ""), "") == 0)
+        //                            {
+        //                                break;
+        //                            }
+
+        //                            if (lines[i].IndexOf("datayear =") != -1)
+        //                            {
+        //                                subString = lines[i].Remove(0, lines[i].IndexOf("=") + 2);
+        //                            }
+        //                            else
+        //                            {
+        //                                subString = lines[i].Replace(" ", "").Replace("\t", "");
+        //                            }
+
+        //                            if (lines[i].IndexOf(';') != -1)
+        //                            {
+        //                                year.Add(Convert.ToInt32(subString.Remove(subString.IndexOf(';'))));
+        //                            }
+        //                            else
+        //                            {
+        //                                year.Add(Convert.ToInt32(subString.Remove(subString.IndexOf(','))));
+        //                            }
+        //                        }
+        //                        int equally = 0;
+        //                        for (int i = 61; i < lines.Length; i++)
+        //                        {
+        //                            if (lines[i].IndexOf("=") != -1)
+        //                            {
+        //                                equally++;
+        //                                if (equally == 3)
+        //                                {
+        //                                    //for (int j = i + 1; j < lines.Length; j++)
+        //                                    //{
+        //                                    //    if (String.Compare(lines[j].Replace(" ", "").Replace("\t", ""), "") == 0)
+        //                                    //    {
+        //                                    //        break;
+        //                                    //    }
+        //                                    //    subString = lines[j].Replace(" ", "").Replace("\t", "");
+        //                                    //    if (lines[j].IndexOf(';') != -1)
+        //                                    //    {
+        //                                    //        value.Add(Decimal.Parse(subString.Remove(subString.IndexOf(';')), CultureInfo.InvariantCulture));
+        //                                    //    }
+        //                                    //    else
+        //                                    //    {
+        //                                    //        value.Add(Decimal.Parse(subString.Remove(subString.IndexOf(',')), CultureInfo.InvariantCulture));
+        //                                    //    }
+        //                                    //}
+        //                                    //break;
+        //                                    for (int j = i; j < lines.Length; j++)
+        //                                    {
+        //                                        if (String.Compare(lines[j].Replace(" ", "").Replace("\t", ""), "") == 0)
+        //                                        {
+        //                                            break;
+        //                                        }
+        //                                        subString = lines[j].Replace(" ", "").Replace("\t", "");
+        //                                        if (lines[j].IndexOf(';') != -1)
+        //                                        {
+        //                                            value.Add(Decimal.Parse(subString.Remove(subString.IndexOf(';')), CultureInfo.InvariantCulture));
+        //                                        }
+        //                                        else
+        //                                        {
+        //                                            if (j == i)
+        //                                            {
+        //                                                subString = subString.Substring(subString.IndexOf('=') + 2);
+        //                                                value.Add(Decimal.Parse(subString.Remove(subString.IndexOf(',')), CultureInfo.InvariantCulture));
+        //                                            }
+        //                                            else
+        //                                            {
+        //                                                value.Add(Decimal.Parse(subString.Remove(subString.IndexOf(',')), CultureInfo.InvariantCulture));
+        //                                            }
+        //                                        }
+        //                                    }
+        //                                    break;
+        //                                }
+        //                            }
+        //                        }
+        //                        for (int i = 0; i < value.Count; i++)
+        //                        {
+        //                            GData(GDataTypeId, GaseId, VerticalSlice, null, null, null, value[i], year[i], null, season);
+        //                        }
+        //                    }
+
+        //                    if (GDataTypeId == 4)
+        //                    {
+        //                        var lines = System.IO.File.ReadAllLines(path, Encoding.Default);
+        //                        int month = 0;
+        //                        List<int> year = new List<int>();
+        //                        List<decimal> value = new List<decimal>();
+        //                        subString = "";
+
+        //                        subString = lines[0].Remove(0, lines[0].IndexOf("MONTH_") + 6);
+        //                        month = Convert.ToInt32(subString.Remove(subString.IndexOf('.')));
+
+        //                        for (int i = 59; i < lines.Length; i++)
+        //                        {
+        //                            if (String.Compare(lines[i].Replace(" ", "").Replace("\t", ""), "") == 0)
+        //                            {
+        //                                break;
+        //                            }
+
+        //                            if (lines[i].IndexOf("datayear =") != -1)
+        //                            {
+        //                                subString = lines[i].Remove(0, lines[i].IndexOf("=") + 2);
+        //                            }
+        //                            else
+        //                            {
+        //                                subString = lines[i].Replace(" ", "").Replace("\t", "");
+        //                            }
+
+        //                            if (lines[i].IndexOf(';') != -1)
+        //                            {
+        //                                year.Add(Convert.ToInt32(subString.Remove(subString.IndexOf(';'))));
+        //                            }
+        //                            else
+        //                            {
+        //                                year.Add(Convert.ToInt32(subString.Remove(subString.IndexOf(','))));
+        //                            }
+        //                        }
+        //                        int equally = 0;
+        //                        for (int i = 59; i < lines.Length; i++)
+        //                        {
+        //                            if (lines[i].IndexOf("=") != -1)
+        //                            {
+        //                                equally++;
+        //                                if (equally == 2)
+        //                                {
+        //                                    //for (int j = i + 1; j < lines.Length; j++)
+        //                                    //{
+        //                                    //    if (String.Compare(lines[j].Replace(" ", "").Replace("\t", ""), "") == 0)
+        //                                    //    {
+        //                                    //        break;
+        //                                    //    }
+        //                                    //    subString = lines[j].Replace(" ", "").Replace("\t", "");
+        //                                    //    if (lines[j].IndexOf(';') != -1)
+        //                                    //    {
+        //                                    //        value.Add(Decimal.Parse(subString.Remove(subString.IndexOf(';')), CultureInfo.InvariantCulture));
+        //                                    //    }
+        //                                    //    else
+        //                                    //    {
+        //                                    //        value.Add(Decimal.Parse(subString.Remove(subString.IndexOf(',')), CultureInfo.InvariantCulture));
+        //                                    //    }
+        //                                    //}
+        //                                    //break;
+        //                                    for (int j = i; j < lines.Length; j++)
+        //                                    {
+        //                                        if (String.Compare(lines[j].Replace(" ", "").Replace("\t", ""), "") == 0)
+        //                                        {
+        //                                            break;
+        //                                        }
+        //                                        subString = lines[j].Replace(" ", "").Replace("\t", "");
+        //                                        if (lines[j].IndexOf(';') != -1)
+        //                                        {
+        //                                            value.Add(Decimal.Parse(subString.Remove(subString.IndexOf(';')), CultureInfo.InvariantCulture));
+        //                                        }
+        //                                        else
+        //                                        {
+        //                                            if (j == i)
+        //                                            {
+        //                                                subString = subString.Substring(subString.IndexOf('=') + 2);
+        //                                                value.Add(Decimal.Parse(subString.Remove(subString.IndexOf(',')), CultureInfo.InvariantCulture));
+        //                                            }
+        //                                            else
+        //                                            {
+        //                                                value.Add(Decimal.Parse(subString.Remove(subString.IndexOf(',')), CultureInfo.InvariantCulture));
+        //                                            }
+        //                                        }
+        //                                    }
+        //                                    break;
+        //                                }
+        //                            }
+        //                        }
+        //                        for (int i = 0; i < value.Count; i++)
+        //                        {
+        //                            GData(GDataTypeId, GaseId, VerticalSlice, null, null, null, value[i], year[i], month, null);
+        //                        }
+        //                    }
+        //                }
+        //            }
+
+        //            if (Path.GetExtension(path) == ".csv")
+        //            {
+        //                var lines = System.IO.File.ReadAllLines(path, Encoding.Default);
+
+        //                List<int> month = new List<int>();
+        //                List<decimal> value = new List<decimal>();
+        //                string val;
+        //                string subString;
+        //                for (int i = 9; i < lines.Length; i++)
+        //                {
+        //                    subString = lines[i].Remove(0, lines[i].IndexOf("-") + 1);
+        //                    month.Add(Convert.ToInt32(subString.Remove(subString.IndexOf("-"), subString.Length - subString.IndexOf("-"))));
+        //                    val = lines[i].Remove(0, lines[i].IndexOf(",") + 1);
+        //                    try
+        //                    {
+        //                        value.Add(Decimal.Parse(val, CultureInfo.InvariantCulture));
+        //                    }
+        //                    catch
+        //                    {
+        //                        value.Add(Decimal.Parse(val, NumberStyles.Any, CultureInfo.InvariantCulture));
+        //                    }
+        //                }
+
+        //                for (int i = 0; i < value.Count; i++)
+        //                {
+        //                    GData(GDataTypeId, GaseId, VerticalSlice, RegionId, null, null, value[i], Year, month[i], null);
+        //                }
+        //            }
+        //        }
+        //        indYear++;
+        //        //if (Year == 2016)
+        //        //{
+        //        //    indVS++;
+        //        //    indYear = 0;
+        //        //}
+        //    }
+        //    ViewData["GDataTypeId"] = new SelectList(_context.GDataType, "Id", "Name", GDataTypeId);
+        //    ViewData["GaseId"] = new SelectList(_context.Gase, "Id", "Name", GaseId);
+        //    ViewData["RegionId"] = new SelectList(_context.Region, "Id", "Name", RegionId);
+        //    //return View();
+        //    return RedirectToAction(nameof(Index));
+        //}
 
         public async Task<IActionResult> View(int? GDataTypeId, int? GaseId, decimal? VerticalSlice, int? RegionId, int? Year, int? Month, Season? Season)
         {

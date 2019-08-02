@@ -1,0 +1,96 @@
+netcdf g4.averaged.AIRX3STM_006_O3_VMR_A.20110101-20111231.45E_40N_87E_55N {
+dimensions:
+	TempPrsLvls_A = 24 ;
+variables:
+	float AIRX3STM_006_O3_VMR_A(TempPrsLvls_A) ;
+		AIRX3STM_006_O3_VMR_A:_FillValue = -9999.f ;
+		AIRX3STM_006_O3_VMR_A:standard_name = "mole_fraction_of_ozone_in_air" ;
+		AIRX3STM_006_O3_VMR_A:quantity_type = "Ozone" ;
+		AIRX3STM_006_O3_VMR_A:product_short_name = "AIRX3STM" ;
+		AIRX3STM_006_O3_VMR_A:product_version = "006" ;
+		AIRX3STM_006_O3_VMR_A:long_name = "Ozone, Mole Fraction in Air (Daytime/Ascending)" ;
+		AIRX3STM_006_O3_VMR_A:units = "ppbv" ;
+		AIRX3STM_006_O3_VMR_A:cell_methods = "lat, lon: mean time: mean" ;
+		AIRX3STM_006_O3_VMR_A:coordinates = "TempPrsLvls_A" ;
+	float TempPrsLvls_A(TempPrsLvls_A) ;
+		TempPrsLvls_A:standard_name = "Pressure" ;
+		TempPrsLvls_A:long_name = "Pressure Levels Temperature Profile, daytime (ascending) node" ;
+		TempPrsLvls_A:positive = "down" ;
+		TempPrsLvls_A:_CoordinateAxisType = "GeoZ" ;
+		TempPrsLvls_A:units = "hPa" ;
+
+// global attributes:
+		:Conventions = "CF-1.4" ;
+		:temporal_resolution = "monthly" ;
+		:NCO = "\"4.5.3\"" ;
+		:nco_openmp_thread_number = 1 ;
+		:starttime = "2011-01-01T00:00:00Z" ;
+		:endtime = "2011-12-31T23:59:59Z" ;
+		:bounding_box = "45.9668,40.0195,87.4512,55.8398" ;
+		:start_time = "2011-01-01T00:00:00Z" ;
+		:end_time = "2011-12-31T23:59:59Z" ;
+		:userstartdate = "2011-01-01T00:00:00Z" ;
+		:userenddate = "2011-12-31T23:59:59Z" ;
+		:title = "Vertical Profile of Ozone, Mole Fraction in Air (Daytime/Ascending) monthly 1 deg. [AIRS AIRX3STM v006] ppbv over 2011-Jan - 2011-Dec, Region 45.9668E, 40.0195N, 87.4512E, 55.8398N" ;
+		:plot_hint_title = "Vertical Profile of Ozone, Mole Fraction in Air (Daytime/Ascending) monthly 1 deg. [AIRS AIRX3STM v006] ppbv" ;
+		:plot_hint_subtitle = "over 2011-Jan - 2011-Dec, Region 45.9668E, 40.0195N, 87.4512E, 55.8398N" ;
+		:plot_hint_y_axis_label = "Pressure Levels Temperature Profile, daytime (ascending) node (hPa)" ;
+		:history = "Fri Jun 21 15:45:34 2019: /usr/bin/ncatted -a plot_hint_x_axis_label,global,o,c,ppbv /var/giovanni/session/4EA3AB48-943B-11E9-9FB7-C82C115F415E/8CDDC7AE-943B-11E9-8DA2-5F68115F415E/8CDFCBB2-943B-11E9-8DA2-5F68115F415E/g4.averaged.AIRX3STM_006_O3_VMR_A.20110101-20111231.45E_40N_87E_55N.nc\n",
+			"Fri Jun 21 15:45:33 2019: /usr/bin/ncatted -a plot_hint_y_axis_label,global,o,c,Pressure Levels Temperature Profile, daytime (ascending) node (hPa) /var/giovanni/session/4EA3AB48-943B-11E9-9FB7-C82C115F415E/8CDDC7AE-943B-11E9-8DA2-5F68115F415E/8CDFCBB2-943B-11E9-8DA2-5F68115F415E/g4.averaged.AIRX3STM_006_O3_VMR_A.20110101-20111231.45E_40N_87E_55N.nc\n",
+			"Fri Jun 21 15:45:31 2019: /usr/bin/ncks -O -x -v time_bnds,lat_bnds,lon_bnds averaged.AIRX3STM_006_O3_VMR_A.20110101-20111231.45E_40N_87E_55N.nc.tmp averaged.AIRX3STM_006_O3_VMR_A.20110101-20111231.45E_40N_87E_55N.nc.tmp\n",
+			"Fri Jun 21 15:45:29 2019: /usr/bin/ncks -x -v lat,lon -O -o averaged.AIRX3STM_006_O3_VMR_A.20110101-20111231.45E_40N_87E_55N.nc averaged.AIRX3STM_006_O3_VMR_A.20110101-20111231.45E_40N_87E_55N.nc\n",
+			"Fri Jun 21 15:45:29 2019: /usr/bin/ncwa -v AIRX3STM_006_O3_VMR_A -w coslat -a lat,lon -O -o averaged.AIRX3STM_006_O3_VMR_A.20110101-20111231.45E_40N_87E_55N.nc averaged.AIRX3STM_006_O3_VMR_A.20110101-20111231.45E_40N_87E_55N.nc\n",
+			"Fri Jun 21 15:45:28 2019: /usr/bin/ncap2 -O -o averaged.AIRX3STM_006_O3_VMR_A.20110101-20111231.45E_40N_87E_55N.nc -s *d2r=acos(-1.)/180.; coslat=cos(lat*d2r) output_G0LBa4.nc" ;
+		:plot_hint_x_axis_label = "ppbv" ;
+data:
+
+ AIRX3STM_006_O3_VMR_A = 33.51426,   // AIRX3STM_006_O3_VMR_A(0)
+    38.46379,   // AIRX3STM_006_O3_VMR_A(1)
+    42.94234,   // AIRX3STM_006_O3_VMR_A(2)
+    51.73999,   // AIRX3STM_006_O3_VMR_A(3)
+    57.09354,   // AIRX3STM_006_O3_VMR_A(4)
+    61.85135,   // AIRX3STM_006_O3_VMR_A(5)
+    69.02098,   // AIRX3STM_006_O3_VMR_A(6)
+    98.93301,   // AIRX3STM_006_O3_VMR_A(7)
+    147.8609,   // AIRX3STM_006_O3_VMR_A(8)
+    255.1975,   // AIRX3STM_006_O3_VMR_A(9)
+    441.1297,   // AIRX3STM_006_O3_VMR_A(10)
+    883.4332,   // AIRX3STM_006_O3_VMR_A(11)
+    1676.751,   // AIRX3STM_006_O3_VMR_A(12)
+    2710.095,   // AIRX3STM_006_O3_VMR_A(13)
+    4437.279,   // AIRX3STM_006_O3_VMR_A(14)
+    5624.072,   // AIRX3STM_006_O3_VMR_A(15)
+    6251.654,   // AIRX3STM_006_O3_VMR_A(16)
+    6763.142,   // AIRX3STM_006_O3_VMR_A(17)
+    6825.982,   // AIRX3STM_006_O3_VMR_A(18)
+    6557.92,   // AIRX3STM_006_O3_VMR_A(19)
+    5647.691,   // AIRX3STM_006_O3_VMR_A(20)
+    4687.989,   // AIRX3STM_006_O3_VMR_A(21)
+    3989.86,   // AIRX3STM_006_O3_VMR_A(22)
+    3085.095;  // AIRX3STM_006_O3_VMR_A(23)
+    
+ TempPrsLvls_A = 1000,   // TempPrsLvls_A(0)
+    925,   // TempPrsLvls_A(1)
+    850,   // TempPrsLvls_A(2)
+    700,   // TempPrsLvls_A(3)
+    600,   // TempPrsLvls_A(4)
+    500,   // TempPrsLvls_A(5)
+    400,   // TempPrsLvls_A(6)
+    300,   // TempPrsLvls_A(7)
+    250,   // TempPrsLvls_A(8)
+    200,   // TempPrsLvls_A(9)
+    150,   // TempPrsLvls_A(10)
+    100,   // TempPrsLvls_A(11)
+    70,   // TempPrsLvls_A(12)
+    50,   // TempPrsLvls_A(13)
+    30,   // TempPrsLvls_A(14)
+    20,   // TempPrsLvls_A(15)
+    15,   // TempPrsLvls_A(16)
+    10,   // TempPrsLvls_A(17)
+    7,   // TempPrsLvls_A(18)
+    5,   // TempPrsLvls_A(19)
+    3,   // TempPrsLvls_A(20)
+    2,   // TempPrsLvls_A(21)
+    1.5,   // TempPrsLvls_A(22)
+    1;  // TempPrsLvls_A(23)
+    }

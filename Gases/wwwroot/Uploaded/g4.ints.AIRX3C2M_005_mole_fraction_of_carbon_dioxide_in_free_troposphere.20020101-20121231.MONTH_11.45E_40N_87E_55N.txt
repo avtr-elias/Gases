@@ -1,0 +1,120 @@
+netcdf g4.ints.AIRX3C2M_005_mole_fraction_of_carbon_dioxide_in_free_troposphere.20020101-20121231.MONTH_11.45E_40N_87E_55N {
+dimensions:
+	time = UNLIMITED ; // (10 currently)
+	latv = 2 ;
+	lonv = 2 ;
+	nv = 2 ;
+variables:
+	int datayear(time) ;
+		datayear:long_name = "Data year" ;
+	double AIRX3C2M_005_mole_fraction_of_carbon_dioxide_in_free_troposphere(time) ;
+		AIRX3C2M_005_mole_fraction_of_carbon_dioxide_in_free_troposphere:_FillValue = -9999. ;
+		AIRX3C2M_005_mole_fraction_of_carbon_dioxide_in_free_troposphere:standard_name = "mole_fraction_of_carbon_dioxide_in_air" ;
+		AIRX3C2M_005_mole_fraction_of_carbon_dioxide_in_free_troposphere:quantity_type = "CO2" ;
+		AIRX3C2M_005_mole_fraction_of_carbon_dioxide_in_free_troposphere:product_short_name = "AIRX3C2M" ;
+		AIRX3C2M_005_mole_fraction_of_carbon_dioxide_in_free_troposphere:product_version = "005" ;
+		AIRX3C2M_005_mole_fraction_of_carbon_dioxide_in_free_troposphere:long_name = "Carbon Dioxide, Mole Fraction in Free Troposphere" ;
+		AIRX3C2M_005_mole_fraction_of_carbon_dioxide_in_free_troposphere:units = "PPM" ;
+		AIRX3C2M_005_mole_fraction_of_carbon_dioxide_in_free_troposphere:cell_methods = "lat, lon: mean" ;
+		AIRX3C2M_005_mole_fraction_of_carbon_dioxide_in_free_troposphere:group_type = "MONTH" ;
+		AIRX3C2M_005_mole_fraction_of_carbon_dioxide_in_free_troposphere:group_value = "November" ;
+		AIRX3C2M_005_mole_fraction_of_carbon_dioxide_in_free_troposphere:coordinates = "time" ;
+		AIRX3C2M_005_mole_fraction_of_carbon_dioxide_in_free_troposphere:plot_hint_legend_label = "November" ;
+	double lat_bnds(latv) ;
+		lat_bnds:units = "degrees_north" ;
+		lat_bnds:cell_methods = "lat: mean" ;
+	double lon_bnds(lonv) ;
+		lon_bnds:units = "degrees_east" ;
+		lon_bnds:cell_methods = "lon: mean" ;
+	int time(time) ;
+		time:long_name = "time" ;
+		time:standard_name = "time" ;
+		time:units = "seconds since 1970-01-01 00:00:00" ;
+		time:bounds = "time_bnds" ;
+	int time_bnds(time, nv) ;
+		time_bnds:units = "seconds since 1970-01-01 00:00:00" ;
+
+// global attributes:
+		:Conventions = "CF-1.4" ;
+		:temporal_resolution = "monthly" ;
+		:NCO = "\"4.5.3\"" ;
+		:nco_openmp_thread_number = 1 ;
+		:geospatial_lat_min = "42" ;
+		:geospatial_lon_min = "47.5" ;
+		:geospatial_lat_max = "54" ;
+		:geospatial_lon_max = "85" ;
+		:start_time = "2002-11-01T00:00:00Z" ;
+		:end_time = "2011-11-30T23:59:59Z" ;
+		:userstartdate = "2002-01-01T00:00:00Z" ;
+		:userenddate = "2012-12-31T23:59:59Z" ;
+		:title = " Average Carbon Dioxide, Mole Fraction in Free Troposphere monthly 2 x 2.5 deg. [AIRS AIRX3C2M v005] PPM for 2002-Nov - 2011-Nov, Region 45.9668E, 40.0195N, 87.4512E, 55.8398N" ;
+		:plot_hint_title = " Average Carbon Dioxide, Mole Fraction in Free Troposphere monthly 2 x 2.5 deg. [AIRS" ;
+		:plot_hint_subtitle = " AIRX3C2M v005] PPM for 2002-Nov - 2011-Nov, Region 45.9668E, 40.0195N, 87.4512E,  55.8398N" ;
+		:plot_hint_time_axis_values = "1104537600,1262304000,1420070400" ;
+		:plot_hint_time_axis_labels = "2005,2010,2015" ;
+		:plot_hint_time_axis_minor = "1009843200,1041379200,1072915200,1136073600,1167609600,1199145600,1230768000,1293840000,1325376000" ;
+		:history = "Mon Jul  1 14:54:32 2019: /usr/bin/ncatted -a plot_hint_time_axis_values,global,c,c,1104537600,1262304000,1420070400 -a plot_hint_time_axis_labels,global,c,c,2005,2010,2015 -a plot_hint_time_axis_minor,global,c,c,1009843200,1041379200,1072915200,1136073600,1167609600,1199145600,1230768000,1293840000,1325376000 /var/giovanni/session/23B5E27A-9C0B-11E9-96E0-DF29115F415E/DC86DDE6-9C0F-11E9-A45B-EE8D115F415E/DC880946-9C0F-11E9-A45B-EE8D115F415E/g4.ints.AIRX3C2M_005_mole_fraction_of_carbon_dioxide_in_free_troposphere.20020101-20121231.MONTH_11.45E_40N_87E_55N.nc" ;
+		:plot_hint_caption = "- The user-selected region was defined by 45.9668E, 40.0195N, 87.4512E, 55.8398N. The data grid also limits the analyzable region to the following bounding points: 47.5E, 42N, 85E, 54N. This analyzable region indicates the spatial limits of the subsetted granules that went into making this visualization result." ;
+data:
+
+ datayear = 2002,   // datayear(0)
+    2003,   // datayear(1)
+    2004,   // datayear(2)
+    2005,   // datayear(3)
+    2006,   // datayear(4)
+    2007,   // datayear(5)
+    2008,   // datayear(6)
+    2009,   // datayear(7)
+    2010,   // datayear(8)
+    2011;  // datayear(9)
+    
+ AIRX3C2M_005_mole_fraction_of_carbon_dioxide_in_free_troposphere = 371.990491566299,   // AIRX3C2M_005_mole_fraction_of_carbon_dioxide_in_free_troposphere(0)
+    374.703910438207,   // AIRX3C2M_005_mole_fraction_of_carbon_dioxide_in_free_troposphere(1)
+    376.812655376992,   // AIRX3C2M_005_mole_fraction_of_carbon_dioxide_in_free_troposphere(2)
+    379.388813517731,   // AIRX3C2M_005_mole_fraction_of_carbon_dioxide_in_free_troposphere(3)
+    381.393079214416,   // AIRX3C2M_005_mole_fraction_of_carbon_dioxide_in_free_troposphere(4)
+    384.16758723253,   // AIRX3C2M_005_mole_fraction_of_carbon_dioxide_in_free_troposphere(5)
+    384.764735059233,   // AIRX3C2M_005_mole_fraction_of_carbon_dioxide_in_free_troposphere(6)
+    387.975481569912,   // AIRX3C2M_005_mole_fraction_of_carbon_dioxide_in_free_troposphere(7)
+    390.388662889587,   // AIRX3C2M_005_mole_fraction_of_carbon_dioxide_in_free_troposphere(8)
+    392.396189332518;  // AIRX3C2M_005_mole_fraction_of_carbon_dioxide_in_free_troposphere(9)
+    
+ lat_bnds = 46.6895431148854,   // lat_bnds(0)
+    48.6895431148854;  // lat_bnds(1)
+    
+ lon_bnds = 65,   // lon_bnds(0)
+    67.5;  // lon_bnds(1)
+    
+ time = 1036108800,   // time(0)
+    1067644800,   // time(1)
+    1099267200,   // time(2)
+    1130803200,   // time(3)
+    1162339200,   // time(4)
+    1193875200,   // time(5)
+    1225497600,   // time(6)
+    1257033600,   // time(7)
+    1288569600,   // time(8)
+    1320105600;  // time(9)
+    
+ time_bnds =
+  1036108800,   // time_bnds(0,0)
+    1038700799,  // time_bnds(0,1)
+    1067644800,   // time_bnds(1,0)
+    1070236799,  // time_bnds(1,1)
+    1099267200,   // time_bnds(2,0)
+    1101859199,  // time_bnds(2,1)
+    1130803200,   // time_bnds(3,0)
+    1133395199,  // time_bnds(3,1)
+    1162339200,   // time_bnds(4,0)
+    1164931199,  // time_bnds(4,1)
+    1193875200,   // time_bnds(5,0)
+    1196467199,  // time_bnds(5,1)
+    1225497600,   // time_bnds(6,0)
+    1228089599,  // time_bnds(6,1)
+    1257033600,   // time_bnds(7,0)
+    1259625599,  // time_bnds(7,1)
+    1288569600,   // time_bnds(8,0)
+    1291161599,  // time_bnds(8,1)
+    1320105600,   // time_bnds(9,0)
+    1322697599;  // time_bnds(9,1)
+    }

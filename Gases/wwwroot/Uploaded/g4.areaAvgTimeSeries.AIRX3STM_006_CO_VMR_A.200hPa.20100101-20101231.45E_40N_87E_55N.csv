@@ -1,0 +1,21 @@
+Title:,Time Series, Area-Averaged of Carbon Monoxide, Mole Fraction in Air (Daytime/Ascending) monthly 1 ()
+User Start Date:,2010-01-01T00:00:00Z
+User End Date:,2010-12-31T23:59:59Z
+User Bounding Box:,"45.9668,40.0195,87.4512,55.8398"
+Data Bounding Box:,"46.5,40.5,86.5,55.5"
+URL to Reproduce Results:,"https://giovanni.gsfc.nasa.gov/giovanni/#service=ArAvTs&starttime=2010-01-01T00:00:00Z&endtime=2010-12-31T23:59:59Z&bbox=45.9668,40.0195,87.4512,55.8398&data=AIRX3STM_006_CO_VMR_A(z%3D200)&variableFacets=dataFieldMeasurement%3ACO%3B&portal=GIOVANNI&format=json"
+Fill Value (mean_AIRX3STM_006_CO_VMR_A): -9999
+
+time, mean_AIRX3STM_006_CO_VMR_A
+2010-01-01 00:00:00,69.2662957
+2010-02-01 00:00:00,68.6881773
+2010-03-01 00:00:00,67.8257678
+2010-04-01 00:00:00,69.5385465
+2010-05-01 00:00:00,69.9201275
+2010-06-01 00:00:00,68.0476116
+2010-07-01 00:00:00,71.0345703
+2010-08-01 00:00:00,81.4993764
+2010-09-01 00:00:00,67.5533838
+2010-10-01 00:00:00,65.0161511
+2010-11-01 00:00:00,63.3690853
+2010-12-01 00:00:00,66.3817291

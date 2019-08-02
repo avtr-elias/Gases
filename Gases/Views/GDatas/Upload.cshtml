@@ -49,7 +49,7 @@
                 <span asp-validation-for="Season" class="text-danger"></span>
             </div>*@
             <div class="form-group">
-                <input type="file" name="uploadedFile" />
+                <input type="file" name="uploadedFiles" multiple="multiple" />
             </div>
             <div class="form-group">
                 <input type="submit" value=@SharedLocalizer["Upload"] class="btn btn-default" />
@@ -57,6 +57,37 @@
         </form>
     </div>
 </div>
+
+@*<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Upload" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="GDataTypeId" class="control-label"></label>
+                <select id="selectDT" asp-for="GDataTypeId" class="form-control" asp-items="ViewBag.GDataTypeId" onchange="ChangeDataType();"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="GaseId" class="control-label"></label>
+                <select asp-for="GaseId" class="form-control" asp-items="ViewBag.GaseId"></select>
+            </div>
+            <div id="VS" class="form-group">
+                <label asp-for="VerticalSlice" class="control-label"></label>
+                <input asp-for="VerticalSlice" class="form-control" />
+                <span asp-validation-for="VerticalSlice" class="text-danger"></span>
+            </div>
+            <div id="Region" class="form-group">
+                <label asp-for="RegionId" class="control-label"></label>
+                <select asp-for="RegionId" class="form-control" asp-items="ViewBag.RegionId"></select>
+               </div>
+            <div class="form-group">
+                <input type="file" name="uploadedFiles" multiple="multiple" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value=@SharedLocalizer["Upload"] class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>*@
 
 <div>
     <a asp-action="Index">@SharedLocalizer["BackToList"]</a>

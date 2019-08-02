@@ -1,0 +1,156 @@
+netcdf g4.ints.AIRX3STM_006_H2OVapMMR_A.500hPa.20020101-20161231.MONTH_09.45E_40N_87E_55N {
+dimensions:
+	time = UNLIMITED ; // (15 currently)
+	H2OPrsLvls_A = 1 ;
+	latv = 2 ;
+	lonv = 2 ;
+	nv = 2 ;
+variables:
+	int datayear(time) ;
+		datayear:long_name = "Data year" ;
+	float AIRX3STM_006_H2OVapMMR_A(time, H2OPrsLvls_A) ;
+		AIRX3STM_006_H2OVapMMR_A:_FillValue = -9999.f ;
+		AIRX3STM_006_H2OVapMMR_A:standard_name = "humidity_mixing_ratio" ;
+		AIRX3STM_006_H2OVapMMR_A:long_name = "Water Vapor Mass Mixing Ratio (Daytime/Ascending)" ;
+		AIRX3STM_006_H2OVapMMR_A:units = "gm/kg" ;
+		AIRX3STM_006_H2OVapMMR_A:quantity_type = "Atmospheric Moisture" ;
+		AIRX3STM_006_H2OVapMMR_A:product_short_name = "AIRX3STM" ;
+		AIRX3STM_006_H2OVapMMR_A:product_version = "006" ;
+		AIRX3STM_006_H2OVapMMR_A:cell_methods = "lat, lon: mean" ;
+		AIRX3STM_006_H2OVapMMR_A:group_type = "MONTH" ;
+		AIRX3STM_006_H2OVapMMR_A:group_value = "September" ;
+		AIRX3STM_006_H2OVapMMR_A:coordinates = "time H2OPrsLvls_A" ;
+		AIRX3STM_006_H2OVapMMR_A:plot_hint_legend_label = "September" ;
+		AIRX3STM_006_H2OVapMMR_A:z_slice = "500hPa" ;
+		AIRX3STM_006_H2OVapMMR_A:z_slice_type = "pressure" ;
+	float H2OPrsLvls_A(H2OPrsLvls_A) ;
+		H2OPrsLvls_A:standard_name = "air_pressure" ;
+		H2OPrsLvls_A:long_name = "Air pressure at H2O levels, daytime (ascending) node" ;
+		H2OPrsLvls_A:units = "hPa" ;
+		H2OPrsLvls_A:positive = "down" ;
+		H2OPrsLvls_A:_CoordinateAxisType = "GeoZ" ;
+	double lat_bnds(latv) ;
+		lat_bnds:units = "degrees_north" ;
+		lat_bnds:cell_methods = "lat: mean" ;
+	double lon_bnds(lonv) ;
+		lon_bnds:units = "degrees_east" ;
+		lon_bnds:cell_methods = "lon: mean" ;
+	int time(time) ;
+		time:standard_name = "time" ;
+		time:units = "seconds since 1970-01-01 00:00:00" ;
+		time:bounds = "time_bnds" ;
+		time:long_name = "time" ;
+	int time_bnds(time, nv) ;
+		time_bnds:units = "seconds since 1970-01-01 00:00:00" ;
+
+// global attributes:
+		:nco_openmp_thread_number = 1 ;
+		:Conventions = "CF-1.4" ;
+		:temporal_resolution = "monthly" ;
+		:NCO = "\"4.5.3\"" ;
+		:geospatial_lat_min = "40.5" ;
+		:geospatial_lon_min = "46.5" ;
+		:geospatial_lat_max = "55.5" ;
+		:geospatial_lon_max = "86.5" ;
+		:start_time = "2002-09-01T00:00:00Z" ;
+		:end_time = "2016-09-30T23:59:59Z" ;
+		:userstartdate = "2002-01-01T00:00:00Z" ;
+		:userenddate = "2016-12-31T23:59:59Z" ;
+		:title = " Average Water Vapor Mass Mixing Ratio (Daytime/Ascending) monthly 1 deg. @500hPa [AIRS AIRX3STM v006] gm/kg for 2002-Sep - 2016-Sep, Region 45.9668E, 40.0195N, 87.4512E, 55.8398N" ;
+		:plot_hint_title = " Average Water Vapor Mass Mixing Ratio (Daytime/Ascending) monthly 1 deg. @500hPa" ;
+		:plot_hint_subtitle = " [AIRS AIRX3STM v006] gm/kg for 2002-Sep - 2016-Sep, Region 45.9668E, 40.0195N,  87.4512E, 55.8398N" ;
+		:plot_hint_time_axis_values = "1104537600,1262304000,1420070400,1577836800" ;
+		:plot_hint_time_axis_labels = "2005,2010,2015,2020" ;
+		:history = "Mon Jul  1 18:14:07 2019: /usr/bin/ncatted -a plot_hint_time_axis_values,global,c,c,1104537600,1262304000,1420070400,1577836800 -a plot_hint_time_axis_labels,global,c,c,2005,2010,2015,2020 /var/giovanni/session/5B248AA2-9C21-11E9-B768-DFA8115F415E/65E7D76E-9C2B-11E9-B65F-E14D115F415E/65E89384-9C2B-11E9-B65F-E14D115F415E/g4.ints.AIRX3STM_006_H2OVapMMR_A.500hPa.20020101-20161231.MONTH_09.45E_40N_87E_55N.nc" ;
+		:plot_hint_caption = "- The user-selected region was defined by 45.9668E, 40.0195N, 87.4512E, 55.8398N. The data grid also limits the analyzable region to the following bounding points: 46.5E, 40.5N, 86.5E, 55.5N. This analyzable region indicates the spatial limits of the subsetted granules that went into making this visualization result." ;
+data:
+
+ datayear = 2002,   // datayear(0)
+    2003,   // datayear(1)
+    2004,   // datayear(2)
+    2005,   // datayear(3)
+    2006,   // datayear(4)
+    2007,   // datayear(5)
+    2008,   // datayear(6)
+    2009,   // datayear(7)
+    2010,   // datayear(8)
+    2011,   // datayear(9)
+    2012,   // datayear(10)
+    2013,   // datayear(11)
+    2014,   // datayear(12)
+    2015,   // datayear(13)
+    2016;  // datayear(14)
+    
+ AIRX3STM_006_H2OVapMMR_A =
+  0.8142447,  // AIRX3STM_006_H2OVapMMR_A(0,0)
+    0.7565552,  // AIRX3STM_006_H2OVapMMR_A(1,0)
+    0.8325543,  // AIRX3STM_006_H2OVapMMR_A(2,0)
+    0.8461232,  // AIRX3STM_006_H2OVapMMR_A(3,0)
+    0.7789746,  // AIRX3STM_006_H2OVapMMR_A(4,0)
+    0.6736461,  // AIRX3STM_006_H2OVapMMR_A(5,0)
+    0.8014578,  // AIRX3STM_006_H2OVapMMR_A(6,0)
+    0.8186665,  // AIRX3STM_006_H2OVapMMR_A(7,0)
+    0.7929394,  // AIRX3STM_006_H2OVapMMR_A(8,0)
+    0.7499957,  // AIRX3STM_006_H2OVapMMR_A(9,0)
+    0.7441249,  // AIRX3STM_006_H2OVapMMR_A(10,0)
+    0.8436066,  // AIRX3STM_006_H2OVapMMR_A(11,0)
+    0.806951,  // AIRX3STM_006_H2OVapMMR_A(12,0)
+    0.7765523,  // AIRX3STM_006_H2OVapMMR_A(13,0)
+    0.9025176;  // AIRX3STM_006_H2OVapMMR_A(14,0)
+    
+ H2OPrsLvls_A = 500;  // H2OPrsLvls_A(0)
+    
+ lat_bnds = 47.0875548450354,   // lat_bnds(0)
+    48.0875548450354;  // lat_bnds(1)
+    
+ lon_bnds = 66,   // lon_bnds(0)
+    67;  // lon_bnds(1)
+    
+ time = 1030838400,   // time(0)
+    1062374400,   // time(1)
+    1093996800,   // time(2)
+    1125532800,   // time(3)
+    1157068800,   // time(4)
+    1188604800,   // time(5)
+    1220227200,   // time(6)
+    1251763200,   // time(7)
+    1283299200,   // time(8)
+    1314835200,   // time(9)
+    1346457600,   // time(10)
+    1377993600,   // time(11)
+    1409529600,   // time(12)
+    1441065600,   // time(13)
+    1472688000;  // time(14)
+    
+ time_bnds =
+  1030838400,   // time_bnds(0,0)
+    1033430399,  // time_bnds(0,1)
+    1062374400,   // time_bnds(1,0)
+    1064966399,  // time_bnds(1,1)
+    1093996800,   // time_bnds(2,0)
+    1096588799,  // time_bnds(2,1)
+    1125532800,   // time_bnds(3,0)
+    1128124799,  // time_bnds(3,1)
+    1157068800,   // time_bnds(4,0)
+    1159660799,  // time_bnds(4,1)
+    1188604800,   // time_bnds(5,0)
+    1191196799,  // time_bnds(5,1)
+    1220227200,   // time_bnds(6,0)
+    1222819199,  // time_bnds(6,1)
+    1251763200,   // time_bnds(7,0)
+    1254355199,  // time_bnds(7,1)
+    1283299200,   // time_bnds(8,0)
+    1285891199,  // time_bnds(8,1)
+    1314835200,   // time_bnds(9,0)
+    1317427199,  // time_bnds(9,1)
+    1346457600,   // time_bnds(10,0)
+    1349049599,  // time_bnds(10,1)
+    1377993600,   // time_bnds(11,0)
+    1380585599,  // time_bnds(11,1)
+    1409529600,   // time_bnds(12,0)
+    1412121599,  // time_bnds(12,1)
+    1441065600,   // time_bnds(13,0)
+    1443657599,  // time_bnds(13,1)
+    1472688000,   // time_bnds(14,0)
+    1475279999;  // time_bnds(14,1)
+    }

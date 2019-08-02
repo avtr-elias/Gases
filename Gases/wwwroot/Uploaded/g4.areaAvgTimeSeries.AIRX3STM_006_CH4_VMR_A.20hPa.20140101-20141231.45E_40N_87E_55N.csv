@@ -1,0 +1,21 @@
+Title:,Time Series, Area-Averaged of Methane, Mole Fraction in Air (Daytime/Ascending) monthly 1 ()
+User Start Date:,2014-01-01T00:00:00Z
+User End Date:,2014-12-31T23:59:59Z
+User Bounding Box:,"45.9668,40.0195,87.4512,55.8398"
+Data Bounding Box:,"46.5,40.5,86.5,55.5"
+URL to Reproduce Results:,"https://giovanni.gsfc.nasa.gov/giovanni/#service=ArAvTs&starttime=2014-01-01T00:00:00Z&endtime=2014-12-31T23:59:59Z&bbox=45.9668,40.0195,87.4512,55.8398&data=AIRX3STM_006_CH4_VMR_A(z%3D20)&variableFacets=dataFieldMeasurement%3ACH4%3B&portal=GIOVANNI&format=json"
+Fill Value (mean_AIRX3STM_006_CH4_VMR_A): -9999
+
+time, mean_AIRX3STM_006_CH4_VMR_A
+2014-01-01 00:00:00,1087.53269
+2014-02-01 00:00:00,1085.70263
+2014-03-01 00:00:00,1086.2326
+2014-04-01 00:00:00,1087.47215
+2014-05-01 00:00:00,1084.9424
+2014-06-01 00:00:00,1081.51656
+2014-07-01 00:00:00,1080.67314
+2014-08-01 00:00:00,1083.99602
+2014-09-01 00:00:00,1083.68782
+2014-10-01 00:00:00,1083.87373
+2014-11-01 00:00:00,1091.29435
+2014-12-01 00:00:00,1088.76383

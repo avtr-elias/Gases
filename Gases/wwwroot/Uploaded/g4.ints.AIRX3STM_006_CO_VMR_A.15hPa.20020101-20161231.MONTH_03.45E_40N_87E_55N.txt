@@ -1,0 +1,151 @@
+netcdf g4.ints.AIRX3STM_006_CO_VMR_A.15hPa.20020101-20161231.MONTH_03.45E_40N_87E_55N {
+dimensions:
+	time = UNLIMITED ; // (14 currently)
+	TempPrsLvls_A = 1 ;
+	latv = 2 ;
+	lonv = 2 ;
+	nv = 2 ;
+variables:
+	int datayear(time) ;
+		datayear:long_name = "Data year" ;
+	double AIRX3STM_006_CO_VMR_A(time, TempPrsLvls_A) ;
+		AIRX3STM_006_CO_VMR_A:_FillValue = -9999. ;
+		AIRX3STM_006_CO_VMR_A:standard_name = "mole_fraction_of_carbon_monoxide_in_air" ;
+		AIRX3STM_006_CO_VMR_A:quantity_type = "CO" ;
+		AIRX3STM_006_CO_VMR_A:product_short_name = "AIRX3STM" ;
+		AIRX3STM_006_CO_VMR_A:product_version = "006" ;
+		AIRX3STM_006_CO_VMR_A:long_name = "Carbon Monoxide, Mole Fraction in Air (Daytime/Ascending)" ;
+		AIRX3STM_006_CO_VMR_A:units = "ppbv" ;
+		AIRX3STM_006_CO_VMR_A:cell_methods = "lat, lon: mean" ;
+		AIRX3STM_006_CO_VMR_A:group_type = "MONTH" ;
+		AIRX3STM_006_CO_VMR_A:group_value = "March" ;
+		AIRX3STM_006_CO_VMR_A:coordinates = "time TempPrsLvls_A" ;
+		AIRX3STM_006_CO_VMR_A:plot_hint_legend_label = "March" ;
+		AIRX3STM_006_CO_VMR_A:z_slice = "15hPa" ;
+		AIRX3STM_006_CO_VMR_A:z_slice_type = "pressure" ;
+	float TempPrsLvls_A(TempPrsLvls_A) ;
+		TempPrsLvls_A:standard_name = "Pressure" ;
+		TempPrsLvls_A:long_name = "Pressure Levels Temperature Profile, daytime (ascending) node" ;
+		TempPrsLvls_A:positive = "down" ;
+		TempPrsLvls_A:_CoordinateAxisType = "GeoZ" ;
+		TempPrsLvls_A:units = "hPa" ;
+	double lat_bnds(latv) ;
+		lat_bnds:units = "degrees_north" ;
+		lat_bnds:cell_methods = "lat: mean" ;
+	double lon_bnds(lonv) ;
+		lon_bnds:units = "degrees_east" ;
+		lon_bnds:cell_methods = "lon: mean" ;
+	int time(time) ;
+		time:long_name = "time" ;
+		time:standard_name = "time" ;
+		time:units = "seconds since 1970-01-01 00:00:00" ;
+		time:bounds = "time_bnds" ;
+	int time_bnds(time, nv) ;
+		time_bnds:units = "seconds since 1970-01-01 00:00:00" ;
+
+// global attributes:
+		:Conventions = "CF-1.4" ;
+		:temporal_resolution = "monthly" ;
+		:NCO = "\"4.5.3\"" ;
+		:nco_openmp_thread_number = 1 ;
+		:geospatial_lat_min = "40.5" ;
+		:geospatial_lon_min = "46.5" ;
+		:geospatial_lat_max = "55.5" ;
+		:geospatial_lon_max = "86.5" ;
+		:start_time = "2003-03-01T00:00:00Z" ;
+		:end_time = "2016-03-31T23:59:59Z" ;
+		:userstartdate = "2002-01-01T00:00:00Z" ;
+		:userenddate = "2016-12-31T23:59:59Z" ;
+		:title = " Average Carbon Monoxide, Mole Fraction in Air (Daytime/Ascending) monthly 1 deg. @15hPa [AIRS AIRX3STM v006] ppbv for 2003-Mar - 2016-Mar, Region 45.9668E, 40.0195N, 87.4512E, 55.8398N" ;
+		:plot_hint_title = " Average Carbon Monoxide, Mole Fraction in Air (Daytime/Ascending) monthly 1 deg. @15hPa" ;
+		:plot_hint_subtitle = " [AIRS AIRX3STM v006] ppbv for 2003-Mar - 2016-Mar, Region 45.9668E, 40.0195N, 87.4512E,  55.8398N" ;
+		:plot_hint_time_axis_values = "1104537600,1262304000,1420070400,1577836800" ;
+		:plot_hint_time_axis_labels = "2005,2010,2015,2020" ;
+		:history = "Mon Jul  1 15:23:10 2019: /usr/bin/ncatted -a plot_hint_time_axis_values,global,c,c,1104537600,1262304000,1420070400,1577836800 -a plot_hint_time_axis_labels,global,c,c,2005,2010,2015,2020 /var/giovanni/session/23B5E27A-9C0B-11E9-96E0-DF29115F415E/B3A0F020-9C13-11E9-B2CB-D782115F415E/B3A58C84-9C13-11E9-B2CB-D782115F415E/g4.ints.AIRX3STM_006_CO_VMR_A.15hPa.20020101-20161231.MONTH_03.45E_40N_87E_55N.nc" ;
+		:plot_hint_caption = "- The user-selected region was defined by 45.9668E, 40.0195N, 87.4512E, 55.8398N. The data grid also limits the analyzable region to the following bounding points: 46.5E, 40.5N, 86.5E, 55.5N. This analyzable region indicates the spatial limits of the subsetted granules that went into making this visualization result." ;
+data:
+
+ datayear = 2003,   // datayear(0)
+    2004,   // datayear(1)
+    2005,   // datayear(2)
+    2006,   // datayear(3)
+    2007,   // datayear(4)
+    2008,   // datayear(5)
+    2009,   // datayear(6)
+    2010,   // datayear(7)
+    2011,   // datayear(8)
+    2012,   // datayear(9)
+    2013,   // datayear(10)
+    2014,   // datayear(11)
+    2015,   // datayear(12)
+    2016;  // datayear(13)
+    
+ AIRX3STM_006_CO_VMR_A =
+  22.3388233685553,  // AIRX3STM_006_CO_VMR_A(0,0)
+    22.0684952831928,  // AIRX3STM_006_CO_VMR_A(1,0)
+    22.4269593255318,  // AIRX3STM_006_CO_VMR_A(2,0)
+    22.1790329477043,  // AIRX3STM_006_CO_VMR_A(3,0)
+    22.4321138774305,  // AIRX3STM_006_CO_VMR_A(4,0)
+    22.0141544850137,  // AIRX3STM_006_CO_VMR_A(5,0)
+    22.181402735735,  // AIRX3STM_006_CO_VMR_A(6,0)
+    22.1597527999948,  // AIRX3STM_006_CO_VMR_A(7,0)
+    22.2917027074834,  // AIRX3STM_006_CO_VMR_A(8,0)
+    22.1865806171613,  // AIRX3STM_006_CO_VMR_A(9,0)
+    22.1935800329688,  // AIRX3STM_006_CO_VMR_A(10,0)
+    22.3654085450447,  // AIRX3STM_006_CO_VMR_A(11,0)
+    22.1970409377595,  // AIRX3STM_006_CO_VMR_A(12,0)
+    22.1254061756576;  // AIRX3STM_006_CO_VMR_A(13,0)
+    
+ TempPrsLvls_A = 15;  // TempPrsLvls_A(0)
+    
+ lat_bnds = 47.0875548450354,   // lat_bnds(0)
+    48.0875548450354;  // lat_bnds(1)
+    
+ lon_bnds = 66,   // lon_bnds(0)
+    67;  // lon_bnds(1)
+    
+ time = 1046476800,   // time(0)
+    1078099200,   // time(1)
+    1109635200,   // time(2)
+    1141171200,   // time(3)
+    1172707200,   // time(4)
+    1204329600,   // time(5)
+    1235865600,   // time(6)
+    1267401600,   // time(7)
+    1298937600,   // time(8)
+    1330560000,   // time(9)
+    1362096000,   // time(10)
+    1393632000,   // time(11)
+    1425168000,   // time(12)
+    1456790400;  // time(13)
+    
+ time_bnds =
+  1046476800,   // time_bnds(0,0)
+    1049155199,  // time_bnds(0,1)
+    1078099200,   // time_bnds(1,0)
+    1080777599,  // time_bnds(1,1)
+    1109635200,   // time_bnds(2,0)
+    1112313599,  // time_bnds(2,1)
+    1141171200,   // time_bnds(3,0)
+    1143849599,  // time_bnds(3,1)
+    1172707200,   // time_bnds(4,0)
+    1175385599,  // time_bnds(4,1)
+    1204329600,   // time_bnds(5,0)
+    1207007999,  // time_bnds(5,1)
+    1235865600,   // time_bnds(6,0)
+    1238543999,  // time_bnds(6,1)
+    1267401600,   // time_bnds(7,0)
+    1270079999,  // time_bnds(7,1)
+    1298937600,   // time_bnds(8,0)
+    1301615999,  // time_bnds(8,1)
+    1330560000,   // time_bnds(9,0)
+    1333238399,  // time_bnds(9,1)
+    1362096000,   // time_bnds(10,0)
+    1364774399,  // time_bnds(10,1)
+    1393632000,   // time_bnds(11,0)
+    1396310399,  // time_bnds(11,1)
+    1425168000,   // time_bnds(12,0)
+    1427846399,  // time_bnds(12,1)
+    1456790400,   // time_bnds(13,0)
+    1459468799;  // time_bnds(13,1)
+    }

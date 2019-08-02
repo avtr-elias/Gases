@@ -1,0 +1,21 @@
+Title:,Time Series, Area-Averaged of Water Vapor Mass Mixing Ratio (Daytime/Ascending) monthly 1 ()
+User Start Date:,2013-01-01T00:00:00Z
+User End Date:,2013-12-31T23:59:59Z
+User Bounding Box:,"45.9668,40.0195,87.4512,55.8398"
+Data Bounding Box:,"46.5,40.5,86.5,55.5"
+URL to Reproduce Results:,"https://giovanni.gsfc.nasa.gov/giovanni/#service=ArAvTs&starttime=2013-01-01T00:00:00Z&endtime=2013-12-31T23:59:59Z&bbox=45.9668,40.0195,87.4512,55.8398&data=AIRX3STM_006_H2OVapMMR_A(z%3D1000)&variableFacets=dataFieldMeasurement%3AAtmospheric%20Moisture%3B&portal=GIOVANNI&format=json"
+Fill Value (mean_AIRX3STM_006_H2OVapMMR_A): -9999
+
+time, mean_AIRX3STM_006_H2OVapMMR_A
+2013-01-01 00:00:00,1.84444726
+2013-02-01 00:00:00,1.9968164
+2013-03-01 00:00:00,2.98993754
+2013-04-01 00:00:00,3.73424745
+2013-05-01 00:00:00,4.74140882
+2013-06-01 00:00:00,5.87135935
+2013-07-01 00:00:00,6.94539642
+2013-08-01 00:00:00,7.09146881
+2013-09-01 00:00:00,5.72201824
+2013-10-01 00:00:00,3.98129439
+2013-11-01 00:00:00,3.21650219
+2013-12-01 00:00:00,2.07212806

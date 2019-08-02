@@ -1,0 +1,21 @@
+Title:,Time Series, Area-Averaged of Ozone, Mole Fraction in Air (Daytime/Ascending) monthly 1 deg. @925hPa ()
+User Start Date:,2005-01-01T00:00:00Z
+User End Date:,2005-12-31T23:59:59Z
+User Bounding Box:,"45.9668,40.0195,87.4512,55.8398"
+Data Bounding Box:,"46.5,40.5,86.5,55.5"
+URL to Reproduce Results:,"https://giovanni.gsfc.nasa.gov/giovanni/#service=ArAvTs&starttime=2005-01-01T00:00:00Z&endtime=2005-12-31T23:59:59Z&bbox=45.9668,40.0195,87.4512,55.8398&data=AIRX3STM_006_O3_VMR_A(z%3D925)&variableFacets=dataFieldMeasurement%3AOzone%3B&portal=GIOVANNI&format=json"
+Fill Value (mean_AIRX3STM_006_O3_VMR_A): -9999
+
+time, mean_AIRX3STM_006_O3_VMR_A
+2005-01-01 00:00:00,29.831213
+2005-02-01 00:00:00,33.1466484
+2005-03-01 00:00:00,40.4127426
+2005-04-01 00:00:00,45.5778847
+2005-05-01 00:00:00,47.7979317
+2005-06-01 00:00:00,45.3144836
+2005-07-01 00:00:00,42.616642
+2005-08-01 00:00:00,44.1689873
+2005-09-01 00:00:00,38.3124733
+2005-10-01 00:00:00,34.637722
+2005-11-01 00:00:00,30.9255695
+2005-12-01 00:00:00,28.0567551

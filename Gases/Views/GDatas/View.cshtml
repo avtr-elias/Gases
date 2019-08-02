@@ -241,6 +241,19 @@
         if (ChartDatas != null) {
             ChartDatas.destroy();
         }
+        var units = "";
+        if ($('#GaseId').val() == 1 || $('#GaseId').val() == 5 || $('#GaseId').val() == 6) {
+            units = "ppbv";
+        }
+        if ($('#GaseId').val() == 2) {
+            units = "ppm";
+        }
+        if ($('#GaseId').val() == 4) {
+            units = "1/cm2";
+        }
+        if ($('#GaseId').val() == 7) {
+            units = "gm/kg";
+        }
         var ctx1 = document.getElementById("chartDatas").getContext('2d');
         var data1 = [];
         if (gDataTypeIdValue == 1) {
@@ -292,7 +305,7 @@
                             display: true,
                             scaleLabel: {
                                 display: true,
-                                labelString: $("#Value").val() + ', ppbv'
+                                labelString: $("#Value").val() + ', ' + units
                             }
                         }]
                     }
@@ -332,7 +345,7 @@
                             display: true,
                             scaleLabel: {
                                 display: true,
-                                labelString: $("#Value").val() + ', ppbv'
+                                labelString: $("#Value").val() + ', ' + units
                             }
                         }],
                         yAxes: [{
@@ -404,7 +417,7 @@
                             display: true,
                             scaleLabel: {
                                 display: true,
-                                labelString: $("#Value").val() + ', ppbv'
+                                labelString: $("#Value").val() + ', ' + units
                             }
                         }]
                     }
@@ -561,6 +574,20 @@
                 },
                 type: 'POST',
                 success: function (data) {
+                    var units = "";
+                    if ($('#GaseId').val() == 1 || $('#GaseId').val() == 5 || $('#GaseId').val() == 6) {
+                        units = "ppbv";
+                    }
+                    if ($('#GaseId').val() == 2) {
+                        units = "ppm";
+                    }
+                    if ($('#GaseId').val() == 4) {
+                        units = "1/cm2";
+                    }
+                    if ($('#GaseId').val() == 7) {
+                        units = "gm/kg";
+                    }
+
                     var longitude;
                     var latitude;
                     var differenceLongitude;
@@ -596,7 +623,7 @@
                     div.style.left = mouse_x + 'px';   // Координаты дива X и Y не забываем указать еденицы измерения,
                     div.style.top = (mouse_y - 20) + 'px';    // например 40px или 20%
                     div.style.background = 'white';   //  Див с белой заливкой
-                    div.appendChild(document.createTextNode(value + ' ppm'));  //  Добавим текст в див
+                    div.appendChild(document.createTextNode(value + ' ' + units));  //  Добавим текст в див
                     document.body.appendChild(div);   //  Добавим наш див на страницу
                     $("body").append(div);
                     setTimeout(function () {

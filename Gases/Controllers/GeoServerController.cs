@@ -250,12 +250,18 @@ namespace Gases.Controllers
                     throw new Exception("StoreName must be non-empty!");
                 }
                 string storeType = GetStoreType(WorkspaceName, StoreName);
+                //Process process = CurlExecute($" -u " +
+                //    $"{Startup.Configuration["GeoServer:User"]}:" +
+                //    $"{Startup.Configuration["GeoServer:Password"]}" +
+                //    $" -XGET" +
+                //    $" http://{Startup.Configuration["GeoServer:Address"]}:" +
+                //    $"{Startup.Configuration["GeoServer:Port"]}/geoserver/rest/workspaces/{WorkspaceName}/{storeType}/{StoreName}");
                 Process process = CurlExecute($" -u " +
                     $"{Startup.Configuration["GeoServer:User"]}:" +
                     $"{Startup.Configuration["GeoServer:Password"]}" +
                     $" -XGET" +
                     $" http://{Startup.Configuration["GeoServer:Address"]}:" +
-                    $"{Startup.Configuration["GeoServer:Port"]}/geoserver/rest/workspaces/{WorkspaceName}/{storeType}/{StoreName}");
+                    $"{Startup.Configuration["GeoServer:Port"]}/geoserver/rest/workspaces/{WorkspaceName}/{StoreName}");
                 string html = process.StandardOutput.ReadToEnd();
                 process.WaitForExit();
 
@@ -978,6 +984,9 @@ namespace Gases.Controllers
                 .Where(l => !publicshedLayers.Contains(Path.GetFileNameWithoutExtension(l))));
             ViewBag.Styles = new SelectList(GetWorkspaceStyles(Startup.Configuration["GeoServer:Workspace"]));
             ViewBag.Message = message;
+            ViewBag.Gases = new SelectList(_context.Gase.OrderBy(m => m.Id), "Id", "Name", GaseId);
+            ViewBag.GDataTypes = new SelectList(_context.GDataType.OrderBy(m => m.Id), "Id", "Name", GDataTypeId);
+
             return View();
         }
 

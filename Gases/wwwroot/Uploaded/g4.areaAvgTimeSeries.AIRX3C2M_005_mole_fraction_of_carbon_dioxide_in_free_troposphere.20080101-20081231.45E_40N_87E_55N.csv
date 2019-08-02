@@ -1,0 +1,21 @@
+Title:,Time Series, Area-Averaged of Carbon Dioxide, Mole Fraction in Free Troposphere monthly 2 x 2.5 ()
+User Start Date:,2008-01-01T00:00:00Z
+User End Date:,2008-12-31T23:59:59Z
+User Bounding Box:,"45.9668,40.0195,87.4512,55.8398"
+Data Bounding Box:,"47.5,42,85,54"
+URL to Reproduce Results:,"https://giovanni.gsfc.nasa.gov/giovanni/#service=ArAvTs&starttime=2008-01-01T00:00:00Z&endtime=2008-12-31T23:59:59Z&bbox=45.9668,40.0195,87.4512,55.8398&data=AIRX3C2M_005_mole_fraction_of_carbon_dioxide_in_free_troposphere&variableFacets=dataFieldMeasurement%3ACO2%3B&portal=GIOVANNI&format=json"
+Fill Value (mean_AIRX3C2M_005_mole_fraction_of_carbon_dioxide_in_free_troposphere): -9999
+
+time, mean_AIRX3C2M_005_mole_fraction_of_carbon_dioxide_in_free_troposphere
+2008-01-01 00:00:00,382.456962
+2008-02-01 00:00:00,385.21226
+2008-03-01 00:00:00,387.697461
+2008-04-01 00:00:00,388.261574
+2008-05-01 00:00:00,388.280166
+2008-06-01 00:00:00,387.878709
+2008-07-01 00:00:00,386.885005
+2008-08-01 00:00:00,386.508173
+2008-09-01 00:00:00,386.00874
+2008-10-01 00:00:00,385.632658
+2008-11-01 00:00:00,384.764735
+2008-12-01 00:00:00,385.829244
