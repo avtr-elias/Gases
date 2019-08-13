@@ -1418,6 +1418,7 @@ namespace Gases.Controllers
             {
                 ViewBag.Month = new SelectList(month, "Month", "Month");
             }
+            ViewBag.Port = Startup.Configuration["GeoServer:Port"];
             return View();
         }
 

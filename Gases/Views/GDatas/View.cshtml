@@ -119,6 +119,7 @@
     <input id="Months" value="@SharedLocalizer["Month"]" />
     <input id="Value" value="@SharedLocalizer["Value"]" />
     <input id="VerticalSlices" value="@SharedLocalizer["VerticalSlice"]" />
+    <input id="Port" value="@ViewBag.Port" />
 </div>
 
 <script type="text/javascript">
@@ -128,7 +129,7 @@
     }));
     layers[0].set('name', 'OSM');
 
-    var geoserverPort = '8080',
+    var geoserverPort = $('#Port').val(),
         geoserverAddress = window.location.hostname;
 
     var Source_New = new ol.source.TileWMS({
@@ -433,12 +434,18 @@
         //for (i = 0; i < name.length; i++) {
         //    nameFile += data[i][0];
         //}
+        console.log(data);
         nameFile = data.name;
         var min = data.minVal;
         var max = data.maxVal;
-        $('#topValue').text(max.toFixed(2));
-        $('#midValue').text(((max + min) / 2).toFixed(2));
-        $('#bottomValue').text(min.toFixed(2));
+        parseFloat($('#topValue').text(max)).toFixed(2);
+        parseFloat($('#bottomValue').text(min)).toFixed(2);
+        if (min != null && max != null) {
+            parseFloat($('#midValue').text(((max + min) / 2))).toFixed(2);
+        }
+        else {
+            $('#midValue').text("");
+        }
         var Source_New = new ol.source.TileWMS({
             url: 'http://' + geoserverAddress + ':' + geoserverPort + '/geoserver/Gases/wms?',
             params: {
