@@ -148,6 +148,36 @@
     Layer_New.setOpacity(0.80);
     layers.push(Layer_New);
 
+    var Source_Regions = new ol.source.TileWMS({
+        url: 'http://' + geoserverAddress + ':' + geoserverPort + '/geoserver/Gases/wms?',
+        params: {
+            'LAYERS': 'Gases:Regions',
+            'VERSION': '1.1.0',
+            'FORMAT': 'image/png',
+            'TILED': true
+        },
+        serverType: 'geoserver'
+    });
+    var Layer_Regions = new ol.layer.Tile({
+        source: Source_Regions
+    });
+    layers.push(Layer_Regions);
+
+    var Source_Cities = new ol.source.TileWMS({
+        url: 'http://' + geoserverAddress + ':' + geoserverPort + '/geoserver/Gases/wms?',
+        params: {
+            'LAYERS': 'Gases:Cities',
+            'VERSION': '1.1.0',
+            'FORMAT': 'image/png',
+            'TILED': true
+        },
+        serverType: 'geoserver'
+    });
+    var Layer_Cities = new ol.layer.Tile({
+        source: Source_Cities
+    });
+    layers.push(Layer_Cities);
+
     var source = new ol.source.Vector();
     var layer = new ol.layer.Vector({
         source: source
