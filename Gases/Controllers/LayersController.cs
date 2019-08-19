@@ -127,36 +127,36 @@ namespace Gases.Controllers
         //    return View(layer);
         //}
 
-        // GET: Layers/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        //// GET: Layers/Delete/5
+        //public async Task<IActionResult> Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            var layer = await _context.Layer
-                .Include(l => l.GDataType)
-                .Include(l => l.Gase)
-                .SingleOrDefaultAsync(m => m.Id == id);
-            if (layer == null)
-            {
-                return NotFound();
-            }
+        //    var layer = await _context.Layer
+        //        .Include(l => l.GDataType)
+        //        .Include(l => l.Gase)
+        //        .SingleOrDefaultAsync(m => m.Id == id);
+        //    if (layer == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return View(layer);
-        }
+        //    return View(layer);
+        //}
 
-        // POST: Layers/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var layer = await _context.Layer.SingleOrDefaultAsync(m => m.Id == id);
-            _context.Layer.Remove(layer);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+        //// POST: Layers/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> DeleteConfirmed(int id)
+        //{
+        //    var layer = await _context.Layer.SingleOrDefaultAsync(m => m.Id == id);
+        //    _context.Layer.Remove(layer);
+        //    await _context.SaveChangesAsync();
+        //    return RedirectToAction(nameof(Index));
+        //}
 
         private bool LayerExists(int id)
         {

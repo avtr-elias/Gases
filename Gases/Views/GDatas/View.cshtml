@@ -464,7 +464,7 @@
         //for (i = 0; i < name.length; i++) {
         //    nameFile += data[i][0];
         //}
-        console.log(data);
+        //console.log(data);
         nameFile = data.name;
         var min = data.minVal;
         var max = data.maxVal;
@@ -487,7 +487,7 @@
             },
             serverType: 'geoserver'
         });
-        //console.log(Source_New);
+        //console.log('nameFile: ' + nameFile);
         var l = map.getLayers().getArray()[1];
         if (Source_New.params_.LAYERS.length > 6) {
             l.setOpacity(1);

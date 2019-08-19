@@ -33,13 +33,13 @@
             <th>
                 @Html.DisplayNameFor(model => model.GeoServerName)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.FileNameWithPath)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.GeoServerStyle)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.NameKK)
             </th>
             <th>
@@ -47,7 +47,7 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.NameEN)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.VerticalSlice)
             </th>
@@ -70,13 +70,13 @@
             <td>
                 @Html.DisplayFor(modelItem => item.GeoServerName)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.FileNameWithPath)
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.GeoServerStyle)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.NameKK)
             </td>
             <td>
@@ -84,7 +84,7 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.NameEN)
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.VerticalSlice)
             </td>
@@ -101,8 +101,8 @@
             {
                 <td>
                     @*<a asp-action="Edit" asp-route-id="@item.Id">@SharedLocalizer["Edit"]</a> |*@
-                    <a asp-action="Details" asp-route-id="@item.Id">@SharedLocalizer["Details"]</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">@SharedLocalizer["Delete"]</a>
+                    <a asp-action="Details" asp-route-id="@item.Id">@SharedLocalizer["Details"]</a> @*|
+                    <a asp-action="Delete" asp-route-id="@item.Id">@SharedLocalizer["Delete"]</a>*@
                 </td>
 
             }

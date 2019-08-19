@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
 using Gases.Data;
+using System.IO;
 
 namespace Gases.Controllers
 {
@@ -30,6 +31,38 @@ namespace Gases.Controllers
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
+
+            // load layers
+            string path = "E:\\Documents\\Google Drive\\Notes\\Work\\Gases\\TAM\\";
+            string[] files = Directory.GetFiles(path, "*.tif", SearchOption.AllDirectories);
+            List<Layer> layers = new List<Layer>();
+
+            foreach(string file in files)
+            {
+                DirectoryInfo di = new DirectoryInfo(file);
+                string s_name = Path.GetFileNameWithoutExtension(di.Name),
+                    s_year = di.Parent.Name,
+                    s_gas = di.Parent.Parent.Name,
+                    s_vertical = di.Parent.Parent.Parent.Name;
+                Layer layer = new Layer()
+                {
+                    GaseId = _context.Gase.FirstOrDefault(g => g.Formula == s_gas).Id,
+                    GDataTypeId = 2,
+                    GeoServerName = s_name,
+                    VerticalSlice = Convert.ToDecimal(s_vertical),
+                    Year = Convert.ToInt32(s_year)
+                };
+                layers.Add(layer);
+            }
+
+            //string test = "";
+            //foreach(Layer layer in layers)
+            //{
+            //    test += layer.GaseId + "\t" + layer.GeoServerName + "\t" + layer.VerticalSlice + "\t" + layer.Year + Environment.NewLine;
+            //}
+
+            _context.Layer.AddRange(layers);
+            _context.SaveChanges();
 
             return View();
         }

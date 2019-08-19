@@ -36,16 +36,16 @@ namespace Gases.Controllers
             decimal? VerticalSlice,
             string Name)
         {
-            GeoTiffFile geoTiffFile = new GeoTiffFile
-            {
-                GaseId = GaseId,
-                Year = Year,
-                VerticalSlice = VerticalSlice,
-                Name = Name
-            };
+            //GeoTiffFile geoTiffFile = new GeoTiffFile
+            //{
+            //    GaseId = GaseId,
+            //    Year = Year,
+            //    VerticalSlice = VerticalSlice,
+            //    Name = Name
+            //};
 
-            _context.GeoTiffFile.Add(geoTiffFile);
-            _context.SaveChanges();
+            //_context.GeoTiffFile.Add(geoTiffFile);
+            //_context.SaveChanges();
         }
 
         /// <summary>
@@ -151,7 +151,7 @@ namespace Gases.Controllers
                         $"{Startup.Configuration["GeoServer:Password"]}" +
                         $" -XGET" +
                         $" http://{Startup.Configuration["GeoServer:Address"]}:" +
-                        $"{Startup.Configuration["GeoServer:Port"]}/geoserver/rest/workspaces/{WorkspaceName}");
+                        $"{Startup.Configuration["GeoServer:Port"]}/geoserver/rest/workspaces/{WorkspaceName}.html");
                     string html = process.StandardOutput.ReadToEnd();
                     process.WaitForExit();
 
@@ -196,7 +196,7 @@ namespace Gases.Controllers
                     $"{Startup.Configuration["GeoServer:Password"]}" +
                     $" -XGET" +
                     $" http://{Startup.Configuration["GeoServer:Address"]}:" +
-                    $"{Startup.Configuration["GeoServer:Port"]}/geoserver/rest/workspaces/{WorkspaceName}");
+                    $"{Startup.Configuration["GeoServer:Port"]}/geoserver/rest/workspaces/{WorkspaceName}.html");
                 string html = process.StandardOutput.ReadToEnd();
                 process.WaitForExit();
 
@@ -261,7 +261,7 @@ namespace Gases.Controllers
                     $"{Startup.Configuration["GeoServer:Password"]}" +
                     $" -XGET" +
                     $" http://{Startup.Configuration["GeoServer:Address"]}:" +
-                    $"{Startup.Configuration["GeoServer:Port"]}/geoserver/rest/workspaces/{WorkspaceName}/{StoreName}");
+                    $"{Startup.Configuration["GeoServer:Port"]}/geoserver/rest/workspaces/{WorkspaceName}/coveragestores/{StoreName}.html");
                 string html = process.StandardOutput.ReadToEnd();
                 process.WaitForExit();
 
@@ -525,13 +525,35 @@ namespace Gases.Controllers
                     throw new Exception($"Layer {LayerName} isn't exist in {WorkspaceName} workspace!");
                 }
 
+                //string s1 = $" -u " +
+                //    $"{Startup.Configuration["GeoServer:User"]}:" +
+                //    $"{Startup.Configuration["GeoServer:Password"]}" +
+                //    $" -v -XDELETE" +
+                //    $" http://{Startup.Configuration["GeoServer:Address"]}:" +
+                //    $"{Startup.Configuration["GeoServer:Port"]}/" +
+                //    $"geoserver/rest/layers/{WorkspaceName}:{LayerName}.xml",
+                //    s2 = $" -u " +
+                //    $"{Startup.Configuration["GeoServer:User"]}:" +
+                //    $"{Startup.Configuration["GeoServer:Password"]}" +
+                //    $" -v -XDELETE" +
+                //    $" http://{Startup.Configuration["GeoServer:Address"]}" +
+                //    $":{Startup.Configuration["GeoServer:Port"]}/" +
+                //    $"geoserver/rest/workspaces/{WorkspaceName}/coveragestores/{LayerName}/coverages/{LayerName}.xml",
+                //    s3 = $" -v -u " +
+                //    $"{Startup.Configuration["GeoServer:User"]}:" +
+                //    $"{Startup.Configuration["GeoServer:Password"]}" +
+                //    $" -XDELETE" +
+                //    $" http://{Startup.Configuration["GeoServer:Address"]}" +
+                //    $":{Startup.Configuration["GeoServer:Port"]}/" +
+                //    $"geoserver/rest/workspaces/{WorkspaceName}/coveragestores/{LayerName}.xml";
+
                 Process process1 = CurlExecute($" -u " +
                     $"{Startup.Configuration["GeoServer:User"]}:" +
                     $"{Startup.Configuration["GeoServer:Password"]}" +
                     $" -v -XDELETE" +
                     $" http://{Startup.Configuration["GeoServer:Address"]}:" +
                     $"{Startup.Configuration["GeoServer:Port"]}/" +
-                    $"geoserver/rest/layers/{LayerName}");
+                    $"geoserver/rest/layers/{WorkspaceName}:{LayerName}.xml");
                 process1.WaitForExit();
                 Process process2 = CurlExecute($" -u " +
                     $"{Startup.Configuration["GeoServer:User"]}:" +
@@ -539,7 +561,7 @@ namespace Gases.Controllers
                     $" -v -XDELETE" +
                     $" http://{Startup.Configuration["GeoServer:Address"]}" +
                     $":{Startup.Configuration["GeoServer:Port"]}/" +
-                    $"geoserver/rest/workspaces/{WorkspaceName}/coveragestores/{LayerName}/coverages/{LayerName}");
+                    $"geoserver/rest/workspaces/{WorkspaceName}/coveragestores/{LayerName}/coverages/{LayerName}.xml");
                 process2.WaitForExit();
                 Process process3 = CurlExecute($" -v -u " +
                     $"{Startup.Configuration["GeoServer:User"]}:" +
@@ -547,7 +569,7 @@ namespace Gases.Controllers
                     $" -XDELETE" +
                     $" http://{Startup.Configuration["GeoServer:Address"]}" +
                     $":{Startup.Configuration["GeoServer:Port"]}/" +
-                    $"geoserver/rest/workspaces/{WorkspaceName}/coveragestores/{LayerName}");
+                    $"geoserver/rest/workspaces/{WorkspaceName}/coveragestores/{LayerName}.xml");
                 process3.WaitForExit();
             }
             catch (Exception exception)
@@ -948,7 +970,7 @@ namespace Gases.Controllers
         [Authorize(Roles = "Administrator, Moderator")]
         public async Task<IActionResult> PublishGeoTIFF(string GeoTIFFFile, string Style, string NameKK, string NameRU, string NameEN, int GDataTypeId, int GaseId, decimal VerticalSlice, int Year)
         {
-            var geoTiffFile = _context.GeoTiffFile.Where(g => g.Name == GeoTIFFFile).FirstOrDefault();
+            //var geoTiffFile = _context.GeoTiffFile.Where(g => g.Name == GeoTIFFFile).FirstOrDefault();
 
             string message = "";
             try
@@ -968,9 +990,9 @@ namespace Gases.Controllers
                     Year = Year
                 };
 
-                geoTiffFile.GaseId = GaseId;
-                geoTiffFile.Year = Convert.ToString(Year);
-                geoTiffFile.VerticalSlice = VerticalSlice;
+                //geoTiffFile.GaseId = GaseId;
+                //geoTiffFile.Year = Convert.ToString(Year);
+                //geoTiffFile.VerticalSlice = VerticalSlice;
 
                 _context.Add(layer);
                 await _context.SaveChangesAsync();

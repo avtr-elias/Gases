@@ -1442,10 +1442,11 @@ namespace Gases.Controllers
             {
                 try
                 {
-                    string name = _context.GeoTiffFile.Where(m => m.Year == Convert.ToString(Year)).Where(m => m.VerticalSlice == VerticalSlice).Where(m => m.GaseId == GaseId).First().Name;
+                    //string name = _context.GeoTiffFile.Where(m => m.Year == Convert.ToString(Year)).Where(m => m.VerticalSlice == VerticalSlice).Where(m => m.GaseId == GaseId).First().Name;
+                    string name = _context.Layer.FirstOrDefault(l => l.Year == Year && l.VerticalSlice == VerticalSlice && l.GaseId == GaseId)?.GeoServerName;
                     decimal? minVal = _context.GData.Where(m => m.GaseId == GaseId && m.Year == Year && m.VerticalSlice == VerticalSlice).Min(m => m.Value);
                     decimal? maxVal = _context.GData.Where(m => m.GaseId == GaseId && m.Year == Year && m.VerticalSlice == VerticalSlice).Max(m => m.Value);
-                    name = name.Remove(name.Length - 4, 4);
+                    //name = name.Remove(name.Length - 4, 4);
                     //result = new JsonResult(name);
                     result = Json(new
                     {
