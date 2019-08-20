@@ -1467,7 +1467,7 @@ namespace Gases.Controllers
             if (GDataTypeId == 3)
             {
                 var gdatas = _context.GData.Where(g => g.GDataTypeId == GDataTypeId && g.GaseId == GaseId &&
-                g.RegionId == RegionId && g.Year == Year);
+                g.RegionId == RegionId && g.Year == Year).OrderBy(g => g.Id);
                 result = new JsonResult(gdatas);
             }
             if (GDataTypeId == 4)
