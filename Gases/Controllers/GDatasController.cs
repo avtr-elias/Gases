@@ -792,13 +792,13 @@ namespace Gases.Controllers
         //[ValidateAntiForgeryToken]
         //public async Task<IActionResult> Upload(int GDataTypeId, int GaseId, decimal VerticalSlice, int RegionId, List<IFormFile> uploadedFiles)
         //{
-        //    if (VerticalSlice == 0)
-        //    {
-        //        VerticalSlice = 1.5m;
-        //    }
-        //    //List<int> years = new List<int> { 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016 };
+        //    //if (VerticalSlice == 0)
+        //    //{
+        //    //    VerticalSlice = 1.5m;
+        //    //}
+        //    List<int> years = new List<int> { 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016 };
         //    //List<int> years = new List<int> { 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012 };
-        //    List<int> years = new List<int> { 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019 };
+        //    //List<int> years = new List<int> { 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019 };
 
 
         //    //List<decimal> vs = new List<decimal> { 1.5m, 1, 2, 3, 5, 7, 10, 15, 20, 30, 50, 70, 100, 150, 200, 250, 300, 400, 500, 600, 700, 850, 925, 1000 };
@@ -810,6 +810,7 @@ namespace Gases.Controllers
         //        //decimal VerticalSlice = vs[indVS];
         //        //decimal VerticalSlice = 1000;
         //        int Year = years[indYear];
+        //        //int Year = 0;
         //        if (uploadedFile != null)
         //        {
         //            // путь к папке Uploaded
@@ -1326,12 +1327,14 @@ namespace Gases.Controllers
         //            {
         //                var lines = System.IO.File.ReadAllLines(path, Encoding.Default);
 
+        //                List<int> year = new List<int>();
         //                List<int> month = new List<int>();
         //                List<decimal> value = new List<decimal>();
         //                string val;
         //                string subString;
         //                for (int i = 9; i < lines.Length; i++)
         //                {
+        //                    year.Add(Convert.ToInt32(lines[i].Substring(0, 4)));
         //                    subString = lines[i].Remove(0, lines[i].IndexOf("-") + 1);
         //                    month.Add(Convert.ToInt32(subString.Remove(subString.IndexOf("-"), subString.Length - subString.IndexOf("-"))));
         //                    val = lines[i].Remove(0, lines[i].IndexOf(",") + 1);
@@ -1347,14 +1350,15 @@ namespace Gases.Controllers
 
         //                for (int i = 0; i < value.Count; i++)
         //                {
-        //                    GData(GDataTypeId, GaseId, VerticalSlice, RegionId, null, null, value[i], Year, month[i], null);
+        //                    GData(GDataTypeId, GaseId, VerticalSlice, RegionId, null, null, value[i], year[i], month[i], null);
         //                }
         //            }
         //        }
         //        indYear++;
+        //        //indVS++;
         //        //if (Year == 2016)
         //        //{
-        //        //    indVS++;
+        //        //    //indVS++;
         //        //    indYear = 0;
         //        //}
         //    }
