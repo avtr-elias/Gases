@@ -96,29 +96,29 @@ namespace Gases
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            CreateRoles(serviceProvider).Wait();
+            //CreateRoles(serviceProvider).Wait();
         }
 
-        private async Task CreateRoles(IServiceProvider serviceProvider)
-        {
-            var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-            var UserManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
-            string[] roleNames = { "Administrator", "Moderator" };
-            IdentityResult roleResult;
-            foreach (var roleName in roleNames)
-            {
-                var roleExist = await RoleManager.RoleExistsAsync(roleName);
-                if (!roleExist)
-                {
-                    roleResult = await RoleManager.CreateAsync(new IdentityRole(roleName));
-                }
-            }
-            var userManager = serviceProvider.GetService<UserManager<ApplicationUser>>();
-            ApplicationUser user = userManager.Users.FirstOrDefault(u => u.Email == "ilyatstr@gmail.com");
-            if (user != null)
-            {
-                await userManager.AddToRoleAsync(user, "Administrator");
-            }
-        }
+        //private async Task CreateRoles(IServiceProvider serviceProvider)
+        //{
+        //    var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+        //    var UserManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+        //    string[] roleNames = { "Administrator", "Moderator" };
+        //    IdentityResult roleResult;
+        //    foreach (var roleName in roleNames)
+        //    {
+        //        var roleExist = await RoleManager.RoleExistsAsync(roleName);
+        //        if (!roleExist)
+        //        {
+        //            roleResult = await RoleManager.CreateAsync(new IdentityRole(roleName));
+        //        }
+        //    }
+        //    var userManager = serviceProvider.GetService<UserManager<ApplicationUser>>();
+        //    ApplicationUser user = userManager.Users.FirstOrDefault(u => u.Email == "ilyatstr@gmail.com");
+        //    if (user != null)
+        //    {
+        //        await userManager.AddToRoleAsync(user, "Administrator");
+        //    }
+        //}
     }
 }
