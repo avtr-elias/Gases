@@ -5,28 +5,28 @@
     ViewData["Title"] = SharedLocalizer["Home"];
 }
 
-<h1 style="text-align:center;">
+<h1 class="textShadow" style="text-align:center;">
     Система космического мониторинга парниковых газов на территории Казахстана
 </h1>
 
 <div class="container-fluid">
     <div class="row">
-        @{
-            List<Gase> gases = (List<Gase>)ViewBag.Gases;
-            foreach (Gase gase in gases)
-            {
-                <div class="col-xs-4 col-md-4">
-                    <br />
-                    <p align="justify">
-                        @gase.Name. @gase.Description
-                        <a class="btn btn-default" href="@Url.Action("Details", "Gases", new { id = gase.Id })">
-                            <span>Перейти</span>
-                        </a>
-                    </p>
-                    @*<br />*@
-                </div>
+            @{
+                List<Gase> gases = (List<Gase>)ViewBag.Gases;
+                foreach (Gase gase in gases)
+                {
+                    <div class="col-xs-4 col-md-4">
+                        <br />
+                        <p align="justify">
+                            <span class="textShadow">@gase.Name. @gase.Description</span>
+                            <a class="btn btn-default" href="@Url.Action("Details", "Gases", new { id = gase.Id })">
+                                <span>Перейти</span>
+                            </a>
+                        </p>
+                        @*<br />*@
+                    </div>
+                }
             }
-        }
     </div>
 </div>
 @*<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
