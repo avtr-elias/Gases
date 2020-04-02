@@ -283,6 +283,12 @@ namespace Gases.Controllers
             _context.SaveChanges();
         }
 
+        //public void GDataList(List<GData> GDatas)
+        //{
+        //    _context.GData.AddRange(GDatas);
+        //    _context.SaveChanges();
+        //}
+
         // GET: GDatas/Upload
         public IActionResult Upload()
         {
@@ -788,26 +794,27 @@ namespace Gases.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        //[HttpPost]
+        //[HttpPost] Настроено под ТАМ
         //[ValidateAntiForgeryToken]
         //public async Task<IActionResult> Upload(int GDataTypeId, int GaseId, decimal VerticalSlice, int RegionId, List<IFormFile> uploadedFiles)
         //{
-        //    //if (VerticalSlice == 0)
-        //    //{
-        //    //    VerticalSlice = 1.5m;
-        //    //}
-        //    List<int> years = new List<int> { 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016 };
+        //    if (VerticalSlice == 0)
+        //    {
+        //        VerticalSlice = 1.5m;
+        //    }
+        //    List<int> years = new List<int> { 2016, 2017, 2018, 2019, 2020 };
+        //    //List<int> years = new List<int> { 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016 };
         //    //List<int> years = new List<int> { 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012 };
         //    //List<int> years = new List<int> { 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019 };
 
 
         //    //List<decimal> vs = new List<decimal> { 1.5m, 1, 2, 3, 5, 7, 10, 15, 20, 30, 50, 70, 100, 150, 200, 250, 300, 400, 500, 600, 700, 850, 925, 1000 };
-        //    //List<decimal> vs = new List<decimal> { 100, 150, 200, 250, 300, 400, 500, 600, 700, 850, 925, 1000 };
+        //    List<decimal> vs = new List<decimal> { 100, 150, 200, 250, 300, 400, 500, 600, 700, 850, 925, 1000 };
         //    int indYear = 0;
-        //    //int indVS = 0;
+        //    int indVS = 0;
         //    foreach (var uploadedFile in uploadedFiles)
         //    {
-        //        //decimal VerticalSlice = vs[indVS];
+        //        VerticalSlice = vs[indVS];
         //        //decimal VerticalSlice = 1000;
         //        int Year = years[indYear];
         //        //int Year = 0;
@@ -994,10 +1001,28 @@ namespace Gases.Controllers
         //                            }
         //                        }
 
+        //                        //for (int i = 0; i < value.Count; i++)
+        //                        //{
+        //                        //    GData(GDataTypeId, GaseId, VerticalSlice, null, lonValue[i], latValue[i], value[i], Year, null, null);
+        //                        //}
+
+        //                        List<GData> gDatas = new List<GData>();
         //                        for (int i = 0; i < value.Count; i++)
         //                        {
-        //                            GData(GDataTypeId, GaseId, VerticalSlice, null, lonValue[i], latValue[i], value[i], Year, null, null);
+        //                            gDatas.Add(new GData {
+        //                                GDataTypeId = GDataTypeId,
+        //                                GaseId = GaseId,
+        //                                VerticalSlice = VerticalSlice,
+        //                                RegionId = null,
+        //                                Longtitude = lonValue[i],
+        //                                Latitude = latValue[i],
+        //                                Value = value[i],
+        //                                Year = Year,
+        //                                Month = null,
+        //                                Season = null
+        //                            });
         //                        }
+        //                        GDataList(gDatas);
         //                    }
 
         //                    if (GDataTypeId == 3)
@@ -1142,7 +1167,7 @@ namespace Gases.Controllers
         //                            season = Season.Autumn;
         //                        }
 
-        //                        for (int i = 61; i < lines.Length; i++)
+        //                        for (int i = 70; i < lines.Length; i++)
         //                        {
         //                            if (String.Compare(lines[i].Replace(" ", "").Replace("\t", ""), "") == 0)
         //                            {
@@ -1168,7 +1193,7 @@ namespace Gases.Controllers
         //                            }
         //                        }
         //                        int equally = 0;
-        //                        for (int i = 61; i < lines.Length; i++)
+        //                        for (int i = 70; i < lines.Length; i++)
         //                        {
         //                            if (lines[i].IndexOf("=") != -1)
         //                            {
@@ -1192,6 +1217,7 @@ namespace Gases.Controllers
         //                                    //    }
         //                                    //}
         //                                    //break;
+        //                                    i++; // пропускаем строку без значения
         //                                    for (int j = i; j < lines.Length; j++)
         //                                    {
         //                                        if (String.Compare(lines[j].Replace(" ", "").Replace("\t", ""), "") == 0)
@@ -1207,7 +1233,7 @@ namespace Gases.Controllers
         //                                        {
         //                                            if (j == i)
         //                                            {
-        //                                                subString = subString.Substring(subString.IndexOf('=') + 2);
+        //                                                //subString = subString.Substring(subString.IndexOf('=') + 2); // если находится в первой строке
         //                                                value.Add(Decimal.Parse(subString.Remove(subString.IndexOf(',')), CultureInfo.InvariantCulture));
         //                                            }
         //                                            else
@@ -1237,7 +1263,7 @@ namespace Gases.Controllers
         //                        subString = lines[0].Remove(0, lines[0].IndexOf("MONTH_") + 6);
         //                        month = Convert.ToInt32(subString.Remove(subString.IndexOf('.')));
 
-        //                        for (int i = 59; i < lines.Length; i++)
+        //                        for (int i = 68; i < lines.Length; i++)
         //                        {
         //                            if (String.Compare(lines[i].Replace(" ", "").Replace("\t", ""), "") == 0)
         //                            {
@@ -1263,7 +1289,7 @@ namespace Gases.Controllers
         //                            }
         //                        }
         //                        int equally = 0;
-        //                        for (int i = 59; i < lines.Length; i++)
+        //                        for (int i = 68; i < lines.Length; i++)
         //                        {
         //                            if (lines[i].IndexOf("=") != -1)
         //                            {
@@ -1287,6 +1313,7 @@ namespace Gases.Controllers
         //                                    //    }
         //                                    //}
         //                                    //break;
+        //                                    i++; // пропускаем строку без значения
         //                                    for (int j = i; j < lines.Length; j++)
         //                                    {
         //                                        if (String.Compare(lines[j].Replace(" ", "").Replace("\t", ""), "") == 0)
@@ -1302,7 +1329,7 @@ namespace Gases.Controllers
         //                                        {
         //                                            if (j == i)
         //                                            {
-        //                                                subString = subString.Substring(subString.IndexOf('=') + 2);
+        //                                                //subString = subString.Substring(subString.IndexOf('=') + 2); // если находится в первой строке
         //                                                value.Add(Decimal.Parse(subString.Remove(subString.IndexOf(',')), CultureInfo.InvariantCulture));
         //                                            }
         //                                            else
@@ -1356,11 +1383,11 @@ namespace Gases.Controllers
         //        }
         //        indYear++;
         //        //indVS++;
-        //        //if (Year == 2016)
-        //        //{
-        //        //    //indVS++;
-        //        //    indYear = 0;
-        //        //}
+        //        if (Year == 2020)
+        //        {
+        //            indVS++;
+        //            indYear = 0;
+        //        }
         //    }
         //    ViewData["GDataTypeId"] = new SelectList(_context.GDataType, "Id", "Name", GDataTypeId);
         //    ViewData["GaseId"] = new SelectList(_context.Gase, "Id", "Name", GaseId);
