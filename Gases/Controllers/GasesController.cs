@@ -23,7 +23,7 @@ namespace Gases.Controllers
         // GET: Gases
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Gase.ToListAsync());
+            return View(await _context.Gase.Where(g => g.Id != 4).ToListAsync()); //not show NO2
         }
 
         // GET: Gases/Details/5

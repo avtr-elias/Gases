@@ -82,7 +82,7 @@ namespace Gases.Controllers
             {
                 return NotFound();
             }
-            ViewData["GaseId"] = new SelectList(_context.Gase, "Id", "Formula", geoTiffFile.GaseId);
+            ViewData["GaseId"] = new SelectList(_context.Gase.Where(g => g.Id != 4), "Id", "Formula", geoTiffFile.GaseId); //not show NO2
             return View(geoTiffFile);
         }
 
@@ -118,7 +118,7 @@ namespace Gases.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["GaseId"] = new SelectList(_context.Gase, "Id", "Formula", geoTiffFile.GaseId);
+            ViewData["GaseId"] = new SelectList(_context.Gase.Where(g => g.Id != 4), "Id", "Formula", geoTiffFile.GaseId); //not show NO2
             return View(geoTiffFile);
         }
 

@@ -105,7 +105,7 @@ namespace Gases.Controllers
             };
 
             ViewBag.GDataType = new SelectList(_context.GDataType.OrderBy(c => c.Name), "Id", "Name");
-            ViewBag.Gase = new SelectList(_context.Gase.OrderBy(c => c.Name), "Id", "Name");
+            ViewBag.Gase = new SelectList(_context.Gase.Where(g => g.Id != 4).OrderBy(c => c.Name), "Id", "Name"); //not show NO2
             ViewBag.Region = new SelectList(_context.Region.OrderBy(c => c.Name), "Id", "Name");
 
             return View(viewModel);
@@ -293,7 +293,7 @@ namespace Gases.Controllers
         public IActionResult Upload()
         {
             ViewData["GDataTypeId"] = new SelectList(_context.GDataType, "Id", "Name");
-            ViewData["GaseId"] = new SelectList(_context.Gase, "Id", "Name");
+            ViewData["GaseId"] = new SelectList(_context.Gase.Where(g => g.Id != 4), "Id", "Name"); //not show NO2
             ViewData["RegionId"] = new SelectList(_context.Region, "Id", "Name");
             return View();
         }
@@ -788,7 +788,7 @@ namespace Gases.Controllers
                 }
             }
             ViewData["GDataTypeId"] = new SelectList(_context.GDataType, "Id", "Name", GDataTypeId);
-            ViewData["GaseId"] = new SelectList(_context.Gase, "Id", "Name", GaseId);
+            ViewData["GaseId"] = new SelectList(_context.Gase.Where(g => g.Id != 4), "Id", "Name", GaseId); //not show NO2
             ViewData["RegionId"] = new SelectList(_context.Region, "Id", "Name", RegionId);
             //return View();
             return RedirectToAction(nameof(Index));
@@ -1408,11 +1408,11 @@ namespace Gases.Controllers
             }
             if (GaseId != null)
             {
-                ViewData["GaseId"] = new SelectList(_context.Gase, "Id", "Name", GaseId);
+                ViewData["GaseId"] = new SelectList(_context.Gase.Where(g => g.Id != 4), "Id", "Name", GaseId); //not show NO2
             }
             else
             {
-                ViewData["GaseId"] = new SelectList(_context.Gase, "Id", "Name");
+                ViewData["GaseId"] = new SelectList(_context.Gase.Where(g => g.Id != 4), "Id", "Name"); //not show NO2
             }
             if (RegionId != null)
             {
@@ -1474,9 +1474,9 @@ namespace Gases.Controllers
                 try
                 {
                     //string name = _context.GeoTiffFile.Where(m => m.Year == Convert.ToString(Year)).Where(m => m.VerticalSlice == VerticalSlice).Where(m => m.GaseId == GaseId).First().Name;
-                    string name = _context.Layer.FirstOrDefault(l => l.Year == Year && l.VerticalSlice == VerticalSlice && l.GaseId == GaseId)?.GeoServerName;
-                    decimal? minVal = _context.GData.Where(m => m.GaseId == GaseId && m.Year == Year && m.VerticalSlice == VerticalSlice).Min(m => m.Value);
-                    decimal? maxVal = _context.GData.Where(m => m.GaseId == GaseId && m.Year == Year && m.VerticalSlice == VerticalSlice).Max(m => m.Value);
+                    string name = _context.Layer.FirstOrDefault(l => l.GDataTypeId == GDataTypeId && l.Year == Year && l.VerticalSlice == VerticalSlice && l.GaseId == GaseId)?.GeoServerName;
+                    decimal? minVal = _context.GData.Where(m => m.GDataTypeId == GDataTypeId && m.GaseId == GaseId && m.Year == Year && m.VerticalSlice == VerticalSlice).Min(m => m.Value);
+                    decimal? maxVal = _context.GData.Where(m => m.GDataTypeId == GDataTypeId && m.GaseId == GaseId && m.Year == Year && m.VerticalSlice == VerticalSlice).Max(m => m.Value);
                     //name = name.Remove(name.Length - 4, 4);
                     //result = new JsonResult(name);
                     result = Json(new
@@ -1506,7 +1506,7 @@ namespace Gases.Controllers
             if (GDataTypeId == 5)
             {
                 var gdatas = _context.GData.Where(g => g.GDataTypeId == GDataTypeId && g.GaseId == GaseId &&
-                g.VerticalSlice == VerticalSlice && g.Season == Season);
+                g.VerticalSlice == VerticalSlice && g.Season == Season).OrderBy(g => g.Year);
                 result = new JsonResult(gdatas);
             }
             return result;

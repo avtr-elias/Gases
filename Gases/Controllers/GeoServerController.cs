@@ -953,7 +953,7 @@ namespace Gases.Controllers
             ViewBag.GeoTIFFFiles = new SelectList(GetGeoTIFFFiles(Startup.Configuration["GeoServer:Workspace"])
                 .Where(l => !publicshedLayers.Contains(Path.GetFileNameWithoutExtension(l))));
             ViewBag.Styles = new SelectList(GetWorkspaceStyles(Startup.Configuration["GeoServer:Workspace"]));
-            ViewBag.Gases = new SelectList(_context.Gase.OrderBy(m => m.Id), "Id", "Name");
+            ViewBag.Gases = new SelectList(_context.Gase.Where(g => g.Id != 4).OrderBy(m => m.Id), "Id", "Name"); //not show NO2
             ViewBag.GDataTypes = new SelectList(_context.GDataType.OrderBy(m => m.Id), "Id", "Name");
             return View();
         }
@@ -1006,7 +1006,7 @@ namespace Gases.Controllers
                 .Where(l => !publicshedLayers.Contains(Path.GetFileNameWithoutExtension(l))));
             ViewBag.Styles = new SelectList(GetWorkspaceStyles(Startup.Configuration["GeoServer:Workspace"]));
             ViewBag.Message = message;
-            ViewBag.Gases = new SelectList(_context.Gase.OrderBy(m => m.Id), "Id", "Name", GaseId);
+            ViewBag.Gases = new SelectList(_context.Gase.Where(g => g.Id != 4).OrderBy(m => m.Id), "Id", "Name", GaseId); //not show NO2
             ViewBag.GDataTypes = new SelectList(_context.GDataType.OrderBy(m => m.Id), "Id", "Name", GDataTypeId);
 
             return View();

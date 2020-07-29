@@ -22,7 +22,7 @@ namespace Gases.Controllers
         // GET: Layers
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Layer.Include(l => l.GDataType).Include(l => l.Gase);
+            var applicationDbContext = _context.Layer.Where(l => l.Gase.Id != 4).Include(l => l.GDataType).Include(l => l.Gase); //not show NO2
             return View(await applicationDbContext.ToListAsync());
         }
 

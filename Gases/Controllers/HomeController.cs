@@ -24,7 +24,7 @@ namespace Gases.Controllers
 
         public IActionResult Index()
         {
-            ViewBag.Gases = _context.Gase.ToList();
+            ViewBag.Gases = _context.Gase.Where(g => g.Id != 4).ToList(); //not show NO2
             return View();
         }
 
